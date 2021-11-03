@@ -1,8 +1,15 @@
 import React from "react";
-import "./App.css";
+// import "./App.css";
+import Header from "./Header/Header";
+import Main from "./Main/Main.js";
 
 const App = () => {
-  return <>this is app {console.log(process.env.REACT_APP_YOUTUBE_API_KEY)}</>;
+  return (
+    <>
+      <Header />
+      <Main />
+    </>
+  );
 };
 
 export default App;

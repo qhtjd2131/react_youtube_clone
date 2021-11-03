@@ -1,0 +1,108 @@
+@import "../variable/_global_variables.scss";
+.headerbar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+//LOGO
+
+.logo-container {
+  padding: 0px 20px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-container img {
+  padding: 0px 16px;
+  margin-left: 10px;
+  width: 88px;
+}
+
+// INPUTBOX
+
+.search-inputbox-container {
+  width: 100%;
+  height: 100%;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-inputbox-container input {
+  outline: none;
+  border: 1px solid $border-color;
+  height: 50%;
+  width: 50%;
+  font-size: 16px;
+
+  border-top-left-radius: $search-box-radius;
+  border-bottom-left-radius: $search-box-radius;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.search-inputbox-container input:focus {
+  border: 1px solid blue;
+}
+
+.search-button {
+  border: 1px solid $border-color;
+  border-left: none;
+  border-top-right-radius: $search-box-radius;
+  border-bottom-right-radius: $search-box-radius;
+  position: relative;
+  background-color: #f8f8f8;
+  width: 40px;
+  height: 50%;
+  font-size: 150%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  &:hover {
+    background-color: $hover-color;
+  }
+  &:hover:after {
+    transition: 0.2s;
+    top: 40px;
+    position: absolute;
+    font-size: 12px;
+    color: white;
+    background-color: gray;
+    width: 40px;
+    content: " 검색";
+    text-align: center;
+    padding: 6px;
+  }
+}
+
+.mic-button {
+  position: relative;
+  box-sizing: border-box;
+  height: 50%;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 2s;
+
+  &:hover:after {
+    top: 40px;
+    position: absolute;
+    font-size: 12px;
+    color: white;
+    background-color: gray;
+    width: 100px;
+    content: "음성으로 검색";
+    text-align: center;
+    padding: 6px;
+  }
+}
