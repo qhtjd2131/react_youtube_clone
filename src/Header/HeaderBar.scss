@@ -11,33 +11,41 @@
 
 .logo-container {
   padding: 0px 20px;
-  font-size: 24px;
+  font-size: $icon-size;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.logo-container .menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 .logo-container img {
-  padding: 0px 16px;
+  padding: 0px 14px;
   margin-left: 10px;
   width: 88px;
+  cursor: pointer;
 }
 
 // INPUTBOX
 
 .search-inputbox-container {
   width: 100%;
-  height: 100%;
+  height: 60%;
   padding: 0px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: $icon-size;
 }
 
 .search-inputbox-container input {
   outline: none;
   border: 1px solid $border-color;
-  height: 50%;
-  width: 50%;
+  height: 100%;
+  width: 80%;
   font-size: 16px;
 
   border-top-left-radius: $search-box-radius;
@@ -59,8 +67,7 @@
   position: relative;
   background-color: #f8f8f8;
   width: 40px;
-  height: 50%;
-  font-size: 150%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,13 +98,12 @@
 .mic-button {
   position: relative;
   box-sizing: border-box;
-  height: 50%;
+  height: 100%;
   width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: 2s;
 
   &:after {
     top: 40px;
@@ -115,4 +121,43 @@
     transition: 0.3s ease-in-out;
     opacity: 1;
   }
+}
+
+// user-item
+.user-item-container {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $icon-size;
+}
+.app-menu-icon {
+  padding: 10px;
+}
+.setting-icon {
+  padding: 10px;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px 10px;
+
+  border: 1px solid cornflowerblue;
+  color: cornflowerblue;
+}
+.user-icon {
+  padding-right: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-text {
+  padding: 0px 4px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
