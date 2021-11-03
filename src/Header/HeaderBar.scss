@@ -69,7 +69,7 @@
   &:hover {
     background-color: $hover-color;
   }
-  &:hover:after {
+  &:after {
     transition: 0.2s;
     top: 40px;
     position: absolute;
@@ -80,6 +80,11 @@
     content: " 검색";
     text-align: center;
     padding: 6px;
+    opacity: 0;
+  }
+  &:hover:after {
+    transition: 0.3s ease-in-out;
+    opacity: 1;
   }
 }
 
@@ -94,7 +99,7 @@
   cursor: pointer;
   transition: 2s;
 
-  &:hover:after {
+  &:after {
     top: 40px;
     position: absolute;
     font-size: 12px;
@@ -104,5 +109,10 @@
     content: "음성으로 검색";
     text-align: center;
     padding: 6px;
+    opacity: 0;
+  }
+  &:hover:after {
+    transition: 0.3s ease-in-out;
+    opacity: 1;
   }
 }

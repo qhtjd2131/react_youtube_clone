@@ -22,7 +22,10 @@ const HeaderBar = () => {
           <BsMicFill />
         </div>
       </div>
-      <div className="user-item-container"></div>
+      <div className="user-item-container">
+
+
+      </div>
     </div>
   );
 };
