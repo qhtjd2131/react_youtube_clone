@@ -1,10 +1,15 @@
 @import "../variable/global_variables.scss";
 
 .sidebar-container {
-    position : fixed;
+  //   grid-area: side;
+  position: fixed;
+  z-index: 990;
+  top: 66px;
   height: 100%;
   width: 220px;
   border: 1px solid black;
+  box-sizing: border-box;
+  background-color: whitesmoke;
 }
 
 .sidebar {
