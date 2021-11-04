@@ -1,7 +1,7 @@
 .main {
   //   grid-area: main;
   //   width: calc(100% - 220px);
-  width: 1000px;
+  width: calc(100% - 220px);
   height: 100%;
   //   overflow: scroll;
   position: absolute;
@@ -10,11 +10,20 @@
   z-index: -1;
   box-sizing: border-box;
 
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr 1fr;
-//   grid-gap: 10px;
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr 1fr 1fr;
+  //   grid-gap: 10px;
   //   grid-template-rows: 1fr ;
-  display : flex;
-  flex : 0 0 25%;
+  display: inline-flex;
+  //   flex: 0 0 25%;
   flex-wrap: wrap;
+}
+
+.item-container {
+ padding : 8px;
+  width: calc(100% / 4 - 16px - 0.01px);
+}
+
+.item-container img {
+  width: 100%;
 }
