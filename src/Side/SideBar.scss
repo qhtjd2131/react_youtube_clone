@@ -18,17 +18,22 @@
   display: flex;
   flex-direction: column;
 }
-.item-wrapper{
-
+.item-wrapper {
+  width: 100%;
 }
-.item{
-    display : flex;
+.item {
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid black;
 }
 
-.itemIcon{
-
+.itemIcon {
 }
-.itemLabel{
-    
+.itemLabel {
+    width : 70%;
+    padding-left : 20px;
 }
-
