@@ -569,23 +569,25 @@ const Main = () => {
       {console.log("render: ", itemsState)}
       {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
 
-      {isLoading
-        ? "Loading ..."
-        : itemsState.items.map((item) => (
-            <div className="item-container" key={item.index}>
-              <img src={item.snippet.thumbnails.medium.url} />
-              <div className="video-description-container">
-                <div className="channel-icon"></div>
-                <div className="video-description">
-                  <div className="video-title">{item.snippet.title}</div>
-                  <div className="video-channel-name">
-                    {item.snippet.channelTitle}
+      <div className="contents-wrapper">
+        {isLoading
+          ? "Loading ..."
+          : itemsState.items.map((item) => (
+              <div className="item-container" key={item.index}>
+                <img src={item.snippet.thumbnails.medium.url} />
+                <div className="video-description-container">
+                  <div className="channel-icon"></div>
+                  <div className="video-description">
+                    <div className="video-title">{item.snippet.title}</div>
+                    <div className="video-channel-name">
+                      {item.snippet.channelTitle}
+                    </div>
+                    <div className="video-viewcount"></div>
                   </div>
-                  <div className="video-viewcount"></div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+      </div>
     </div>
   );
 };
