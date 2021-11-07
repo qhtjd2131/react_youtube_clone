@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef, useCallback, useEffect, useState } from "react";
 import { FcMenu } from "react-icons/fc";
 import { IoIosSearch } from "react-icons/io";
 import { BsMicFill, BsGrid3X3Gap } from "react-icons/bs";
@@ -17,7 +17,35 @@ export const LogIn = () => {
     </div>
   );
 };
+
 const HeaderBar = () => {
+  const [stateHover, setStateHover] = useState("none");
+  const searchHoverRef = createRef();
+  const micHoverRef = createRef();
+  const appMenuHoverRef = createRef();
+  const settingHoverRef = createRef();
+
+  const handlerMouseEnter = useCallback(
+    (e, state, hoverRef) => {
+      if (hoverRef) {
+        if (!hoverRef.current.contains(e.target)) {
+          setStateHover(state);
+        }
+      }
+    },
+    [searchHoverRef, micHoverRef, appMenuHoverRef, settingHoverRef]
+  );
+  const handlerMouseLeave = useCallback(
+    (e, hoverRef) => {
+      if (hoverRef) {
+        if (!hoverRef.current.contains(e.target)) {
+          setStateHover("none");
+        }
+      }
+    },
+    [searchHoverRef, micHoverRef, appMenuHoverRef, settingHoverRef]
+  );
+
   return (
     <div className="headerbar">
       <div className="logo-container">
@@ -28,23 +56,92 @@ const HeaderBar = () => {
       </div>
       <div className="search-inputbox-container">
         <input placeholder="검색" />
-        <div className="search-button">
+        <div
+          className="search-button"
+          onMouseEnter={(e) => {
+            handlerMouseEnter(e, "search", searchHoverRef);
+          }}
+          onMouseLeave={(e) => {
+            handlerMouseLeave(e);
+          }}
+        >
           <IoIosSearch />
-          {/* <div className="hover-description">검색</div> */}
+          <div
+            className={
+              stateHover === "search"
+                ? "hover-description on-hover"
+                : "hover-description"
+            }
+            ref={searchHoverRef}
+          >
+            검색
+          </div>
+         
         </div>
-        <div className="mic-button">
+        <div
+          className="mic-button"
+          onMouseEnter={(e) => {
+            handlerMouseEnter(e, "mic", micHoverRef);
+          }}
+          onMouseLeave={(e) => {
+            handlerMouseLeave(e, micHoverRef);
+          }}
+        >
           <BsMicFill />
-          <div className="hover-description">음성으로 검색</div>
+          <div
+            className={
+              stateHover === "mic"
+                ? "hover-description on-hover"
+                : "hover-description"
+            }
+            ref={micHoverRef}
+          >
+            음성으로 검색
+          </div>
         </div>
       </div>
       <div className="user-item-container">
-        <div className="app-menu-icon">
+        <div
+          className="app-menu-icon"
+          onMouseEnter={(e) => {
+            handlerMouseEnter(e, "app_menu", appMenuHoverRef);
+          }}
+          onMouseLeave={(e) => {
+            handlerMouseLeave(e, appMenuHoverRef);
+          }}
+        >
           <BsGrid3X3Gap />
-          <div className="hover-description">Yotube 앱</div>
+          <div
+            className={
+              stateHover === "app_menu"
+                ? "hover-description on-hover"
+                : "hover-description"
+            }
+            ref={appMenuHoverRef}
+          >
+            Yotube 앱
+          </div>
         </div>
-        <div className="setting-icon">
+        <div
+          className="setting-icon"
+          onMouseEnter={(e) => {
+            handlerMouseEnter(e, "setting", settingHoverRef);
+          }}
+          onMouseLeave={(e) => {
+            handlerMouseLeave(e, settingHoverRef);
+          }}
+        >
           <GoKebabVertical />
-          <div className="hover-description">설정</div>
+          <div
+            className={
+              stateHover === "setting"
+                ? "hover-description on-hover"
+                : "hover-description"
+            }
+            ref={settingHoverRef}
+          >
+            설정
+          </div>
         </div>
         <LogIn />
       </div>

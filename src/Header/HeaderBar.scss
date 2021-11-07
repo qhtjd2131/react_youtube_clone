@@ -76,26 +76,11 @@ $hover-state: "";
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
+
   &:hover {
     background-color: $hover-color;
   }
-  &:after {
-    transition: 0.2s;
-    top: 60px;
-    position: absolute;
-    font-size: 12px;
-    color: white;
-    background-color: gray;
-    width: 40px;
-    content: " 검색";
-    text-align: center;
-    padding: 6px;
-    opacity: 0;
-  }
-  &:hover:after {
-    transition: 0.3s ease-in-out;
-    opacity: 1;
-  }
+
 }
 
 .mic-button {
@@ -107,23 +92,6 @@ $hover-state: "";
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
-//   &:after {
-//     top: 60px;
-//     position: absolute;
-//     font-size: 12px;
-//     color: white;
-//     background-color: gray;
-//     width: 100px;
-//     content: "음성으로 검색";
-//     text-align: center;
-//     padding: 6px;
-//     opacity: 0;
-//   }
-//   &:hover:after {
-//     transition: 0.3s ease-in-out;
-//     opacity: 1;
-//   }
 }
 
 // user-item
@@ -141,22 +109,6 @@ $hover-state: "";
   justify-content: center;
   align-items: center;
   cursor: pointer;
-//   &:after {
-//     top: 60px;
-//     position: absolute;
-//     font-size: 12px;
-//     color: white;
-//     background-color: gray;
-//     width: 100px;
-//     content: "Youtube 앱";
-//     text-align: center;
-//     padding: 6px;
-//     opacity: 0;
-//   }
-//   &:hover:after {
-//     transition: 0.3s ease-in-out;
-//     opacity: 1;
-//   }
 }
 .setting-icon {
   padding: 10px;
@@ -166,23 +118,7 @@ $hover-state: "";
   align-items: center;
   cursor: pointer;
 
-  //   &:after {
-  //     top: 60px;
-  //     position: absolute;
-  //     font-size: 12px;
-  //     color: white;
-  //     background-color: gray;
-  //     width: 100px;
-  //     content: "설정";
-  //     text-align: center;
-  //     padding: 6px;
-  //     opacity: 0;
-  //   }
-  &:hover {
-    // transition: 0.3s ease-in-out;
-    // opacity: 1;
-    $hover-state: 1;
-  }
+ 
 }
 .login-container {
   width: 100px;
@@ -205,7 +141,15 @@ $hover-state: "";
   width: 100px;
   text-align: center;
   padding: 6px;
-  opacity: $hover-state;
+  //   display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s ease-out;
+  cursor: default !important;
+}
+.on-hover {
+  visibility: visible;
+  opacity: 1;
 }
 .user-icon {
   padding-right: 8px;

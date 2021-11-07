@@ -1,3 +1,5 @@
+@import "../variable/_global_variables.scss";
+
 .headerbar-container {
   //   grid-area: header;
   z-index: 990;
@@ -5,7 +7,7 @@
   background-color: white;
   border: 1px solid gray;
   width: 100%;
-  height: 66px;
+  height: $header-height;
   margin: 0;
   padding: 0;
   position: fixed;

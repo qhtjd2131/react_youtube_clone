@@ -46,7 +46,6 @@ const SideBar = () => {
           ))}
           <Line />
 
-          <div className="list-label">YOUTUBE 더보기</div>
           {data.item_4.map((i, index) => (
             <div className="item" key={index}>
               <div className="itemIcon">{i.image}</div>
@@ -55,6 +54,8 @@ const SideBar = () => {
           ))}
 
           <Line />
+          <div className="list-label">YOUTUBE 더보기</div>
+
           {data.item_5.map((i, index) => (
             <div className="item" key={index}>
               <div className="itemIcon">{i.image}</div>
