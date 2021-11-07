@@ -1,11 +1,13 @@
+@import "../variable/_global_variables.scss";
+
 .main {
   //   grid-area: main;
-  width: calc(100% - 220px);
+  width: calc(100% - $side-width);
   height: 100%;
   //   overflow: scroll;
   position: absolute;
   top: 66px;
-  left: 220px;
+  left: $side-width;
 
   box-sizing: border-box;
 }

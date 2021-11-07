@@ -37,6 +37,34 @@ const SideBar = () => {
           </div>
 
           <Line />
+          <div className="list-label">인기 YOUTUBE</div>
+          {data.item_3.map((i, index) => (
+            <div className="item" key={index}>
+              <div className="itemIcon">{i.image}</div>
+              <div className="itemLabel">{i.title}</div>
+            </div>
+          ))}
+          <Line />
+
+          <div className="list-label">YOUTUBE 더보기</div>
+          {data.item_4.map((i, index) => (
+            <div className="item" key={index}>
+              <div className="itemIcon">{i.image}</div>
+              <div className="itemLabel">{i.title}</div>
+            </div>
+          ))}
+
+          <Line />
+          {data.item_5.map((i, index) => (
+            <div className="item" key={index}>
+              <div className="itemIcon">{i.image}</div>
+              <div className="itemLabel">{i.title}</div>
+            </div>
+          ))}
+
+          <Line />
+
+          {/* 정보... */}
         </div>
       </div>
     </div>
