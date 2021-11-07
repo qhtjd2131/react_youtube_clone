@@ -1,26 +1,33 @@
+import {
+  MdHomeFilled,
+  MdOutlineSubscriptions,
+  MdShop2,
+  MdOutlineHistory,
+} from "react-icons/md";
+import { IoCompassOutline } from "react-icons/io5";
 export const item_1 = [
   {
     title: "홈",
-    image: "",
+    image: <MdHomeFilled />,
   },
   {
     title: "탐색",
-    image: "",
+    image: <IoCompassOutline />,
   },
   {
     title: "구독",
-    image: "",
+    image: <MdOutlineSubscriptions />,
   },
 ];
 
 export const item_2 = [
   {
     title: "보관함",
-    image: "",
+    image: <MdShop2 />,
   },
   {
     title: "시청 기록",
-    image: "",
+    image: <MdOutlineHistory />,
   },
 ];
 

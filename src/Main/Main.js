@@ -572,8 +572,8 @@ const Main = () => {
       <div className="contents-wrapper">
         {isLoading
           ? "Loading ..."
-          : itemsState.items.map((item) => (
-              <div className="item-container" key={item.index}>
+          : itemsState.items.map((item, index) => (
+              <div className="item-container" key={index}>
                 <img src={item.snippet.thumbnails.medium.url} />
                 <div className="video-description-container">
                   <div className="channel-icon"></div>

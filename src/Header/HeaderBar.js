@@ -7,7 +7,16 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 import logo from "../images/yt_logo_rgb_light.png";
 import "./HeaderBar.scss";
-
+export const LogIn = () => {
+  return (
+    <div className="login-container">
+      <div className="user-icon">
+        <FaRegUserCircle />
+      </div>
+      <div className="login-text">로그인</div>
+    </div>
+  );
+};
 const HeaderBar = () => {
   return (
     <div className="headerbar">
@@ -33,12 +42,7 @@ const HeaderBar = () => {
         <div className="setting-icon">
           <GoKebabVertical />
         </div>
-        <div className="login-container">
-          <div className="user-icon">
-            <FaRegUserCircle />
-          </div>
-          <div className="login-text">로그인</div>
-        </div>
+        <LogIn />
       </div>
     </div>
   );

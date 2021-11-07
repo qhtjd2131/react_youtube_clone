@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index : 990;
+  z-index: 990;
 }
 
 //LOGO
@@ -79,7 +79,7 @@
   }
   &:after {
     transition: 0.2s;
-    top: 40px;
+    top: 60px;
     position: absolute;
     font-size: 12px;
     color: white;
@@ -107,7 +107,7 @@
   cursor: pointer;
 
   &:after {
-    top: 40px;
+    top: 60px;
     position: absolute;
     font-size: 12px;
     color: white;
@@ -134,11 +134,57 @@
 }
 .app-menu-icon {
   padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:after {
+    top: 60px;
+    position: absolute;
+    font-size: 12px;
+    color: white;
+    background-color: gray;
+    width: 100px;
+    content: "Youtube 앱";
+    text-align: center;
+    padding: 6px;
+    opacity: 0;
+  }
+  &:hover:after {
+    transition: 0.3s ease-in-out;
+    opacity: 1;
+  }
 }
 .setting-icon {
   padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:after {
+    top: 60px;
+    position: absolute;
+    font-size: 12px;
+    color: white;
+    background-color: gray;
+    width: 100px;
+    content: "설정";
+    text-align: center;
+    padding: 6px;
+    opacity: 0;
+  }
+  &:hover:after {
+    transition: 0.3s ease-in-out;
+    opacity: 1;
+  }
+  &:after:hover {
+  }
 }
 .login-container {
+  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,6 +193,7 @@
 
   border: 1px solid cornflowerblue;
   color: cornflowerblue;
+  cursor: pointer;
 }
 .user-icon {
   padding-right: 8px;

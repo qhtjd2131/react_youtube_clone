@@ -17,13 +17,37 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 .item-wrapper {
+  box-sizing: border-box;
   width: 100%;
 }
-.item {
+.side-login-container {
+  padding: 4px 22px;
   box-sizing: border-box;
-  padding: 10px;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.side-login-description {
+  font-size: 14px;
+  word-break: keep-all;
+  padding-bottom : 20px;
+}
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(187, 185, 185);
+  margin: 10px 0px;
+}
+.item {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 4px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,8 +56,11 @@
 }
 
 .itemIcon {
+  font-size: 24px;
+  padding: 0;
+  margin: 0;
 }
 .itemLabel {
-    width : 70%;
-    padding-left : 20px;
+  width: 70%;
+  padding-left: 20px;
 }
