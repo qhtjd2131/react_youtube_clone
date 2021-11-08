@@ -80,7 +80,6 @@ $hover-state: "";
   &:hover {
     background-color: $hover-color;
   }
-
 }
 
 .mic-button {
@@ -117,8 +116,6 @@ $hover-state: "";
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
- 
 }
 .login-container {
   width: 100px;
@@ -138,15 +135,14 @@ $hover-state: "";
   font-size: 12px;
   color: white;
   background-color: gray;
-  width: 100px;
   text-align: center;
   padding: 6px;
-  //   display: none;
   visibility: hidden;
   opacity: 0;
   transition: 0.2s ease-out;
   cursor: default !important;
 }
+
 .on-hover {
   visibility: visible;
   opacity: 1;
