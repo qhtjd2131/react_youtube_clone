@@ -1,4 +1,4 @@
-import React, { createRef, useCallback, useEffect, useState } from "react";
+import React, { createRef, useCallback, useState } from "react";
 import { FcMenu } from "react-icons/fc";
 import { IoIosSearch } from "react-icons/io";
 import { BsMicFill, BsGrid3X3Gap } from "react-icons/bs";
@@ -33,7 +33,7 @@ const HeaderBar = () => {
         }
       }
     },
-    [searchHoverRef, micHoverRef, appMenuHoverRef, settingHoverRef]
+    [stateHover]
   );
   const handlerMouseLeave = useCallback(
     (e, hoverRef) => {
@@ -43,7 +43,7 @@ const HeaderBar = () => {
         }
       }
     },
-    [searchHoverRef, micHoverRef, appMenuHoverRef, settingHoverRef]
+    [stateHover]
   );
 
   return (
@@ -62,7 +62,7 @@ const HeaderBar = () => {
             handlerMouseEnter(e, "search", searchHoverRef);
           }}
           onMouseLeave={(e) => {
-            handlerMouseLeave(e);
+            handlerMouseLeave(e, searchHoverRef);
           }}
         >
           <IoIosSearch />
@@ -76,7 +76,6 @@ const HeaderBar = () => {
           >
             검색
           </div>
-         
         </div>
         <div
           className="mic-button"
