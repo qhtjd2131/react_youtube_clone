@@ -8,8 +8,14 @@
   position: absolute;
   top: $header-height;
   left: $side-width;
-
   box-sizing: border-box;
+}
+@media only screen and (max-width: 1300px) {
+  .main {
+    left: $mini-side-width;
+    width: calc(100% - $mini-side-width);
+  }
+
 }
 
 .contents-wrapper {

@@ -12,6 +12,28 @@ import {
   BsExclamationSquare,
 } from "react-icons/bs";
 import { AiOutlineYoutube, AiOutlineSetting } from "react-icons/ai";
+export const item_mini = [
+  {
+    title: "홈",
+    image: <MdHomeFilled />,
+  },
+  {
+    title: "탐색",
+    image: <IoCompassOutline />,
+  },
+  {
+    title: "구독",
+    image: <MdOutlineSubscriptions />,
+  },
+  {
+    title: "보관함",
+    image: <MdShop2 />,
+  },
+  {
+    title: "시청 기록",
+    image: <MdOutlineHistory />,
+  },
+]
 
 export const item_1 = [
   {

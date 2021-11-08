@@ -25,26 +25,21 @@ const HeaderBar = () => {
   const appMenuHoverRef = createRef();
   const settingHoverRef = createRef();
 
-  const handlerMouseEnter = useCallback(
-    (e, state, hoverRef) => {
-      if (hoverRef) {
-        if (!hoverRef.current.contains(e.target)) {
-          setStateHover(state);
-        }
+  const handlerMouseEnter = useCallback((e, state, hoverRef) => {
+    if (hoverRef) {
+      if (!hoverRef.current.contains(e.target)) {
+        setStateHover(state);
+        console.log(window.innerWidth);
       }
-    },
-    []
-  );
-  const handlerMouseLeave = useCallback(
-    (e, hoverRef) => {
-      if (hoverRef) {
-        if (!hoverRef.current.contains(e.target)) {
-          setStateHover("none");
-        }
+    }
+  }, []);
+  const handlerMouseLeave = useCallback((e, hoverRef) => {
+    if (hoverRef) {
+      if (!hoverRef.current.contains(e.target)) {
+        setStateHover("none");
       }
-    },
-    []
-  );
+    }
+  }, []);
 
   return (
     <div className="headerbar">

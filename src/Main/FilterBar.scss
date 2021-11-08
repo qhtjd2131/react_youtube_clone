@@ -17,6 +17,12 @@
 
   overflow-x: hidden;
 }
+@media only screen and (max-width: 1300px) {
+  .filterbar-container {
+    left: $mini-side-width;
+    width: calc(100% - $mini-side-width);
+  }
+}
 
 .filterbar-content-wrapper {
   display: flex;

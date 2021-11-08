@@ -1,7 +1,6 @@
 @import "../variable/_global_variables.scss";
 
 .sidebar-container {
-  //   grid-area: side;
   position: fixed;
   z-index: 990;
   top: $header-height;
@@ -9,6 +8,19 @@
   width: $side-width;
   box-sizing: border-box;
   background-color: white;
+
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+  }
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background-color: $scrollbar-color;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    left: -100%;
+  }
 }
 
 .sidebar {
