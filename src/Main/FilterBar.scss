@@ -1,0 +1,35 @@
+@import "../variable/_global_variables.scss";
+
+.filterbar-container {
+  position: fixed;
+  width: calc(100% - $side-width);
+  height: $header-height;
+  left: $side-width;
+  top: $header-height;
+  z-index: 990;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.filterbar-content-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.filterbar-content-wrapper .label {
+  font-size: 15px;
+  padding: 5px 15px;
+  border: 1px solid $border-color;
+  border-radius: 20px;
+  background-color: $default-background-color;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}

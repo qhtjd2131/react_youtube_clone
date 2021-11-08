@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import "./Main.scss";
 import axios from "axios";
+import FilterBar from "./FilterBar";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -570,6 +571,7 @@ const Main = () => {
       {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
 
       <div className="contents-wrapper">
+          <FilterBar />
         {isLoading
           ? "Loading ..."
           : itemsState.items.map((item, index) => (
