@@ -7,11 +7,14 @@ const mainData = [
   "음악",
   "ASMR",
   "축구",
+  "요리 프로그램",
   "랩",
+  "미용",
+  "액션 어드벤처 게임",
   "최근에 업로드 된 영상",
 ];
 const FilterBar = () => {
-  const [selectedLabel, setSelectedLabel] = useState("none");
+  const [selectedLabel, setSelectedLabel] = useState("전체");
 
   const handleClickEvent = (e) => {
     setSelectedLabel(e.target.outerText);

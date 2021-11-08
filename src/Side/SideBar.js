@@ -7,13 +7,22 @@ const Line = () => {
   return <div className="line"></div>;
 };
 
-const Items = ({ item }) => {
-  return item.map((i, index) => (
-    <div className="item" key={index}>
-      <div className="itemIcon">{i.image}</div>
-      <div className="itemLabel">{i.title}</div>
-    </div>
-  ));
+const Items = ({ item, theme }) => {
+  if (theme === "black") {
+    return item.map((i, index) => (
+      <div className="item" key={index}>
+        <div className="itemIcon black">{i.image}</div>
+        <div className="itemLabel">{i.title}</div>
+      </div>
+    ));
+  } else {
+    return item.map((i, index) => (
+      <div className="item" key={index}>
+        <div className="itemIcon">{i.image}</div>
+        <div className="itemLabel">{i.title}</div>
+      </div>
+    ));
+  }
 };
 const SideBar = () => {
   return (
@@ -37,7 +46,7 @@ const SideBar = () => {
 
           <Line />
           <div className="list-label">인기 YOUTUBE</div>
-          <Items item={data.item_3} />
+          <Items item={data.item_3} theme="black" />
           <Line />
 
           <Items item={data.item_4} />

@@ -48,7 +48,7 @@
 .item {
   margin: 0;
   box-sizing: border-box;
-  padding: 4px 8px;
+  padding: 7px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +60,14 @@
   font-size: 24px;
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.black img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
 .itemLabel {
   width: 70%;
