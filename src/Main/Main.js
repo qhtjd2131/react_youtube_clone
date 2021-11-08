@@ -7,11 +7,8 @@ import FilterBar from "./FilterBar";
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [itemsState, setItems] = useState([]);
-  console.log("main");
 
   useEffect(() => {
-    console.log("useeffect");
-
     // const url =
     //   "https://www.googleapis.com/youtube/v3/search?&part=snippet&regionCode=KR&key=AIzaSyB9lShbMlPF9fz6shjhCGXiac9p5sMrUqk";
 
@@ -567,16 +564,15 @@ const Main = () => {
 
   return (
     <div className="main">
-      {console.log("render: ", itemsState)}
       {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
 
       <div className="contents-wrapper">
-          <FilterBar />
+        <FilterBar />
         {isLoading
           ? "Loading ..."
           : itemsState.items.map((item, index) => (
               <div className="item-container" key={index}>
-                <img src={item.snippet.thumbnails.medium.url} />
+                <img src={item.snippet.thumbnails.medium.url} alt="" />
                 <div className="video-description-container">
                   <div className="channel-icon"></div>
                   <div className="video-description">

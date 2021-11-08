@@ -1,3 +1,5 @@
+@import "./variable/_global_variables.scss";
+
 #root,
 html,
 body {
@@ -9,6 +11,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-color;
+    border-radius: 5px;
+  }
 }
 
 code {

@@ -33,7 +33,7 @@ const HeaderBar = () => {
         }
       }
     },
-    [stateHover]
+    []
   );
   const handlerMouseLeave = useCallback(
     (e, hoverRef) => {
@@ -43,7 +43,7 @@ const HeaderBar = () => {
         }
       }
     },
-    [stateHover]
+    []
   );
 
   return (

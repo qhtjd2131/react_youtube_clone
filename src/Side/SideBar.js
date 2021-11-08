@@ -3,7 +3,7 @@ import "./SideBar.scss";
 import * as data from "./SideData/data.js";
 import { LogIn } from "../Header/HeaderBar.js";
 
-export const selectedSideItemContext = React.createContext({});
+export const selectedSideItemContext = createContext({});
 
 const Line = () => {
   return <div className="line"></div>;
