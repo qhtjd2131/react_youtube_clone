@@ -138,6 +138,7 @@ $hover-state: "";
   text-align: center;
   padding: 6px;
   visibility: hidden;
+  white-space: nowrap;
   opacity: 0;
   transition: 0.2s ease-out;
   cursor: default !important;
