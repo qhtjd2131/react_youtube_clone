@@ -12,7 +12,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  //   border: 1px solid black;
+  border-bottom: 1px solid $border-color;
 }
 
 .filterbar-content-wrapper {
@@ -31,5 +32,13 @@
 
   &:hover {
     background-color: $hover-color;
+  }
+}
+
+.filterbar-content-wrapper .selected-label {
+  background-color: black;
+  color: white;
+  &:hover {
+    background-color: black;
   }
 }

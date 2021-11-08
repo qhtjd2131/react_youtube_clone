@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FilterBar.scss";
 
 const mainData = [
@@ -11,13 +11,30 @@ const mainData = [
   "최근에 업로드 된 영상",
 ];
 const FilterBar = () => {
-  return <div className="filterbar-container">
+  const [selectedLabel, setSelectedLabel] = useState("none");
+
+  const handleClickEvent = (e) => {
+    setSelectedLabel(e.target.outerText);
+  };
+  return (
+    <div className="filterbar-container">
       <div className="filterbar-content-wrapper">
-      {mainData.map( data => (
-          <div className="label">{data}</div>
-      ))}
+        {mainData.map((data, index) => (
+          <div
+            className={
+              selectedLabel === data ? "label selected-label" : "label"
+            }
+            key={index}
+            onClick={(e) => {
+              handleClickEvent(e);
+            }}
+          >
+            {data}
+          </div>
+        ))}
       </div>
-  </div>;
+    </div>
+  );
 };
 
 export default FilterBar;

@@ -5,7 +5,8 @@
   z-index: 990;
 
   background-color: white;
-  border: 1px solid gray;
+  //   border: 1px solid gray;
+  border-bottom: 1px solid $border-color;
   width: 100%;
   height: $header-height;
   margin: 0;
