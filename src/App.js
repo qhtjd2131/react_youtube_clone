@@ -1,11 +1,19 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Main from "./Main/Main.js";
 import SideBar from "./Side/SideBar";
 export const SideBarContext = createContext({});
 const Overlay = () => {
-  return <div className="overlay"></div>;
+  const { setIsOpenSideBar } = useContext(SideBarContext);
+  return (
+    <div
+      className="overlay"
+      onClick={() => {
+        setIsOpenSideBar(false);
+      }}
+    ></div>
+  );
 };
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(true);
@@ -30,6 +38,14 @@ const App = () => {
       window.removeEventListener("resize", handlerResizeEvent);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isWindowSizeXL && isOpenSideBar) {
+      document.body.classList.add("scroll-in-overlay");
+    } else {
+      document.body.classList.remove("scroll-in-overlay");
+    }
+  }, [isWindowSizeXL, isOpenSideBar]);
 
   return (
     <div className="app">
