@@ -8,13 +8,11 @@ const MiniSideBar = () => {
     selectedSideItemContext
   );
 
-  console.log(selectedSideItem);
   return (
     <div className="mini-sidebar-container">
       {[...data.item_1, ...data.item_2].map((i, index) => (
         <div className="mini-item-wrapper" key={index}>
           <div
-            className="mini-side-item"
             className={
               selectedSideItem === i.title
                 ? "mini-side-item selected-mini-side-item"

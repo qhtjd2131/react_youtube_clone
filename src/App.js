@@ -1,21 +1,29 @@
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Main from "./Main/Main.js";
 import SideBar from "./Side/SideBar";
-export const isOpenSideBarContext = createContext({});
-
+export const SideBarContext = createContext({});
+const Overlay = () => {
+  return <div className="overlay"></div>;
+};
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(true);
+  const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
 
   useEffect(() => {
     const handlerResizeEvent = () => {
       if (window.innerWidth <= 1300) {
         setIsOpenSideBar(false);
+        setIsWindowSizeXL(false);
       } else {
         setIsOpenSideBar(true);
+        setIsWindowSizeXL(true);
       }
     };
+
+    handlerResizeEvent();
+
     window.addEventListener("resize", handlerResizeEvent);
 
     return () => {
@@ -25,13 +33,19 @@ const App = () => {
 
   return (
     <div className="app">
-      <isOpenSideBarContext.Provider
-        value={{ isOpenSideBar, setIsOpenSideBar }}
+      <SideBarContext.Provider
+        value={{
+          isOpenSideBar,
+          setIsOpenSideBar,
+          isWindowSizeXL,
+          setIsWindowSizeXL,
+        }}
       >
         <Header />
         <Main />
         <SideBar />
-      </isOpenSideBarContext.Provider>
+        {isOpenSideBar && !isWindowSizeXL && <Overlay />}
+      </SideBarContext.Provider>
     </div>
   );
 };

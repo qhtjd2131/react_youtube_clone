@@ -7,7 +7,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 import logo from "../images/yt_logo_rgb_light.png";
 import "./HeaderBar.scss";
-import { isOpenSideBarContext } from "../App";
+import { SideBarContext } from "../App";
 
 export const LogIn = () => {
   return (
@@ -20,10 +20,26 @@ export const LogIn = () => {
   );
 };
 
+export const Logo = () => {
+  const { isOpenSideBar, setIsOpenSideBar } = useContext(SideBarContext);
+
+  return (
+    <div className="logo-container">
+      <div
+        className="menu"
+        onClick={() => {
+          isOpenSideBar ? setIsOpenSideBar(false) : setIsOpenSideBar(true);
+        }}
+      >
+        <FcMenu />
+      </div>
+      <img src={logo} alt="logo" />
+    </div>
+  );
+};
+
 const HeaderBar = () => {
   const [stateHover, setStateHover] = useState("none");
-  const { isOpenSideBar, setIsOpenSideBar } = useContext(isOpenSideBarContext);
-
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
   const appMenuHoverRef = createRef();
@@ -33,7 +49,6 @@ const HeaderBar = () => {
     if (hoverRef) {
       if (!hoverRef.current.contains(e.target)) {
         setStateHover(state);
-        console.log(window.innerWidth);
       }
     }
   }, []);
@@ -47,17 +62,7 @@ const HeaderBar = () => {
 
   return (
     <div className="headerbar">
-      <div className="logo-container">
-        <div
-          className="menu"
-          onClick={() => {
-            isOpenSideBar ? setIsOpenSideBar(false) : setIsOpenSideBar(true);
-          }}
-        >
-          <FcMenu />
-        </div>
-        <img src={logo} alt="logo" />
-      </div>
+      <Logo />
       <div className="search-inputbox-container">
         <input placeholder="검색" />
         <div

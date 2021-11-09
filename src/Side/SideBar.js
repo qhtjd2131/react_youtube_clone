@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, createRef, useContext, useState } from "react";
 import "./SideBar.scss";
 import * as data from "./SideData/data.js";
 import { LogIn } from "../Header/HeaderBar.js";
-
 import MiniSideBar from "./MiniSideBar.js";
-import { isOpenSideBarContext } from "../App";
+import { SideBarContext } from "../App";
+import { Logo } from "../Header/HeaderBar.js";
 
 export const selectedSideItemContext = createContext({});
 
@@ -41,7 +41,8 @@ const SideBar = () => {
   const [selectedSideItem, setSelectedSideItem] = useState(
     data.item_1[0].title
   ); //data.item_1[0].title:홈
-  const { isOpenSideBar } = useContext(isOpenSideBarContext);
+  const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
+  const sidebarRef = createRef();
 
   return (
     <>
@@ -50,11 +51,15 @@ const SideBar = () => {
       >
         <div
           className={
-            isOpenSideBar
-              ? "sidebar-container"
-              : "sidebar-container sidebar-close"
+            "sidebar-container" +
+            (isOpenSideBar ? "" : " sidebar-close") +
+            (isWindowSizeXL ? "" : " sidebar-no-xl")
           }
+          ref={sidebarRef}
         >
+          <div className="logo-in-side">
+            <Logo />
+          </div>
           <div className="sidebar">
             <div className="items-wrapper">
               <Items item={data.item_1} />

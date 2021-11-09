@@ -3,13 +3,12 @@ import YouTube from "react-youtube";
 import "./Main.scss";
 import axios from "axios";
 import FilterBar from "./FilterBar";
-import { isOpenSideBarContext } from "../App";
+import { SideBarContext } from "../App";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [itemsState, setItems] = useState([]);
-  const { isOpenSideBar } = useContext(isOpenSideBarContext);
-
+  const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
 
   useEffect(() => {
     // const url =
@@ -566,8 +565,10 @@ const Main = () => {
   };
 
   return (
-    <div 
-     className={isOpenSideBar ? "main" : "main side-close-main"}
+    <div
+      className={
+        isOpenSideBar && isWindowSizeXL ? "main" : "main side-close-main"
+      }
     >
       {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
 

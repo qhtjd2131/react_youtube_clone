@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./FilterBar.scss";
-import { isOpenSideBarContext } from "../App";
+import { SideBarContext } from "../App";
 const mainData = [
   "전체",
   "실시간",
@@ -15,7 +15,7 @@ const mainData = [
 ];
 const FilterBar = () => {
   const [selectedLabel, setSelectedLabel] = useState("전체");
-  const { isOpenSideBar } = useContext(isOpenSideBarContext);
+  const { isOpenSideBar } = useContext(SideBarContext);
 
   const handleClickEvent = (e) => {
     setSelectedLabel(e.target.outerText);
