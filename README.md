@@ -7,3 +7,4 @@ headerbar icon 버튼 hover 시 :after 로 부가설명 컴포넌트를 생성�
 opacity 속성을 통해 사라지고 보여짐을 구현.
 하지만 이때, 원래목적의 컴포넌트가 아닌 부가설명 컴포넌트를 hover 시에도 보여지게됨. (부모 자식 관계이기 때문)
 
+media query 가 아닌 window resize event 를 이용하여 js에서 반응형 웹 구현

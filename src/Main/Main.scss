@@ -10,13 +10,17 @@
   left: $side-width;
   box-sizing: border-box;
 }
-@media only screen and (max-width: 1300px) {
-  .main {
-    left: $mini-side-width;
-    width: calc(100% - $mini-side-width);
-  }
 
+.side-close-main {
+  left: $mini-side-width;
+  width: calc(100% - $mini-side-width);
 }
+// @media only screen and (max-width: 1300px) {
+//   .main {
+//     left: $mini-side-width;
+//     width: calc(100% - $mini-side-width);
+//   }
+// }
 
 .contents-wrapper {
   margin-top: 100px;

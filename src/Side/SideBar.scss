@@ -17,10 +17,14 @@
       background-color: $scrollbar-color;
     }
   }
+  
 
-  @media only screen and (max-width: 1300px) {
-    left: -100%;
-  }
+//   @media only screen and (max-width: 1300px) {
+//     left: -100%;
+//   }
+}
+.sidebar-close{
+    left : -100%;
 }
 
 .sidebar {
@@ -64,6 +68,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  cursor: pointer;
   &:hover {
     background-color: $side-item-hover-color;
   }

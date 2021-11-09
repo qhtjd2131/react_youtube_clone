@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import YouTube from "react-youtube";
 import "./Main.scss";
 import axios from "axios";
 import FilterBar from "./FilterBar";
+import { isOpenSideBarContext } from "../App";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [itemsState, setItems] = useState([]);
+  const { isOpenSideBar } = useContext(isOpenSideBarContext);
+
 
   useEffect(() => {
     // const url =
@@ -563,7 +566,9 @@ const Main = () => {
   };
 
   return (
-    <div className="main">
+    <div 
+     className={isOpenSideBar ? "main" : "main side-close-main"}
+    >
       {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
 
       <div className="contents-wrapper">

@@ -4,6 +4,7 @@ import * as data from "./SideData/data.js";
 import { LogIn } from "../Header/HeaderBar.js";
 
 import MiniSideBar from "./MiniSideBar.js";
+import { isOpenSideBarContext } from "../App";
 
 export const selectedSideItemContext = createContext({});
 
@@ -40,13 +41,20 @@ const SideBar = () => {
   const [selectedSideItem, setSelectedSideItem] = useState(
     data.item_1[0].title
   ); //data.item_1[0].title:홈
+  const { isOpenSideBar } = useContext(isOpenSideBarContext);
 
   return (
     <>
       <selectedSideItemContext.Provider
         value={{ selectedSideItem, setSelectedSideItem }}
       >
-        <div className="sidebar-container">
+        <div
+          className={
+            isOpenSideBar
+              ? "sidebar-container"
+              : "sidebar-container sidebar-close"
+          }
+        >
           <div className="sidebar">
             <div className="items-wrapper">
               <Items item={data.item_1} />

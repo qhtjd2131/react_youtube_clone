@@ -1,4 +1,4 @@
-import React, { createRef, useCallback, useState } from "react";
+import React, { createRef, useCallback, useState, useContext } from "react";
 import { FcMenu } from "react-icons/fc";
 import { IoIosSearch } from "react-icons/io";
 import { BsMicFill, BsGrid3X3Gap } from "react-icons/bs";
@@ -7,6 +7,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 import logo from "../images/yt_logo_rgb_light.png";
 import "./HeaderBar.scss";
+import { isOpenSideBarContext } from "../App";
+
 export const LogIn = () => {
   return (
     <div className="login-container">
@@ -20,6 +22,8 @@ export const LogIn = () => {
 
 const HeaderBar = () => {
   const [stateHover, setStateHover] = useState("none");
+  const { isOpenSideBar, setIsOpenSideBar } = useContext(isOpenSideBarContext);
+
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
   const appMenuHoverRef = createRef();
@@ -44,7 +48,12 @@ const HeaderBar = () => {
   return (
     <div className="headerbar">
       <div className="logo-container">
-        <div className="menu">
+        <div
+          className="menu"
+          onClick={() => {
+            isOpenSideBar ? setIsOpenSideBar(false) : setIsOpenSideBar(true);
+          }}
+        >
           <FcMenu />
         </div>
         <img src={logo} alt="logo" />

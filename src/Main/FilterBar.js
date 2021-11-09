@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./FilterBar.scss";
-
+import { isOpenSideBarContext } from "../App";
 const mainData = [
   "전체",
   "실시간",
@@ -15,12 +15,19 @@ const mainData = [
 ];
 const FilterBar = () => {
   const [selectedLabel, setSelectedLabel] = useState("전체");
+  const { isOpenSideBar } = useContext(isOpenSideBarContext);
 
   const handleClickEvent = (e) => {
     setSelectedLabel(e.target.outerText);
   };
   return (
-    <div className="filterbar-container">
+    <div
+      className={
+        isOpenSideBar
+          ? "filterbar-container"
+          : "filterbar-container side-close-filter"
+      }
+    >
       <div className="filterbar-content-wrapper">
         {mainData.map((data, index) => (
           <div
