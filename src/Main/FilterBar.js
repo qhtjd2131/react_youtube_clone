@@ -15,7 +15,7 @@ const mainData = [
 ];
 const FilterBar = () => {
   const [selectedLabel, setSelectedLabel] = useState("전체");
-  const { isOpenSideBar } = useContext(SideBarContext);
+  const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
 
   const handleClickEvent = (e) => {
     setSelectedLabel(e.target.outerText);
@@ -23,7 +23,7 @@ const FilterBar = () => {
   return (
     <div
       className={
-        isOpenSideBar
+        isOpenSideBar && isWindowSizeXL
           ? "filterbar-container"
           : "filterbar-container side-close-filter"
       }
