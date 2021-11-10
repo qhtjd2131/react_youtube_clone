@@ -12,27 +12,21 @@
   box-sizing: border-box;
   background-color: white;
 
-  ::-webkit-scrollbar-thumb {
-    background-color: white;
-  }
-  &:hover {
-    ::-webkit-scrollbar-thumb {
-      background-color: $scrollbar-color;
-    }
-  }
-  //   &::before {
-  //     content: "";
-  //     display: inline-block;
-  //     width: $side-width;
-  //     height: $header-height;
-  //     box-sizing: border-box;
-  //     background-color: white;
-  //   }
-
-  //   @media only screen and (max-width: 1300px) {
-  //     left: -100%;
-  //   }
+ 
+//   &:hover {
+//     ::-webkit-scrollbar-thumb {
+//       background-color: $scrollbar-color;
+//     }
+//   }
 }
+.sidebar-container ::-webkit-scrollbar {
+  width: 10px;
+}
+.sidebar-container ::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-color;
+  border-radius: 5px;
+}
+
 .sidebar-close {
   left: -100%;
 }

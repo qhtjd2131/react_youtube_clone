@@ -16,7 +16,7 @@ const Overlay = () => {
   );
 };
 const App = () => {
-  const [isOpenSideBar, setIsOpenSideBar] = useState(true);
+  const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
 
   useEffect(() => {
