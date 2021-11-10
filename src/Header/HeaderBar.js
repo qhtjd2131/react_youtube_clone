@@ -8,6 +8,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import logo from "../images/yt_logo_rgb_light.png";
 import "./HeaderBar.scss";
 import { SideBarContext } from "../App";
+import MicSearchModal from "./MicSearchModal";
 
 export const LogIn = () => {
   return (
@@ -40,6 +41,7 @@ export const Logo = () => {
 
 const HeaderBar = () => {
   const [stateHover, setStateHover] = useState("none");
+  const [isOpenMicSearch, setIsOpenMicSearch] = useState(false);
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
   const appMenuHoverRef = createRef();
@@ -93,6 +95,9 @@ const HeaderBar = () => {
           }}
           onMouseLeave={(e) => {
             handlerMouseLeave(e, micHoverRef);
+          }}
+          onClick={() => {
+            setIsOpenMicSearch(true);
           }}
         >
           <BsMicFill />
@@ -153,6 +158,9 @@ const HeaderBar = () => {
         </div>
         <LogIn />
       </div>
+      {isOpenMicSearch && (
+        <MicSearchModal setIsOpenMicSearch={setIsOpenMicSearch} />
+      )}
     </div>
   );
 };

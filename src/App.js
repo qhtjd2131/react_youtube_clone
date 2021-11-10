@@ -2,8 +2,6 @@ import React, {
   createContext,
   useEffect,
   useState,
-  useContext,
-  useCallback,
   useRef,
 } from "react";
 import "./App.scss";
@@ -11,16 +9,8 @@ import Header from "./Header/Header";
 import Main from "./Main/Main.js";
 import SideBar from "./Side/SideBar";
 export const SideBarContext = createContext({});
-const Overlay = () => {
-  const { setIsOpenSideBar } = useContext(SideBarContext);
-  return (
-    <div
-      className="overlay"
-      onClick={() => {
-        setIsOpenSideBar(false);
-      }}
-    ></div>
-  );
+export const Overlay = ({ overlayClick }) => {
+  return <div className="overlay" onClick={overlayClick}></div>;
 };
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -53,7 +43,6 @@ const App = () => {
     scroll_y.current = window.scrollY * -1;
     if (!isWindowSizeXL && isOpenSideBar) {
       scroll_y_temp.current = scroll_y.current;
-
       document.body.classList.add("scroll-in-overlay");
       document.body.style.top = scroll_y.current + "px";
     } else {
@@ -78,7 +67,13 @@ const App = () => {
         <Header />
         <Main />
         <SideBar />
-        {isOpenSideBar && !isWindowSizeXL && <Overlay />}
+        {isOpenSideBar && !isWindowSizeXL && (
+          <Overlay
+            overlayClick={() => {
+              setIsOpenSideBar(false);
+            }}
+          />
+        )}
       </SideBarContext.Provider>
     </div>
   );
