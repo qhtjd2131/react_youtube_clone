@@ -4,6 +4,7 @@ import React, {
   useState,
   useContext,
   useCallback,
+  useRef,
 } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
@@ -24,15 +25,9 @@ const Overlay = () => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
-  const [bodyScrollY, setBodyScrollY] = useState(0);
+  let scroll_y = useRef(window.scrollY * -1);
+  let scroll_y_temp = useRef(0);
 
-  const b = useCallback(() => {});
-  // useEffect(() => {
-  //   const scrollHandler = () => {
-  //     console.log("window scroll y :", window.scrollY);
-  //   };
-  //   window.addEventListener("scroll", scrollHandler);
-  // });
   useEffect(() => {
     const handlerResizeEvent = () => {
       if (window.innerWidth <= 1300) {
@@ -47,29 +42,25 @@ const App = () => {
         setIsOpenSideBar(true);
       }
     };
-
     handlerResizeEvent();
-
     window.addEventListener("resize", handlerResizeEvent);
-
     return () => {
       window.removeEventListener("resize", handlerResizeEvent);
     };
   }, []);
 
   useEffect(() => {
-    const a = window.scrollY * -1;
-
+    scroll_y.current = window.scrollY * -1;
     if (!isWindowSizeXL && isOpenSideBar) {
-      setBodyScrollY(a);
+      scroll_y_temp.current = scroll_y.current;
 
       document.body.classList.add("scroll-in-overlay");
-      document.body.style.top = a + "px";
+      document.body.style.top = scroll_y.current + "px";
     } else {
       if (document.body.classList.toString().length > 0) {
         document.body.style.top = "0px";
         document.body.classList.remove("scroll-in-overlay");
-        window.scrollTo(0, bodyScrollY * -1);
+        window.scrollTo(0, scroll_y_temp.current * -1);
       }
     }
   }, [isWindowSizeXL, isOpenSideBar]);
