@@ -32,5 +32,44 @@ window가 xl사이즈(1300px) 미만일 때, sidebar가 open된다면 sidebar가
 => 이때 overflow-y:scroll; 속성이 있다면, scrollbar는 랜더링되지 않고 scroll의 영역은 남아있게 된다.
 => 당연히 youtube main page를 참고하였기때문에 적합한 방법이다.
 
-3번의 해결방법과 같이 해결하였을 경우 sidebar를 open했을때 body {positon:fixed}가 되고 scroll이 랜더링 되지 않는데, 이 때 내가 이미 한 scroll을 무시하고 body의 가장 상위부분으로 강제로 이동하게된다. 
+위와 같이 document.body.classList.add or remove 를 통해 className을 추가하였다. 이때 className이 추가되는 조건은 아래와 같다.
+```
+//isOpenSidebar : 사이드바가 열려있어야한다.
+//!isWindowSizeXL : window사이즈가 XL(1300px) 이하여야한다.
+if(isOpenSidebar && isWindowSizeXL)
+```
+
+그리고 위의 두 state는 아래와 같이 변경된다.
+```
+const handlerResizeEvent = () => {
+      if (window.innerWidth <= 1300) {
+        setIsWindowSizeXL(false);
+        setIsOpenSideBar(false);
+      } else {
+        setIsWindowSizeXL(true);
+        setIsOpenSideBar(true);
+      }
+    };
+
+```
+하지만 이때 두 state가 아주 정확하게 동시에 바뀌는게 아니라서 body에 className이 원하지 않는 타이밍에 add 되었다. 그렇기 때문에 그 속성인 {position:fixed} 때문에 window width가 1300px를 넘나들때, 스크롤이 비활성화되었고, 강제로 scroll이 가장 상단으로 이동하게되었다.
+그래서 이를 가장 간단하게 해결하기 위해서 아래와 같이 state가 바뀌는 타이밍을 다르게 해주었다.
+```
+const handlerResizeEvent = () => {
+      if (window.innerWidth <= 1300) {
+        setIsWindowSizeXL(false);
+      } else {
+        setIsWindowSizeXL(true);
+      }
+
+      if (window.innerWidth <= 1330) {
+        setIsOpenSideBar(false);
+      } else {
+        setIsOpenSideBar(true);
+      }
+    };
+```
+
+
+그리고 다음으로, 3번의 해결방법과 같이 해결하였을 경우 sidebar를 open했을때 body {positon:fixed}가 되고 scroll이 랜더링 되지 않는데, 이 때 내가 이미 한 scroll을 무시하고 body의 가장 상위부분으로 강제로 이동하게된다. 
 따라서 사용자가 마지막으로 위치한 scroll의 위치를 기억해서 scroll이없어질때 top속성을 이용하여 내려주어야 한다.

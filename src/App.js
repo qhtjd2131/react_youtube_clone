@@ -18,15 +18,19 @@ const Overlay = () => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
-
+  let result = null;
   useEffect(() => {
     const handlerResizeEvent = () => {
       if (window.innerWidth <= 1300) {
-        setIsOpenSideBar(false);
         setIsWindowSizeXL(false);
       } else {
-        setIsOpenSideBar(true);
         setIsWindowSizeXL(true);
+      }
+
+      if (window.innerWidth <= 1330) {
+        setIsOpenSideBar(false);
+      } else {
+        setIsOpenSideBar(true);
       }
     };
 
@@ -40,10 +44,16 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    result = window.scrollY;
+    console.log("result:", result);
     if (!isWindowSizeXL && isOpenSideBar) {
       document.body.classList.add("scroll-in-overlay");
     } else {
-      document.body.classList.remove("scroll-in-overlay");
+      if (document.body.classList.toString().length > 0) {
+        console.log("remove excute!");
+        console.log(document.body.classList.toString());
+        document.body.classList.remove("scroll-in-overlay");
+      }
     }
   }, [isWindowSizeXL, isOpenSideBar]);
 
