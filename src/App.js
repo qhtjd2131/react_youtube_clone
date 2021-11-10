@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  useContext,
+  useCallback,
+} from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Main from "./Main/Main.js";
@@ -20,6 +26,13 @@ const App = () => {
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
   const [bodyScrollY, setBodyScrollY] = useState(0);
 
+  const b = useCallback(() => {});
+  // useEffect(() => {
+  //   const scrollHandler = () => {
+  //     console.log("window scroll y :", window.scrollY);
+  //   };
+  //   window.addEventListener("scroll", scrollHandler);
+  // });
   useEffect(() => {
     const handlerResizeEvent = () => {
       if (window.innerWidth <= 1300) {
@@ -45,20 +58,18 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    setBodyScrollY(window.scrollY * -1);
+    const a = window.scrollY * -1;
 
-    console.log("bodyScrollY in useeffect :", bodyScrollY.toString());
     if (!isWindowSizeXL && isOpenSideBar) {
-      document.body.classList.add("scroll-in-overlay");
+      setBodyScrollY(a);
 
-      document.body.style.top = bodyScrollY + "px";
-      console.log("in-if :", bodyScrollY);
+      document.body.classList.add("scroll-in-overlay");
+      document.body.style.top = a + "px";
     } else {
       if (document.body.classList.toString().length > 0) {
-        document.body.classList.remove("scroll-in-overlay");
         document.body.style.top = "0px";
-        document.body.scrollTo(0, bodyScrollY * -1);
-        console.log("in else : ", bodyScrollY * -1);
+        document.body.classList.remove("scroll-in-overlay");
+        window.scrollTo(0, bodyScrollY * -1);
       }
     }
   }, [isWindowSizeXL, isOpenSideBar]);
