@@ -10,12 +10,16 @@ const MicSearchModal = ({ setIsOpenMicSearch }) => {
       <Overlay
         overlayClick={() => {
           setIsOpenMicSearch(false);
-          console.log("click overlay");
         }}
       />
       <div className="modal-container">
         <div className="modal">
-          <div className="modal-ms-close-button">
+          <div
+            className="modal-ms-close-button"
+            onClick={() => {
+              setIsOpenMicSearch(false);
+            }}
+          >
             <MdClose />
           </div>
           <div className="modal-ms-title">음성으로 검색</div>
