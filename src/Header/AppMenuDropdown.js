@@ -1,7 +1,7 @@
 import React, { createRef, useEffect } from "react";
 import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/appMenuData.js";
-import "./AppMenu.scss";
+import "./AppMenuDropdown.scss";
 const AppMenuItem = () => {
   return data.appMenu_data.map((i, index) => (
     <>
@@ -17,11 +17,11 @@ const AppMenuItem = () => {
 export const useOutSideClick = (ref, setStateFunction) => {
   useEffect(() => {
     const handleOutsideClick = (e) => {
-        if (ref.current) {
-          if (!ref.current.contains(e.target)) {
-            setStateFunction(false);
-          }
+      if (ref.current) {
+        if (!ref.current.contains(e.target)) {
+          setStateFunction(false);
         }
+      }
     };
     document.addEventListener("mousedown", handleOutsideClick);
 
@@ -35,9 +35,10 @@ const AppMenu = ({ setIsOpenAppMenuModal }) => {
   const appMenuRef = createRef();
   console.log("hi im AppMenu");
   useOutSideClick(appMenuRef, setIsOpenAppMenuModal);
-  
+
   return (
     <div className="appmenu-container" ref={appMenuRef}>
+      {console.log("rerender AppMenu")}
       <div className="appmenu">
         <AppMenuItem />
       </div>

@@ -9,7 +9,8 @@ import logo from "../images/yt_logo_rgb_light.png";
 import "./HeaderBar.scss";
 import { SideBarContext } from "../App";
 import MicSearchModal from "./MicSearchModal";
-import AppMenu from "./AppMenu";
+import AppMenuDropdown from "./AppMenuDropdown";
+import SettingDropdown from "./SettingDropdown";
 
 export const LogIn = () => {
   return (
@@ -44,6 +45,7 @@ const HeaderBar = () => {
   const [stateHover, setStateHover] = useState("none");
   const [isOpenMicSearch, setIsOpenMicSearch] = useState(false);
   const [isOpenAppMenuModal, setIsOpenAppMenuModal] = useState(false);
+  const [isOpenSettingDropdown, setIsOpenSettingDropdown] = useState(false);
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
   const appMenuHoverRef = createRef();
@@ -121,20 +123,16 @@ const HeaderBar = () => {
           style={{ width: "0px", position: "relative" }}
         >
           {isOpenAppMenuModal && (
-            <AppMenu setIsOpenAppMenuModal={setIsOpenAppMenuModal} />
+            <AppMenuDropdown setIsOpenAppMenuModal={setIsOpenAppMenuModal} />
           )}
         </div>
         <div
           className="app-menu-icon"
           onMouseEnter={(e) => {
-            e.stopPropagation();
-
             handlerMouseEnter(e, "app_menu", appMenuHoverRef);
-            console.log("enter    ");
           }}
           onMouseLeave={(e) => {
             handlerMouseLeave(e, appMenuHoverRef);
-            console.log("leave    ");
           }}
           onClick={() => {
             setIsOpenAppMenuModal(true);
@@ -153,6 +151,14 @@ const HeaderBar = () => {
           </div>
         </div>
 
+        <div
+          className="setting-space"
+          style={{ width: "0px", position: "relative" }}
+        >
+          <SettingDropdown
+            setIsOpenSettingDropdown={setIsOpenSettingDropdown}
+          />
+        </div>
         <div
           className="setting-icon"
           onMouseEnter={(e) => {

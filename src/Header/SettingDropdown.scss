@@ -1,0 +1,34 @@
+@import "../variable/global_variables";
+.setting-dropdown-container {
+  position: absolute;
+  top: 22px;
+  left: -250px;
+  z-index: 999;
+}
+.setting-dropdown {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid $border-color;
+}
+
+.setting-dropdown-item-icon {
+  padding-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.setting-dropdown-item-icon img {
+  width: 28x;
+  height: 28px;
+}
+
+.setting-dropdown-item-label {
+  font-size: 14px;
+  width: 100%;
+}
+.next-page-button {
+  padding-right: 10px;
+}
