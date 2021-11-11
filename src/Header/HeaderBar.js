@@ -128,7 +128,6 @@ const HeaderBar = () => {
           className="app-menu-icon"
           onMouseEnter={(e) => {
             e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
 
             handlerMouseEnter(e, "app_menu", appMenuHoverRef);
             console.log("enter    ");

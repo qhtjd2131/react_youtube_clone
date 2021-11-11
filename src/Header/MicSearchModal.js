@@ -5,6 +5,7 @@ import { MdClose } from "react-icons/md";
 import { BsMicFill } from "react-icons/bs";
 
 const MicSearchModal = ({ setIsOpenMicSearch }) => {
+  console.log("im micsearch modal");
   return (
     <>
       <Overlay

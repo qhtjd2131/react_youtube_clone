@@ -2,7 +2,6 @@ import React, { createRef, useEffect } from "react";
 import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/appMenuData.js";
 import "./AppMenu.scss";
-import { FaSadCry } from "react-icons/fa";
 const AppMenuItem = () => {
   return data.appMenu_data.map((i, index) => (
     <>
@@ -15,22 +14,28 @@ const AppMenuItem = () => {
   ));
 };
 
-const AppMenu = ({setIsOpenAppMenuModal}) => {
-    const appMenuRef = createRef();
-    useEffect(()=>{
-        const handleOutsideClick = (e)=>{
-            if(appMenuRef.current){
-                if(!appMenuRef.current.contains(e.target)){
-                    setIsOpenAppMenuModal(false);
-                }
-            }
+export const useOutSideClick = (ref, setStateFunction) => {
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+        if (ref.current) {
+          if (!ref.current.contains(e.target)) {
+            setStateFunction(false);
+          }
         }
-        window.addEventListener("mousedown", handleOutsideClick);
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
 
-        return ()=>{
-            window.removeEventListener("mousedown", handleOutsideClick)
-        }
-    })
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [ref]);
+};
+
+const AppMenu = ({ setIsOpenAppMenuModal }) => {
+  const appMenuRef = createRef();
+  console.log("hi im AppMenu");
+  useOutSideClick(appMenuRef, setIsOpenAppMenuModal);
+  
   return (
     <div className="appmenu-container" ref={appMenuRef}>
       <div className="appmenu">
