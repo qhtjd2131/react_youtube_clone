@@ -155,9 +155,11 @@ const HeaderBar = () => {
           className="setting-space"
           style={{ width: "0px", position: "relative" }}
         >
-          <SettingDropdown
-            setIsOpenSettingDropdown={setIsOpenSettingDropdown}
-          />
+          {isOpenSettingDropdown && (
+            <SettingDropdown
+              setIsOpenSettingDropdown={setIsOpenSettingDropdown}
+            />
+          )}
         </div>
         <div
           className="setting-icon"
@@ -166,6 +168,9 @@ const HeaderBar = () => {
           }}
           onMouseLeave={(e) => {
             handlerMouseLeave(e, settingHoverRef);
+          }}
+          onClick={() => {
+            setIsOpenSettingDropdown(() => true);
           }}
         >
           <GoKebabVertical />
