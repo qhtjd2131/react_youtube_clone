@@ -9,6 +9,7 @@ import logo from "../images/yt_logo_rgb_light.png";
 import "./HeaderBar.scss";
 import { SideBarContext } from "../App";
 import MicSearchModal from "./MicSearchModal";
+import AppMenu from "./AppMenu";
 
 export const LogIn = () => {
   return (
@@ -134,6 +135,7 @@ const HeaderBar = () => {
           >
             Yotube 앱
           </div>
+          <AppMenu />
         </div>
         <div
           className="setting-icon"

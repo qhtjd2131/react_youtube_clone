@@ -8,11 +8,11 @@ import { Logo } from "../Header/HeaderBar.js";
 
 export const selectedSideItemContext = createContext({});
 
-const Line = () => {
+export const Line = () => {
   return <div className="line"></div>;
 };
 
-const Items = ({ item, theme }) => {
+export const Items = ({ item, theme }) => {
   const { selectedSideItem, setSelectedSideItem } = useContext(
     selectedSideItemContext
   );

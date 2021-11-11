@@ -3,6 +3,7 @@ import * as data from "./SideData/data.js";
 import "./MiniSideBar.scss";
 import { selectedSideItemContext } from "./SideBar.js";
 
+
 const MiniSideBar = () => {
   const { selectedSideItem, setSelectedSideItem } = useContext(
     selectedSideItemContext
