@@ -73,3 +73,30 @@ const handlerResizeEvent = () => {
 
 그리고 다음으로, 3번의 해결방법과 같이 해결하였을 경우 sidebar를 open했을때 body {positon:fixed}가 되고 scroll이 랜더링 되지 않는데, 이 때 내가 이미 한 scroll을 무시하고 body의 가장 상위부분으로 강제로 이동하게된다. 
 따라서 사용자가 마지막으로 위치한 scroll의 위치를 기억해서 scroll이없어질때 top속성을 이용하여 내려주어야 한다.
+
+현재 이 웹페이지는 Header bar 에 AppMenu 버튼을 클릭하면 MenuModal 컴포넌트가 랜더링 된다. 이때 아래와 같은 구조를 가지는데, AppMenuIcon을 hover하면 description 컴포넌트가 랜더링된다.
+```
+<AppMenuWrapper>
+    <AppMenuIcon> //parent, hover시 description component render
+        <MenuModal> //child
+        <MenuModal>
+    </AppMenuIcon>
+</AppMenuWrapper>
+ ```
+ 내가 의도한것은 AppMenuIcon에게서만 MouseEnter event가 발생하면 description 컴포넌트가 나와야한다. 하지만 AppMenuIcon이 MenuModal을 자식으로 가지고 있기 때문에, 아래와 같이 MenuModal 위에 마우스를 올리면, AppMenuIcon(parent) MouseEnter event -> MenuModal(child) MouseEnter event 가 순서대로 발생하여, 의도치 않은 동작을 발생시킨다.
+![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/34260967/141275888-700b2468-a222-45bd-a580-e005928fa0ff.gif)
+
+이를 해결하기 위해 아래와 같이 '부모자식관계 -> 형제관계' 로 구조변경을 하였다.
+```
+<AppMenuWrapper>
+    <MenuModalWrapper>  //width : 0px
+        <MenuModal>  //position : absoulte
+        <MenuModal>
+    </MenuModalWrapper>
+
+    <AppMenuIcon> //hover시 description component render
+        
+    </AppMenuIcon>  
+</AppMenuWrapper>
+```
+그리고 MenuModalWrapper 에 width:0px 속성을 주어서 AppMenuIcon를 기준으로 상대 위치를 지정할 수 있게 트릭을 사용하였다.

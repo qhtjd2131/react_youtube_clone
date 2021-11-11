@@ -118,10 +118,15 @@ const HeaderBar = () => {
         <div
           className="app-menu-icon"
           onMouseEnter={(e) => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+
             handlerMouseEnter(e, "app_menu", appMenuHoverRef);
+            console.log("enter    ");
           }}
           onMouseLeave={(e) => {
             handlerMouseLeave(e, appMenuHoverRef);
+            console.log("leave    ");
           }}
         >
           <BsGrid3X3Gap />
@@ -137,6 +142,10 @@ const HeaderBar = () => {
           </div>
           <AppMenu />
         </div>
+        <div
+          className="appmenu-space"
+          style={{ width: "0px", position: "relative" }}
+        ></div>
         <div
           className="setting-icon"
           onMouseEnter={(e) => {
