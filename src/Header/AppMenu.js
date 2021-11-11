@@ -1,7 +1,8 @@
-import React from "react";
+import React, { createRef, useEffect } from "react";
 import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/appMenuData.js";
 import "./AppMenu.scss";
+import { FaSadCry } from "react-icons/fa";
 const AppMenuItem = () => {
   return data.appMenu_data.map((i, index) => (
     <>
@@ -14,9 +15,24 @@ const AppMenuItem = () => {
   ));
 };
 
-const AppMenu = () => {
+const AppMenu = ({setIsOpenAppMenuModal}) => {
+    const appMenuRef = createRef();
+    useEffect(()=>{
+        const handleOutsideClick = (e)=>{
+            if(appMenuRef.current){
+                if(!appMenuRef.current.contains(e.target)){
+                    setIsOpenAppMenuModal(false);
+                }
+            }
+        }
+        window.addEventListener("mousedown", handleOutsideClick);
+
+        return ()=>{
+            window.removeEventListener("mousedown", handleOutsideClick)
+        }
+    })
   return (
-    <div className="appmenu-container">
+    <div className="appmenu-container" ref={appMenuRef}>
       <div className="appmenu">
         <AppMenuItem />
       </div>

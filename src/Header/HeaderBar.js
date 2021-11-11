@@ -43,6 +43,7 @@ export const Logo = () => {
 const HeaderBar = () => {
   const [stateHover, setStateHover] = useState("none");
   const [isOpenMicSearch, setIsOpenMicSearch] = useState(false);
+  const [isOpenAppMenuModal, setIsOpenAppMenuModal] = useState(false);
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
   const appMenuHoverRef = createRef();
@@ -116,6 +117,14 @@ const HeaderBar = () => {
       </div>
       <div className="user-item-container">
         <div
+          className="appmenu-space"
+          style={{ width: "0px", position: "relative" }}
+        >
+          {isOpenAppMenuModal && (
+            <AppMenu setIsOpenAppMenuModal={setIsOpenAppMenuModal} />
+          )}
+        </div>
+        <div
           className="app-menu-icon"
           onMouseEnter={(e) => {
             e.stopPropagation();
@@ -127,6 +136,9 @@ const HeaderBar = () => {
           onMouseLeave={(e) => {
             handlerMouseLeave(e, appMenuHoverRef);
             console.log("leave    ");
+          }}
+          onClick={() => {
+            setIsOpenAppMenuModal(true);
           }}
         >
           <BsGrid3X3Gap />
@@ -140,12 +152,8 @@ const HeaderBar = () => {
           >
             Yotube 앱
           </div>
-          <AppMenu />
         </div>
-        <div
-          className="appmenu-space"
-          style={{ width: "0px", position: "relative" }}
-        ></div>
+
         <div
           className="setting-icon"
           onMouseEnter={(e) => {

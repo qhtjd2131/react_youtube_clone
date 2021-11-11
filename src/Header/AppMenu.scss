@@ -4,11 +4,11 @@
   position: absolute;
   top: 22px;
 
-  left: -40px;
+  left: 0px;
   z-index: 999;
 
   @media only screen and (max-width: 970px) {
-    left: 100%;
+    left: 36px;
     transform: translateX(-100%);
   }
 }
