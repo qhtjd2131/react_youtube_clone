@@ -33,11 +33,13 @@ const SettingDesign = () => {
             <div
               className="side-item"
               onClick={() => {
-                setSettingDesignState(() => i.settinDesignState);
+                setSettingDesignState(() => {
+                  return { state: i.settinDesignState, label: i.title };
+                });
               }}
             >
               <div className="setting-dropdown-item-icon">
-                {settingDesignState === i.settinDesignState ? (
+                {settingDesignState.state === i.settinDesignState ? (
                   i.image
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
@@ -94,7 +96,7 @@ const DefaultSettingDropdown = () => {
       resultTitle = title + languageState;
     }
     if (nextPageState === "design") {
-      resultTitle = title + settingDesignState;
+      resultTitle = title + settingDesignState.label;
     }
     return resultTitle;
   };
@@ -128,7 +130,10 @@ const settingStateContext = createContext({});
 const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
   const settingDropdownRef = createRef();
   const [settingState, setSettingState] = useState("default");
-  const [settingDesignState, setSettingDesignState] = useState("light-theme");
+  const [settingDesignState, setSettingDesignState] = useState({
+    state: "light-theme",
+    label: "밝은 테마",
+  });
 
   useOutSideClick(settingDropdownRef, setIsOpenSettingDropdown);
   return (
