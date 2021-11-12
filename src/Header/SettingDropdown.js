@@ -22,6 +22,7 @@ const GoDefaultSettingDropDownButton = ({ label }) => {
 const SettingDesign = () => {
   const { settingState, settingDesignState, setSettingDesignState } =
     useContext(settingStateContext);
+  const { languageState } = useContext(languageStateContext);
 
   return (
     settingState === "design" && (
@@ -33,19 +34,19 @@ const SettingDesign = () => {
             <div
               className="side-item"
               onClick={() => {
-                setSettingDesignState(() => {
-                  return { state: i.settinDesignState, label: i.title };
-                });
+                setSettingDesignState(() => i.title[languageState.native]);
               }}
             >
               <div className="setting-dropdown-item-icon">
-                {settingDesignState.state === i.settinDesignState ? (
+                {settingDesignState === i.title[languageState.native] ? (
                   i.image
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}
               </div>
-              <div className="setting-dropdown-item-label">{i.title}</div>
+              <div className="setting-dropdown-item-label">
+                {i.title[languageState.native]}
+              </div>
             </div>
           </div>
         ))}
@@ -67,17 +68,19 @@ const SettingLanguage = () => {
             <div
               className="side-item"
               onClick={() => {
-                setLanguageState(() => i.title);
+                setLanguageState(() => {
+                  return { country: i.country, native: i.native };
+                });
               }}
             >
               <div className="setting-dropdown-item-icon">
-                {languageState === i.title ? (
+                {languageState.native === i.native ? (
                   i.image
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}
               </div>
-              <div className="setting-dropdown-item-label">{i.title}</div>
+              <div className="setting-dropdown-item-label">{i.native}</div>
             </div>
           </div>
         ))}
@@ -89,14 +92,13 @@ const DefaultSettingDropdown = () => {
   const { settingState, setSettingState, settingDesignState } =
     useContext(settingStateContext);
   const { languageState } = useContext(languageStateContext);
-
   const titleMaker = (title, nextPageState) => {
     let resultTitle = title;
     if (nextPageState === "language") {
-      resultTitle = title + languageState;
+      resultTitle = title + languageState.native;
     }
     if (nextPageState === "design") {
-      resultTitle = title + settingDesignState.label;
+      resultTitle = title + settingDesignState;
     }
     return resultTitle;
   };
@@ -130,10 +132,7 @@ const settingStateContext = createContext({});
 const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
   const settingDropdownRef = createRef();
   const [settingState, setSettingState] = useState("default");
-  const [settingDesignState, setSettingDesignState] = useState({
-    state: "light-theme",
-    label: "밝은 테마",
-  });
+  const [settingDesignState, setSettingDesignState] = useState("밝은 테마");
 
   useOutSideClick(settingDropdownRef, setIsOpenSettingDropdown);
   return (

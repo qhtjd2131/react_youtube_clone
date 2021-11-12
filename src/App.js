@@ -12,7 +12,10 @@ export const Overlay = ({ overlayClick }) => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
-  const [languageState, setLanguageState] = useState("한국어");
+  const [languageState, setLanguageState] = useState({
+    country: "Korean",
+    native: "한국어",
+  });
   let scroll_y = useRef(window.scrollY * -1);
   let scroll_y_temp = useRef(0);
 

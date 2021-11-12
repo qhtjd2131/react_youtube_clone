@@ -87,7 +87,10 @@ export const DesignData = [
   //     settinDesignState: "device-theme",
   //   },
   {
-    title: "어두운 테마",
+    title: {
+      한국어: "어두운 테마",
+      English: "Dark Theme",
+    },
     image: (
       <img
         src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
@@ -95,10 +98,13 @@ export const DesignData = [
       />
     ),
     nextPageState: null,
-    settinDesignState: "dark-theme",
   },
+
   {
-    title: "밝은 테마",
+    title: {
+      한국어: "밝은 테마",
+      English: "Dark Theme",
+    },
     image: (
       <img
         src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
@@ -112,7 +118,7 @@ export const DesignData = [
 
 export const LanguageData = [
   {
-    title: "한국어",
+    native: "한국어",
     image: (
       <img
         src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
@@ -121,7 +127,7 @@ export const LanguageData = [
     ),
   },
   {
-    title: "English",
+    native: "English",
     image: (
       <img
         src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
