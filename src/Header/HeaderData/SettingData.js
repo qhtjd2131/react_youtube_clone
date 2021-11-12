@@ -1,6 +1,6 @@
 export const settingDropdown_data = [
   {
-    title: "디자인: 기기 테마",
+    title: "디자인: ",
     image: (
       <img
         src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-moon-basic-ui-elements-flatart-icons-outline-flatarticons.png"

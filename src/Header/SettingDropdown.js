@@ -20,8 +20,8 @@ const GoDefaultSettingDropDownButton = ({ label }) => {
   );
 };
 const SettingDesign = () => {
-  const { settingState } = useContext(settingStateContext);
-  const [settingDesignState, setSettingDesignState] = useState("light-theme");
+  const { settingState, settingDesignState, setSettingDesignState } =
+    useContext(settingStateContext);
 
   return (
     settingState === "design" && (
@@ -84,13 +84,17 @@ const SettingLanguage = () => {
   );
 };
 const DefaultSettingDropdown = () => {
-  const { settingState, setSettingState } = useContext(settingStateContext);
+  const { settingState, setSettingState, settingDesignState } =
+    useContext(settingStateContext);
   const { languageState } = useContext(languageStateContext);
 
   const titleMaker = (title, nextPageState) => {
     let resultTitle = title;
     if (nextPageState === "language") {
       resultTitle = title + languageState;
+    }
+    if (nextPageState === "design") {
+      resultTitle = title + settingDesignState;
     }
     return resultTitle;
   };
@@ -120,14 +124,24 @@ const DefaultSettingDropdown = () => {
 };
 
 const settingStateContext = createContext({});
+
 const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
   const settingDropdownRef = createRef();
   const [settingState, setSettingState] = useState("default");
+  const [settingDesignState, setSettingDesignState] = useState("light-theme");
+
   useOutSideClick(settingDropdownRef, setIsOpenSettingDropdown);
   return (
     <div className="setting-dropdown-container" ref={settingDropdownRef}>
       <div className="setting-dropdown">
-        <settingStateContext.Provider value={{ settingState, setSettingState }}>
+        <settingStateContext.Provider
+          value={{
+            settingState,
+            setSettingState,
+            settingDesignState,
+            setSettingDesignState,
+          }}
+        >
           <DefaultSettingDropdown />
           <SettingDesign />
           <SettingLanguage />
