@@ -1,20 +1,18 @@
-import React, {
-  createContext,
-  useEffect,
-  useState,
-  useRef,
-} from "react";
+import React, { createContext, useEffect, useState, useRef } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Main from "./Main/Main.js";
 import SideBar from "./Side/SideBar";
 export const SideBarContext = createContext({});
+export const languageStateContext = createContext({});
 export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
 };
+
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
+  const [languageState, setLanguageState] = useState("한국어");
   let scroll_y = useRef(window.scrollY * -1);
   let scroll_y_temp = useRef(0);
 
@@ -64,16 +62,20 @@ const App = () => {
           setIsWindowSizeXL,
         }}
       >
-        <Header />
-        <Main />
-        <SideBar />
-        {isOpenSideBar && !isWindowSizeXL && (
-          <Overlay
-            overlayClick={() => {
-              setIsOpenSideBar(false);
-            }}
-          />
-        )}
+        <languageStateContext.Provider
+          value={{ languageState, setLanguageState }}
+        >
+          <Header />
+          <Main />
+          <SideBar />
+          {isOpenSideBar && !isWindowSizeXL && (
+            <Overlay
+              overlayClick={() => {
+                setIsOpenSideBar(false);
+              }}
+            />
+          )}
+        </languageStateContext.Provider>
       </SideBarContext.Provider>
     </div>
   );

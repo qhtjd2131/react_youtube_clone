@@ -10,7 +10,7 @@ export const settingDropdown_data = [
     nextPageState: "design",
   },
   {
-    title: "언어: " + "한국어",
+    title: "언어: ",
     image: (
       <img src="https://img.icons8.com/ios/50/000000/language.png" alt="" />
     ),
@@ -75,17 +75,17 @@ export const settingDropdown_data = [
 ];
 
 export const DesignData = [
-//   {
-//     title: "기기 테마 사용",
-//     image: (
-//       <img
-//         src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
-//         alt=""
-//       />
-//     ),
-//     nextPageState: null,
-//     settinDesignState: "device-theme",
-//   },
+  //   {
+  //     title: "기기 테마 사용",
+  //     image: (
+  //       <img
+  //         src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
+  //         alt=""
+  //       />
+  //     ),
+  //     nextPageState: null,
+  //     settinDesignState: "device-theme",
+  //   },
   {
     title: "어두운 테마",
     image: (
@@ -107,5 +107,26 @@ export const DesignData = [
     ),
     nextPageState: null,
     settinDesignState: "light-theme",
+  },
+];
+
+export const LanguageData = [
+  {
+    title: "한국어",
+    image: (
+      <img
+        src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
+        alt=""
+      />
+    ),
+  },
+  {
+    title: "English",
+    image: (
+      <img
+        src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
+        alt=""
+      />
+    ),
   },
 ];
