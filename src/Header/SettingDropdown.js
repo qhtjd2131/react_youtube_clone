@@ -7,10 +7,9 @@ import { useOutSideClick } from "./AppMenuDropdown";
 const DefaultSettingDropdown = () => {
   const { settingstate, setSettingState } = useContext(settingStateContext);
   return data.settingDropdown_data.map((i, index) => (
-    <>
+    <div key={index}>
       <div
         className="side-item"
-        key={index}
         onClick={(e) => {
           if (i.nextPageState) {
             setSettingState(i.nextPageState);
@@ -22,19 +21,20 @@ const DefaultSettingDropdown = () => {
         {i.nextPageState && <div className="next-page-button">{">"}</div>}
       </div>
       {index === 7 && <Line />}
-    </>
+    </div>
   ));
 };
 
 const SettingDesign = () => {
   const { settingstate, setSettingState } = useContext(settingStateContext);
-  const [settingDesignState, setSettingDesignState] = useState("light-theme");
+  const [settingDesignState, setSettingDesignState] = useState("dark-theme");
 
   return (
     <>
       <div className="setting-prev-button-container">
         <img
           src="https://img.icons8.com/ios/50/000000/left.png"
+          alt=""
           onClick={() => {
             setSettingState(() => "default");
           }}
@@ -43,10 +43,9 @@ const SettingDesign = () => {
       </div>
       <Line />
       {data.DesignData.map((i, index) => (
-        <>
+        <div key={index}>
           <div
             className="side-item"
-            key={index}
             onClick={() => {
               setSettingDesignState(() => i.settinDesignState);
             }}
@@ -60,7 +59,7 @@ const SettingDesign = () => {
             </div>
             <div className="setting-dropdown-item-label">{i.title}</div>
           </div>
-        </>
+        </div>
       ))}
     </>
   );

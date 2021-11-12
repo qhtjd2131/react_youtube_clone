@@ -28,7 +28,7 @@ export const useOutSideClick = (ref, setStateFunction) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [ref]);
+  }, [ref, setStateFunction]);
 };
 
 const AppMenu = ({ setIsOpenAppMenuModal }) => {
