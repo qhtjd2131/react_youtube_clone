@@ -4,7 +4,6 @@ import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/SettingData.js";
 import { useOutSideClick } from "./AppMenuDropdown";
 import { languageStateContext, themeStateContext } from "../App";
-import { MdDataUsage } from "react-icons/md";
 const GoDefaultSettingDropDownButton = ({ label }) => {
   const { setSettingState } = useContext(settingStateContext);
   return (
@@ -42,10 +41,7 @@ const SettingDesign = () => {
             >
               <div className="setting-dropdown-item-icon">
                 {themeState === i ? (
-                  <img
-                    src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
-                    alt=""
-                  />
+                  data.setting_dropdown_data.check.image
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}
@@ -82,10 +78,7 @@ const SettingLanguage = () => {
             >
               <div className="setting-dropdown-item-icon">
                 {languageState === i ? (
-                  <img
-                    src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
-                    alt=""
-                  />
+                  data.setting_dropdown_data.check.image
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}

@@ -5,6 +5,7 @@ import { LogIn } from "../Header/HeaderBar.js";
 import MiniSideBar from "./MiniSideBar.js";
 import { SideBarContext } from "../App";
 import { Logo } from "../Header/HeaderBar.js";
+import { languageStateContext } from "../App.js";
 
 export const selectedSideItemContext = createContext({});
 
@@ -12,35 +13,32 @@ export const Line = () => {
   return <div className="line"></div>;
 };
 
-export const Items = ({ item, theme }) => {
+export const Items = ({ item, theme, languageItem }) => {
   const { selectedSideItem, setSelectedSideItem } = useContext(
     selectedSideItemContext
   );
-
-  return item.map((i, index) => (
+  const { languageState } = useContext(languageStateContext);
+  //item : data.data_side_item1
+  return Object.keys(item).map((i, index) => (
     <div
       className={
-        selectedSideItem === i.title
-          ? "side-item selected-side-item"
-          : "side-item"
+        selectedSideItem === i ? "side-item selected-side-item" : "side-item"
       }
       key={index}
-      onClick={(e) => {
-        setSelectedSideItem(e.target.innerText);
+      onClick={() => {
+        setSelectedSideItem(i);
       }}
     >
       <div className={theme === "black" ? "itemIcon black" : "itemIcon"}>
-        {i.image}
+        {item[i].image}
       </div>
-      <div className="itemLabel">{i.title}</div>
+      <div className="itemLabel">{languageItem[languageState][i]}</div>
     </div>
   ));
 };
 
 const SideBar = () => {
-  const [selectedSideItem, setSelectedSideItem] = useState(
-    data.item_1[0].title
-  ); //data.item_1[0].title:홈
+  const [selectedSideItem, setSelectedSideItem] = useState("home"); //data.item_1[0].title:홈
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
   const sidebarRef = createRef();
 
@@ -62,12 +60,15 @@ const SideBar = () => {
           </div>
           <div className="sidebar">
             <div className="items-wrapper">
-              <Items item={data.item_1} />
-
+              <Items
+                item={data.data_side_item1}
+                languageItem={data.language_side_item1}
+              />
               <Line />
-
-              <Items item={data.item_2} />
-
+              <Items
+                item={data.data_side_item2}
+                languageItem={data.language_side_item2}
+              />
               <Line />
               <div className="side-login-container">
                 <div className="side-login-description">
@@ -78,14 +79,23 @@ const SideBar = () => {
               </div>
               <Line />
               <div className="list-label">인기 YOUTUBE</div>
-              <Items item={data.item_3} theme="black" />
+              <Items
+                item={data.data_side_item3}
+                languageItem={data.language_side_item3}
+                theme="black"
+              />
               <Line />
-              <Items item={data.item_4} />
+              <Items
+                item={data.data_side_item4}
+                languageItem={data.language_side_item4}
+              />
               <Line />
-              <div className="list-label">YOUTUBE 더보기</div>
-              <Items item={data.item_5} />
+              <Items
+                item={data.data_side_item5}
+                languageItem={data.language_side_item5}
+              />
               <Line />
-              <Items item={data.item_6} />
+              {/* <Items item={data.item_6} /> */}
 
               {/* 정보... */}
             </div>

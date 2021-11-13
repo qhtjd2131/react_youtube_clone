@@ -60,6 +60,14 @@ export const setting_dropdown_data = {
     nextPageState: null,
   },
   restrictedMode: { image: "", nextPageState: "limitedMode" },
+  check: {
+    image: (
+      <img
+        src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
+        alt=""
+      />
+    ),
+  },
 };
 
 export const settingDropdown_language = {
