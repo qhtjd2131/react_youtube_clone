@@ -1,6 +1,5 @@
-export const settingDropdown_data = [
-  {
-    title: "디자인: ",
+export const setting_dropdown_data_info = {
+  appearance: {
     image: (
       <img
         src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-moon-basic-ui-elements-flatart-icons-outline-flatarticons.png"
@@ -9,29 +8,25 @@ export const settingDropdown_data = [
     ),
     nextPageState: "design",
   },
-  {
-    title: "언어: ",
+  language: {
     image: (
       <img src="https://img.icons8.com/ios/50/000000/language.png" alt="" />
     ),
     nextPageState: "language",
   },
-  {
-    title: "위치: " + "한국",
+  location: {
     image: (
       <img src="https://img.icons8.com/ios/50/000000/globe--v1.png" alt="" />
     ),
     nextPageState: "location",
   },
-  {
-    title: "설정",
+  settings: {
     image: (
       <img src="https://img.icons8.com/ios/50/000000/settings.png" alt="" />
     ),
     nextPageState: null,
   },
-  {
-    title: "YouTube의 내 데이터",
+  yourDataInYoutube: {
     image: (
       <img
         src="https://img.icons8.com/ios/50/000000/security-shield-green.png"
@@ -40,8 +35,7 @@ export const settingDropdown_data = [
     ),
     nextPageState: null,
   },
-  {
-    title: "고객센터",
+  help: {
     image: (
       <img
         src="https://img.icons8.com/material-outlined/24/000000/help.png"
@@ -50,15 +44,13 @@ export const settingDropdown_data = [
     ),
     nextPageState: null,
   },
-  {
-    title: "의견 보내기",
+  sendFeedback: {
     image: (
       <img src="https://img.icons8.com/windows/32/000000/about.png" alt="" />
     ),
     nextPageState: null,
   },
-  {
-    title: "단축키",
+  keyboardShortcuts: {
     image: (
       <img
         src="https://img.icons8.com/material-outlined/24/000000/keyboard.png"
@@ -67,12 +59,33 @@ export const settingDropdown_data = [
     ),
     nextPageState: null,
   },
-  {
-    title: "제한모드: " + "사용안함",
-    image: "",
-    nextPageState: "limitedMode",
+  restrictedMode: { image: "", nextPageState: "limitedMode" },
+};
+
+export const settingDropdown_data = {
+  KOR: {
+    appearance: "디자인: ",
+    language: "언어: ",
+    location: "위치: ",
+    settings: "설정",
+    yourDataInYoutube: "YouTube의 내 데이터",
+    help: "고객센터",
+    sendFeedback: "의견 보내기",
+    keyboardShortcuts: "단축키",
+    restrictedMode: "제한 모드: ",
   },
-];
+  EN: {
+    appearance: "Appearance: ",
+    language: "Language: ",
+    location: "Location: ",
+    settings: "Settings",
+    yourDataInYoutube: "Your data in Youtube",
+    help: "Help",
+    sendFeedback: "Send Feedback",
+    keyboardShortcuts: "Keyboard shortcuts",
+    restrictedMode: "Restricted Mode: ",
+  },
+};
 // Object.values(DesignData["한국어"]).map();
 
 export const DesignData = {
