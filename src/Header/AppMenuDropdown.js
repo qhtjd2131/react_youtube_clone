@@ -9,13 +9,13 @@ const AppMenuItem = () => {
     const image = data.appMenu_data[i].image;
     const text = data.appMenu_language[languageState][i];
     return (
-      <>
-        <div className="side-item" key={index} onClick={(e) => {}}>
+      <div key={index}>
+        <div className="side-item" onClick={(e) => {}}>
           <div className="appmenu-item-icon">{image}</div>
           <div className="appmenu-item-label">{text}</div>
         </div>
         {(index === 0 || index === 2) && <Line />}
-      </>
+      </div>
     );
   });
 };

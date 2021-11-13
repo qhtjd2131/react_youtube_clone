@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Overlay } from "../App";
 import "./MicSearchModal.scss";
-import { MdClose } from "react-icons/md";
-import { BsMicFill } from "react-icons/bs";
 
+import * as data from "./HeaderData/headerBarData.js";
+import { languageStateContext } from "../App";
 const MicSearchModal = ({ setIsOpenMicSearch }) => {
+  const { languageState } = useContext(languageStateContext);
   return (
     <>
       <Overlay
@@ -20,16 +21,17 @@ const MicSearchModal = ({ setIsOpenMicSearch }) => {
               setIsOpenMicSearch(false);
             }}
           >
-            <MdClose />
+            {data.data_Search.close.image}
           </div>
-          <div className="modal-ms-title">음성으로 검색</div>
+          <div className="modal-ms-title">
+            {data.language_Search[languageState].searchWithYourVoice}
+          </div>
           <div className="modal-ms-sub-title">
-            음성으로 검색하려면 브라우저 설정으로 이동해 마이크에 대한 액세스를
-            허용하세요.
+            {data.language_Search[languageState].searchWithYourVoiceDescription}
           </div>
           <div className="modal-ms-icon-wrapper">
             <div className="modal-ms-icon">
-              <BsMicFill />
+              {data.data_Search.searchWithYourVoice.image}
             </div>
           </div>
         </div>

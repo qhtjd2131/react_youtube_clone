@@ -1,24 +1,19 @@
-import React, { createRef, useCallback, useState, useContext } from "react";
-import { FcMenu } from "react-icons/fc";
-import { IoIosSearch } from "react-icons/io";
-import { BsMicFill, BsGrid3X3Gap } from "react-icons/bs";
-import { GoKebabVertical } from "react-icons/go";
-import { FaRegUserCircle } from "react-icons/fa";
-
-import logo from "../images/yt_logo_rgb_light.png";
+import React, { createRef, useState, useContext, createContext } from "react";
 import "./HeaderBar.scss";
-import { SideBarContext } from "../App";
+import { SideBarContext, languageStateContext } from "../App";
 import MicSearchModal from "./MicSearchModal";
 import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
+import * as data from "./HeaderData/headerBarData.js";
 
 export const LogIn = () => {
+  const { languageState } = useContext(languageStateContext);
   return (
     <div className="login-container">
-      <div className="user-icon">
-        <FaRegUserCircle />
+      <div className="user-icon">{data.data_Login.login.image}</div>
+      <div className="login-text">
+        {data.language_Login[languageState].login}
       </div>
-      <div className="login-text">로그인</div>
     </div>
   );
 };
@@ -34,162 +29,181 @@ export const Logo = () => {
           isOpenSideBar ? setIsOpenSideBar(false) : setIsOpenSideBar(true);
         }}
       >
-        <FcMenu />
+        {data.data_Logo.sidebarOpen.image}
       </div>
-      <img src={logo} alt="logo" />
+      {data.data_Logo.logo.image}
     </div>
   );
 };
 
-const HeaderBar = () => {
-  const [stateHover, setStateHover] = useState("none");
+const Search = () => {
+  const { stateHover, setStateHover } = useContext(stateHoverContext);
   const [isOpenMicSearch, setIsOpenMicSearch] = useState(false);
-  const [isOpenAppMenuModal, setIsOpenAppMenuModal] = useState(false);
-  const [isOpenSettingDropdown, setIsOpenSettingDropdown] = useState(false);
+  const { languageState } = useContext(languageStateContext);
+
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
-  const appMenuHoverRef = createRef();
-  const settingHoverRef = createRef();
-
-  const handlerMouseEnter = useCallback((e, state, hoverRef) => {
-    if (hoverRef) {
-      if (!hoverRef.current.contains(e.target)) {
-        setStateHover(state);
-      }
-    }
-  }, []);
-  const handlerMouseLeave = useCallback((e, hoverRef) => {
-    if (hoverRef) {
-      if (!hoverRef.current.contains(e.target)) {
-        setStateHover("none");
-      }
-    }
-  }, []);
-
   return (
-    <div className="headerbar">
-      <Logo />
-      <div className="search-inputbox-container">
-        <input placeholder="검색" />
+    <div className="search-inputbox-container">
+      <input placeholder={data.language_Search[languageState].search} />
+      <div
+        className="search-button"
+        onMouseEnter={(e) => {
+          handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
+        }}
+        onMouseLeave={(e) => {
+          handlerMouseLeave(e, searchHoverRef, setStateHover);
+        }}
+      >
+        {data.data_Search.search.image}
         <div
-          className="search-button"
-          onMouseEnter={(e) => {
-            handlerMouseEnter(e, "search", searchHoverRef);
-          }}
-          onMouseLeave={(e) => {
-            handlerMouseLeave(e, searchHoverRef);
-          }}
+          className={
+            stateHover === "search"
+              ? "hover-description on-hover"
+              : "hover-description"
+          }
+          ref={searchHoverRef}
         >
-          <IoIosSearch />
-          <div
-            className={
-              stateHover === "search"
-                ? "hover-description on-hover"
-                : "hover-description"
-            }
-            ref={searchHoverRef}
-          >
-            검색
-          </div>
-        </div>
-        <div
-          className="mic-button"
-          onMouseEnter={(e) => {
-            handlerMouseEnter(e, "mic", micHoverRef);
-          }}
-          onMouseLeave={(e) => {
-            handlerMouseLeave(e, micHoverRef);
-          }}
-          onClick={() => {
-            setIsOpenMicSearch(true);
-          }}
-        >
-          <BsMicFill />
-          <div
-            className={
-              stateHover === "mic"
-                ? "hover-description on-hover"
-                : "hover-description"
-            }
-            ref={micHoverRef}
-          >
-            음성으로 검색
-          </div>
+          {data.language_Search[languageState].search}
         </div>
       </div>
-      <div className="user-item-container">
+      <div
+        className="mic-button"
+        onMouseEnter={(e) => {
+          handlerMouseEnter(e, "mic", micHoverRef, setStateHover);
+        }}
+        onMouseLeave={(e) => {
+          handlerMouseLeave(e, micHoverRef, setStateHover);
+        }}
+        onClick={() => {
+          setIsOpenMicSearch(true);
+        }}
+      >
+        {data.data_Search.searchWithYourVoice.image}
         <div
-          className="appmenu-space"
-          style={{ width: "0px", position: "relative" }}
+          className={
+            stateHover === "mic"
+              ? "hover-description on-hover"
+              : "hover-description"
+          }
+          ref={micHoverRef}
         >
-          {isOpenAppMenuModal && (
-            <AppMenuDropdown setIsOpenAppMenuModal={setIsOpenAppMenuModal} />
-          )}
+          {data.language_Search[languageState].searchWithYourVoice}
         </div>
-        <div
-          className="app-menu-icon"
-          onMouseEnter={(e) => {
-            handlerMouseEnter(e, "app_menu", appMenuHoverRef);
-          }}
-          onMouseLeave={(e) => {
-            handlerMouseLeave(e, appMenuHoverRef);
-          }}
-          onClick={() => {
-            setIsOpenAppMenuModal(true);
-          }}
-        >
-          <BsGrid3X3Gap />
-          <div
-            className={
-              stateHover === "app_menu"
-                ? "hover-description on-hover"
-                : "hover-description"
-            }
-            ref={appMenuHoverRef}
-          >
-            Yotube 앱
-          </div>
-        </div>
-
-        <div
-          className="setting-space"
-          style={{ width: "0px", position: "relative" }}
-        >
-          {isOpenSettingDropdown && (
-            <SettingDropdown
-              setIsOpenSettingDropdown={setIsOpenSettingDropdown}
-            />
-          )}
-        </div>
-        <div
-          className="setting-icon"
-          onMouseEnter={(e) => {
-            handlerMouseEnter(e, "setting", settingHoverRef);
-          }}
-          onMouseLeave={(e) => {
-            handlerMouseLeave(e, settingHoverRef);
-          }}
-          onClick={() => {
-            setIsOpenSettingDropdown(() => true);
-          }}
-        >
-          <GoKebabVertical />
-          <div
-            className={
-              stateHover === "setting"
-                ? "hover-description on-hover"
-                : "hover-description"
-            }
-            ref={settingHoverRef}
-          >
-            설정
-          </div>
-        </div>
-        <LogIn />
       </div>
       {isOpenMicSearch && (
         <MicSearchModal setIsOpenMicSearch={setIsOpenMicSearch} />
       )}
+    </div>
+  );
+};
+
+const UserItems = () => {
+  const [isOpenAppMenuModal, setIsOpenAppMenuModal] = useState(false);
+  const [isOpenSettingDropdown, setIsOpenSettingDropdown] = useState(false);
+  const { stateHover, setStateHover } = useContext(stateHoverContext);
+  const { languageState } = useContext(languageStateContext);
+
+  const appMenuHoverRef = createRef();
+  const settingHoverRef = createRef();
+
+  return (
+    <div className="user-item-container">
+      <div
+        className="appmenu-space"
+        style={{ width: "0px", position: "relative" }}
+      >
+        {isOpenAppMenuModal && (
+          <AppMenuDropdown setIsOpenAppMenuModal={setIsOpenAppMenuModal} />
+        )}
+      </div>
+      <div
+        className="app-menu-icon"
+        onMouseEnter={(e) => {
+          handlerMouseEnter(e, "app_menu", appMenuHoverRef, setStateHover);
+        }}
+        onMouseLeave={(e) => {
+          handlerMouseLeave(e, appMenuHoverRef, setStateHover);
+        }}
+        onClick={() => {
+          setIsOpenAppMenuModal(true);
+        }}
+      >
+        {data.data_UserItems.youtubeApps.image}
+        <div
+          className={
+            stateHover === "app_menu"
+              ? "hover-description on-hover"
+              : "hover-description"
+          }
+          ref={appMenuHoverRef}
+        >
+          {data.language_UserItems[languageState].youtubeApps}
+        </div>
+      </div>
+      <div
+        className="setting-space"
+        style={{ width: "0px", position: "relative" }}
+      >
+        {isOpenSettingDropdown && (
+          <SettingDropdown
+            setIsOpenSettingDropdown={setIsOpenSettingDropdown}
+          />
+        )}
+      </div>
+      <div
+        className="setting-icon"
+        onMouseEnter={(e) => {
+          handlerMouseEnter(e, "setting", settingHoverRef, setStateHover);
+        }}
+        onMouseLeave={(e) => {
+          handlerMouseLeave(e, settingHoverRef, setStateHover);
+        }}
+        onClick={() => {
+          setIsOpenSettingDropdown(() => true);
+        }}
+      >
+        {data.data_UserItems.settings.image}
+        <div
+          className={
+            stateHover === "setting"
+              ? "hover-description on-hover"
+              : "hover-description"
+          }
+          ref={settingHoverRef}
+        >
+          {data.language_UserItems[languageState].settings}
+        </div>
+      </div>
+      <LogIn />
+    </div>
+  );
+};
+const handlerMouseEnter = (e, state, hoverRef, setStateHover) => {
+  if (hoverRef) {
+    if (!hoverRef.current.contains(e.target)) {
+      setStateHover(state);
+    }
+  }
+};
+const handlerMouseLeave = (e, hoverRef, setStateHover) => {
+  if (hoverRef) {
+    if (!hoverRef.current.contains(e.target)) {
+      setStateHover("none");
+    }
+  }
+};
+export const stateHoverContext = createContext({});
+const HeaderBar = () => {
+  const [stateHover, setStateHover] = useState("none");
+
+  return (
+    <div className="headerbar">
+      <Logo />
+      <stateHoverContext.Provider value={{ stateHover, setStateHover }}>
+        <Search />
+        <UserItems />
+      </stateHoverContext.Provider>
     </div>
   );
 };
