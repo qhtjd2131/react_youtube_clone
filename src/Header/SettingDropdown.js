@@ -120,30 +120,32 @@ const DefaultSettingDropdown = () => {
 
   return (
     settingState === "default" &&
-    Object.keys(data.settingDropdown_data[languageState]).map((i, index) => {
-      const nextPageState = data.setting_dropdown_data_info[i].nextPageState;
-      const image = data.setting_dropdown_data_info[i].image;
-      const text = data.settingDropdown_data[languageState][i];
-      return (
-        <div key={index}>
-          <div
-            className="side-item"
-            onClick={() => {
-              if (nextPageState) {
-                setSettingState(() => nextPageState);
-              }
-            }}
-          >
-            <div className="setting-dropdown-item-icon">{image}</div>
-            <div className="setting-dropdown-item-label">
-              {titleMaker(text, nextPageState)}
+    Object.keys(data.settingDropdown_language[languageState]).map(
+      (i, index) => {
+        const nextPageState = data.setting_dropdown_data[i].nextPageState;
+        const image = data.setting_dropdown_data[i].image;
+        const text = data.settingDropdown_language[languageState][i];
+        return (
+          <div key={index}>
+            <div
+              className="side-item"
+              onClick={() => {
+                if (nextPageState) {
+                  setSettingState(() => nextPageState);
+                }
+              }}
+            >
+              <div className="setting-dropdown-item-icon">{image}</div>
+              <div className="setting-dropdown-item-label">
+                {titleMaker(text, nextPageState)}
+              </div>
+              {nextPageState && <div className="next-page-button">{">"}</div>}
             </div>
-            {nextPageState && <div className="next-page-button">{">"}</div>}
+            {index === 7 && <Line />}
           </div>
-          {index === 7 && <Line />}
-        </div>
-      );
-    })
+        );
+      }
+    )
   );
 };
 

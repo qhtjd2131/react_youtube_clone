@@ -1,4 +1,4 @@
-export const setting_dropdown_data_info = {
+export const setting_dropdown_data = {
   appearance: {
     image: (
       <img
@@ -62,7 +62,7 @@ export const setting_dropdown_data_info = {
   restrictedMode: { image: "", nextPageState: "limitedMode" },
 };
 
-export const settingDropdown_data = {
+export const settingDropdown_language = {
   KOR: {
     appearance: "디자인: ",
     language: "언어: ",
