@@ -3,7 +3,8 @@ import "./SettingDropdown.scss";
 import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/SettingData.js";
 import { useOutSideClick } from "./AppMenuDropdown";
-import { languageStateContext } from "../App";
+import { languageStateContext, themeStateContext } from "../App";
+import { MdDataUsage } from "react-icons/md";
 const GoDefaultSettingDropDownButton = ({ label }) => {
   const { setSettingState } = useContext(settingStateContext);
   return (
@@ -20,8 +21,8 @@ const GoDefaultSettingDropDownButton = ({ label }) => {
   );
 };
 const SettingDesign = () => {
-  const { settingState, settingDesignState, setSettingDesignState } =
-    useContext(settingStateContext);
+  const { settingState } = useContext(settingStateContext);
+  const { themeState, setThemeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
 
   return (
@@ -29,23 +30,28 @@ const SettingDesign = () => {
       <div>
         <GoDefaultSettingDropDownButton label="디자인" />
         <Line />
-        {data.DesignData.map((i, index) => (
+        {Object.keys(data.DesignData[languageState]).map((i, index) => (
           <div key={index}>
             <div
               className="side-item"
               onClick={() => {
-                setSettingDesignState(() => i.title[languageState.native]);
+                setThemeState(() => {
+                  return i;
+                });
               }}
             >
               <div className="setting-dropdown-item-icon">
-                {settingDesignState === i.title[languageState.native] ? (
-                  i.image
+                {themeState === i ? (
+                  <img
+                    src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
+                    alt=""
+                  />
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}
               </div>
               <div className="setting-dropdown-item-label">
-                {i.title[languageState.native]}
+                {data.DesignData[languageState][i]}
               </div>
             </div>
           </div>
@@ -58,29 +64,35 @@ const SettingDesign = () => {
 const SettingLanguage = () => {
   const { settingState } = useContext(settingStateContext);
   const { languageState, setLanguageState } = useContext(languageStateContext);
+  const { themeState, setThemeState } = useContext(themeStateContext);
   return (
     settingState === "language" && (
       <div>
         <GoDefaultSettingDropDownButton label="언어 선택" />
         <Line />
-        {data.LanguageData.map((i, index) => (
+        {Object.keys(data.LanguageData).map((i, index) => (
           <div key={index}>
             <div
               className="side-item"
               onClick={() => {
                 setLanguageState(() => {
-                  return { country: i.country, native: i.native };
+                  return i;
                 });
               }}
             >
               <div className="setting-dropdown-item-icon">
-                {languageState.native === i.native ? (
-                  i.image
+                {languageState === i ? (
+                  <img
+                    src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-check-mintab-for-ios-becris-lineal-becris-1.png"
+                    alt=""
+                  />
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}
               </div>
-              <div className="setting-dropdown-item-label">{i.native}</div>
+              <div className="setting-dropdown-item-label">
+                {data.LanguageData[i].native}
+              </div>
             </div>
           </div>
         ))}
@@ -88,17 +100,20 @@ const SettingLanguage = () => {
     )
   );
 };
+
 const DefaultSettingDropdown = () => {
-  const { settingState, setSettingState, settingDesignState } =
-    useContext(settingStateContext);
+  const { settingState, setSettingState } = useContext(settingStateContext);
+  const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
+
   const titleMaker = (title, nextPageState) => {
     let resultTitle = title;
     if (nextPageState === "language") {
-      resultTitle = title + languageState.native;
+      resultTitle = title + data.LanguageData[languageState]["native"];
     }
     if (nextPageState === "design") {
-      resultTitle = title + settingDesignState;
+      console.log("hihidh", themeState);
+      resultTitle = title + data.DesignData[languageState][themeState];
     }
     return resultTitle;
   };
@@ -131,8 +146,8 @@ const settingStateContext = createContext({});
 
 const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
   const settingDropdownRef = createRef();
+  const { themeState, setThemeState } = useContext(themeStateContext);
   const [settingState, setSettingState] = useState("default");
-  const [settingDesignState, setSettingDesignState] = useState("밝은 테마");
 
   useOutSideClick(settingDropdownRef, setIsOpenSettingDropdown);
   return (
@@ -142,8 +157,8 @@ const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
           value={{
             settingState,
             setSettingState,
-            settingDesignState,
-            setSettingDesignState,
+            themeState,
+            setThemeState,
           }}
         >
           <DefaultSettingDropdown />

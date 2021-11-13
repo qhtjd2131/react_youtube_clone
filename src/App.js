@@ -5,6 +5,7 @@ import Main from "./Main/Main.js";
 import SideBar from "./Side/SideBar";
 export const SideBarContext = createContext({});
 export const languageStateContext = createContext({});
+export const themeStateContext = createContext({});
 export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
 };
@@ -12,10 +13,9 @@ export const Overlay = ({ overlayClick }) => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
-  const [languageState, setLanguageState] = useState({
-    country: "Korean",
-    native: "한국어",
-  });
+  const [languageState, setLanguageState] = useState("KOR");
+  // const a = {"KR":"어두운테마", "EN":"Dark Theme"};
+  const [themeState, setThemeState] = useState("darkTheme");
   let scroll_y = useRef(window.scrollY * -1);
   let scroll_y_temp = useRef(0);
 
@@ -68,16 +68,18 @@ const App = () => {
         <languageStateContext.Provider
           value={{ languageState, setLanguageState }}
         >
-          <Header />
-          <Main />
-          <SideBar />
-          {isOpenSideBar && !isWindowSizeXL && (
-            <Overlay
-              overlayClick={() => {
-                setIsOpenSideBar(false);
-              }}
-            />
-          )}
+          <themeStateContext.Provider value={{ themeState, setThemeState }}>
+            <Header />
+            <Main />
+            <SideBar />
+            {isOpenSideBar && !isWindowSizeXL && (
+              <Overlay
+                overlayClick={() => {
+                  setIsOpenSideBar(false);
+                }}
+              />
+            )}
+          </themeStateContext.Provider>
         </languageStateContext.Provider>
       </SideBarContext.Provider>
     </div>
