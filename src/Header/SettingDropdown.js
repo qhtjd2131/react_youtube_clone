@@ -6,8 +6,15 @@ import { useOutSideClick } from "./AppMenuDropdown";
 import { languageStateContext, themeStateContext } from "../App";
 const GoDefaultSettingDropDownButton = ({ label }) => {
   const { setSettingState } = useContext(settingStateContext);
+  const { themeState } = useContext(themeStateContext);
   return (
-    <div className="setting-prev-button-container">
+    <div
+      className={
+        "setting-prev-button-container " +
+        "setting-prev-button-container-" +
+        themeState
+      }
+    >
       <img
         src="https://img.icons8.com/ios/50/000000/left.png"
         alt=""
@@ -39,7 +46,13 @@ const SettingDesign = () => {
                 });
               }}
             >
-              <div className="setting-dropdown-item-icon">
+              <div
+                className={
+                  "setting-dropdown-item-icon " +
+                  "setting-dropdown-item-icon-" +
+                  themeState
+                }
+              >
                 {themeState === i ? (
                   data.setting_dropdown_data.check.image
                 ) : (
@@ -76,7 +89,13 @@ const SettingLanguage = () => {
                 });
               }}
             >
-              <div className="setting-dropdown-item-icon">
+              <div
+                className={
+                  "setting-dropdown-item-icon " +
+                  "setting-dropdown-item-icon-" +
+                  themeState
+                }
+              >
                 {languageState === i ? (
                   data.setting_dropdown_data.check.image
                 ) : (
@@ -127,7 +146,15 @@ const DefaultSettingDropdown = () => {
                 }
               }}
             >
-              <div className="setting-dropdown-item-icon">{image}</div>
+              <div
+                className={
+                  "setting-dropdown-item-icon " +
+                  "setting-dropdown-item-icon-" +
+                  themeState
+                }
+              >
+                {image}
+              </div>
               <div className="setting-dropdown-item-label">
                 {titleMaker(text, nextPageState)}
               </div>
@@ -151,7 +178,7 @@ const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
   useOutSideClick(settingDropdownRef, setIsOpenSettingDropdown);
   return (
     <div className="setting-dropdown-container" ref={settingDropdownRef}>
-      <div className="setting-dropdown">
+      <div className={"setting-dropdown " + "setting-dropdown-" + themeState}>
         <settingStateContext.Provider
           value={{
             settingState,

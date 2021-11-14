@@ -13,7 +13,11 @@
   border: 1px solid $border-color;
   padding: 10px 0px;
 }
-
+.setting-dropdown-darkTheme {
+  background-color: #202020;
+  color: white;
+  border: 1px solid #383838;
+}
 .setting-dropdown-item-icon {
   width: 24px;
   height: 24px;
@@ -26,6 +30,10 @@
 .setting-dropdown-item-icon img {
   width: 24x;
   height: 24px;
+}
+.setting-dropdown-item-icon-darkTheme {
+  filter: invert(100%);
+  color: white;
 }
 
 .setting-dropdown-item-label {
@@ -51,6 +59,9 @@
   &:active {
     background-color: $hover-color;
   }
+}
+.setting-prev-button-container-darkTheme img {
+  filter: invert(100%);
 }
 .setting-current-state-label {
   font-size: 16px;
