@@ -40,6 +40,8 @@ export const Items = ({ item, theme, languageItem }) => {
 const SideBar = () => {
   const [selectedSideItem, setSelectedSideItem] = useState("home"); //data.item_1[0].title:홈
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
+  const { languageState } = useContext(languageStateContext);
+
   const sidebarRef = createRef();
 
   return (
@@ -72,8 +74,7 @@ const SideBar = () => {
               <Line />
               <div className="side-login-container">
                 <div className="side-login-description">
-                  로그인하면 동영상에 좋아요를 표시하고 댓글을 달거나 구독할 수
-                  있습니다.
+                  {data.language_side_etc[languageState].loginDescription}
                 </div>
                 <LogIn />
               </div>

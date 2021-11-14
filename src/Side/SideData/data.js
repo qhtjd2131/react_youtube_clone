@@ -194,3 +194,13 @@ export const language_side_item5 = {
     sendFeedback: "Send feedback",
   },
 };
+
+export const language_side_etc = {
+  KOR: {
+    loginDescription:
+      "로그인하면 동영상에 좋아요를 표시하고 댓글을 달거나 구독할 수있습니다.",
+  },
+  EN: {
+    loginDescription: "Sign in to like videos, comment, and subscribe.",
+  },
+};

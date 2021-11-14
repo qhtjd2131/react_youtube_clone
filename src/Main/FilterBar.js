@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./FilterBar.scss";
-import { SideBarContext } from "../App";
+import * as data from "./MainData/filterbarData.js";
+import { SideBarContext, languageStateContext } from "../App";
 const mainData = [
   "전체",
   "실시간",
@@ -14,12 +15,10 @@ const mainData = [
   "최근에 업로드 된 영상",
 ];
 const FilterBar = () => {
-  const [selectedLabel, setSelectedLabel] = useState("전체");
+  const [selectedLabel, setSelectedLabel] = useState("all");
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
-
-  const handleClickEvent = (e) => {
-    setSelectedLabel(e.target.outerText);
-  };
+  const { languageState } = useContext(languageStateContext);
+  
   return (
     <div
       className={
@@ -29,19 +28,21 @@ const FilterBar = () => {
       }
     >
       <div className="filterbar-content-wrapper">
-        {mainData.map((data, index) => (
-          <div
-            className={
-              selectedLabel === data ? "label selected-label" : "label"
-            }
-            key={index}
-            onClick={(e) => {
-              handleClickEvent(e);
-            }}
-          >
-            {data}
-          </div>
-        ))}
+        {Object.keys(data.language_filterbar[languageState]).map(
+          (key, index) => (
+            <div
+              className={
+                selectedLabel === key ? "label selected-label" : "label"
+              }
+              key={index}
+              onClick={() => {
+                setSelectedLabel(() => key);
+              }}
+            >
+              {data.language_filterbar[languageState][key]}
+            </div>
+          )
+        )}
       </div>
     </div>
   );

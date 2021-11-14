@@ -105,7 +105,6 @@ const DefaultSettingDropdown = () => {
       resultTitle = title + data.LanguageData[languageState]["native"];
     }
     if (nextPageState === "design") {
-      console.log("hihidh", themeState);
       resultTitle = title + data.DesignData[languageState][themeState];
     }
     return resultTitle;
