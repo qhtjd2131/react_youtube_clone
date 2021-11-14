@@ -3,13 +3,13 @@ import YouTube from "react-youtube";
 import "./Main.scss";
 import axios from "axios";
 import FilterBar from "./FilterBar";
-import { SideBarContext } from "../App";
+import { SideBarContext, themeStateContext } from "../App";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [itemsState, setItems] = useState([]);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
-
+  const { themeState } = useContext(themeStateContext);
   useEffect(() => {
     // const url =
     //   "https://www.googleapis.com/youtube/v3/search?&part=snippet&regionCode=KR&key=AIzaSyB9lShbMlPF9fz6shjhCGXiac9p5sMrUqk";
@@ -567,7 +567,9 @@ const Main = () => {
   return (
     <div
       className={
-        isOpenSideBar && isWindowSizeXL ? "main" : "main side-close-main"
+        isOpenSideBar && isWindowSizeXL
+          ? "main " + "main-" + themeState
+          : "main side-close-main " + "main-" + themeState
       }
     >
       {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
@@ -582,8 +584,18 @@ const Main = () => {
                 <div className="video-description-container">
                   <div className="channel-icon"></div>
                   <div className="video-description">
-                    <div className="video-title">{item.snippet.title}</div>
-                    <div className="video-channel-name">
+                    <div
+                      className={"video-title " + "video-title-" + themeState}
+                    >
+                      {item.snippet.title}
+                    </div>
+                    <div
+                      className={
+                        "video-channel-name " +
+                        "video-channel-name-" +
+                        themeState
+                      }
+                    >
                       {item.snippet.channelTitle}
                     </div>
                     <div className="video-viewcount"></div>

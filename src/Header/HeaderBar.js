@@ -9,7 +9,6 @@ import MicSearchModal from "./MicSearchModal";
 import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
 import * as data from "./HeaderData/headerBarData.js";
-import { AiTwotoneProject } from "react-icons/ai";
 
 export const LogIn = () => {
   const { languageState } = useContext(languageStateContext);

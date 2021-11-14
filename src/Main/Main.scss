@@ -3,13 +3,15 @@
 .main {
   //   grid-area: main;
   width: calc(100% - $side-width);
-//   height: 100%;
+  //   height: 100%;
   //   overflow: scroll;
   position: absolute;
   top: $header-height;
   left: $side-width;
   box-sizing: border-box;
-  
+}
+.main-darkTheme {
+  background-color: #181818;
 }
 
 .side-close-main {
@@ -39,4 +41,16 @@
 
 .item-container img {
   width: 100%;
+}
+
+.video-title {
+}
+.video-title-darkTheme {
+  color: white;
+}
+
+.video-channel-name {
+}
+.video-channel-name-darkTheme {
+  color: gray;
 }
