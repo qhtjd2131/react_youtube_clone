@@ -23,6 +23,9 @@
   box-sizing: border-box;
   padding: 60px 40px;
 }
+.modal-darkTheme {
+  background-color: #212121;
+}
 
 .modal-ms-title {
   font-size: 24px;
@@ -56,7 +59,10 @@
     transition: 0.5s;
     background-color: gray;
   }
-  
+}
+
+.modal-ms-icon-darkTheme {
+  background-color: #4c4c4c;
 }
 
 .modal-ms-close-button {
