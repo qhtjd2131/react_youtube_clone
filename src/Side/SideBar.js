@@ -5,7 +5,7 @@ import { LogIn } from "../Header/HeaderBar.js";
 import MiniSideBar from "./MiniSideBar.js";
 import { SideBarContext } from "../App";
 import { Logo } from "../Header/HeaderBar.js";
-import { languageStateContext } from "../App.js";
+import { languageStateContext, themeStateContext } from "../App.js";
 
 export const selectedSideItemContext = createContext({});
 
@@ -37,10 +37,27 @@ export const Items = ({ item, theme, languageItem }) => {
   ));
 };
 
+const getThemeStyle = (theme) => {
+  let themeStyle = {};
+  if (theme === "darkTheme") {
+    themeStyle = {
+      backgroundColor: "#212121",
+      color : 'white'
+    };
+  } else if (theme === "lightTheme") {
+    themeStyle = {
+      backgroundColor: "white",
+      color : 'black'
+    };
+  }
+  return themeStyle;
+};
+
 const SideBar = () => {
   const [selectedSideItem, setSelectedSideItem] = useState("home"); //data.item_1[0].title:홈
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
   const { languageState } = useContext(languageStateContext);
+  const { themeState } = useContext(themeStateContext);
 
   const sidebarRef = createRef();
 
@@ -56,6 +73,7 @@ const SideBar = () => {
             (isWindowSizeXL ? "" : " sidebar-no-xl")
           }
           ref={sidebarRef}
+          style={getThemeStyle(themeState)}
         >
           <div className="logo-in-side">
             <Logo />

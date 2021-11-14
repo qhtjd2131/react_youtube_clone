@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import * as data from "./SideData/data.js";
 import "./MiniSideBar.scss";
 import { selectedSideItemContext } from "./SideBar.js";
-import { languageStateContext } from "../App.js";
+import { languageStateContext, themeStateContext } from "../App.js";
 
 const MiniSideBar = () => {
   const { selectedSideItem, setSelectedSideItem } = useContext(
     selectedSideItemContext
   );
   const { languageState } = useContext(languageStateContext);
+  const { themeState } = useContext(themeStateContext);
 
   const minibarKey = Object.keys(data.data_side_item1).concat(
     Object.keys(data.data_side_item2)
@@ -19,14 +20,20 @@ const MiniSideBar = () => {
     ...data.language_side_item2[languageState],
   };
   return (
-    <div className="mini-sidebar-container">
+    <div
+      className={
+        "mini-sidebar-container " + "mini-sidebar-container-" + themeState
+      }
+    >
       {minibarKey.map((i, index) => (
         <div className="mini-item-wrapper" key={index}>
           <div
             className={
               selectedSideItem === i
-                ? "mini-side-item selected-mini-side-item"
-                : "mini-side-item"
+                ? "mini-side-item selected-mini-side-item" +
+                  +" selected-mini-side-item-" +
+                  themeState
+                : "mini-side-item" + " mini-side-item-" + themeState
             }
             onClick={(e) => {
               setSelectedSideItem(i);

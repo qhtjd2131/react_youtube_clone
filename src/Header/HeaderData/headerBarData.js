@@ -5,7 +5,7 @@ import { BsMicFill, BsGrid3X3Gap } from "react-icons/bs";
 import { GoKebabVertical } from "react-icons/go";
 import { FaRegUserCircle } from "react-icons/fa";
 import logo from "../../images/yt_logo_rgb_light.png";
-
+import { ImYoutube2 } from "react-icons/im";
 export const language_Login = {
   KOR: {
     login: "로그인",
@@ -25,7 +25,14 @@ export const data_Logo = {
     image: <FcMenu />,
   },
   logo: {
-    image: <img src={logo} alt="logo" />,
+    image: {
+      lightTheme: <img src={logo} alt="logo" />,
+      darkTheme: (
+        <div className="logo-icon-wrapper">
+          <ImYoutube2 />
+        </div>
+      ),
+    },
   },
 };
 

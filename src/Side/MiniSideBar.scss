@@ -1,11 +1,15 @@
 @import "../variable/global_variables";
 
 .mini-sidebar-container {
+  height: 100%;
   box-sizing: border-box;
   z-index: 989;
   position: fixed;
   top: $header-height;
   width: $mini-side-width;
+}
+.mini-sidebar-container-darkTheme {
+  background-color: #212121;
 }
 .mini-side-item {
   display: flex;
@@ -24,8 +28,14 @@
     background-color: $side-selected-item-color;
   }
 }
+.mini-side-item-darkTheme {
+    color : white;
+}
 .selected-mini-side-item {
   color: black;
+}
+.selected-mini-side-item-darkTheme {
+    color : gray;
 }
 .mini-itemIcon {
   display: flex;

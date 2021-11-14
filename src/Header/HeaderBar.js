@@ -1,10 +1,15 @@
 import React, { createRef, useState, useContext, createContext } from "react";
 import "./HeaderBar.scss";
-import { SideBarContext, languageStateContext } from "../App";
+import {
+  SideBarContext,
+  languageStateContext,
+  themeStateContext,
+} from "../App";
 import MicSearchModal from "./MicSearchModal";
 import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
 import * as data from "./HeaderData/headerBarData.js";
+import { AiTwotoneProject } from "react-icons/ai";
 
 export const LogIn = () => {
   const { languageState } = useContext(languageStateContext);
@@ -19,6 +24,7 @@ export const LogIn = () => {
 };
 
 export const Logo = () => {
+  const { themeState } = useContext(themeStateContext);
   const { isOpenSideBar, setIsOpenSideBar } = useContext(SideBarContext);
 
   return (
@@ -31,7 +37,7 @@ export const Logo = () => {
       >
         {data.data_Logo.sidebarOpen.image}
       </div>
-      {data.data_Logo.logo.image}
+      {data.data_Logo.logo.image[themeState]}
     </div>
   );
 };
@@ -40,14 +46,19 @@ const Search = () => {
   const { stateHover, setStateHover } = useContext(stateHoverContext);
   const [isOpenMicSearch, setIsOpenMicSearch] = useState(false);
   const { languageState } = useContext(languageStateContext);
-
+  const { themeState } = useContext(themeStateContext);
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
   return (
     <div className="search-inputbox-container">
-      <input placeholder={data.language_Search[languageState].search} />
+      <input
+        placeholder={data.language_Search[languageState].search}
+        // style={getThemeStyleInSearch}
+        className={themeState}
+        // style={getThemeStyleInSearch(themeState)}
+      />
       <div
-        className="search-button"
+        className={"search-button " + "search-button-" + themeState}
         onMouseEnter={(e) => {
           handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
         }}
@@ -193,12 +204,26 @@ const handlerMouseLeave = (e, hoverRef, setStateHover) => {
     }
   }
 };
+
+const getThemeStyle = (theme) => {
+  let themeStyle = {};
+  if (theme === "lightTheme") {
+    themeStyle = { backgroundColor: "white", color: "black" };
+  } else if (theme === "darkTheme") {
+    themeStyle = {
+      backgroundColor: "#212121",
+      color: "white",
+    };
+  }
+  return themeStyle;
+};
 export const stateHoverContext = createContext({});
 const HeaderBar = () => {
   const [stateHover, setStateHover] = useState("none");
+  const { themeState } = useContext(themeStateContext);
 
   return (
-    <div className="headerbar">
+    <div className="headerbar" style={getThemeStyle(themeState)}>
       <Logo />
       <stateHoverContext.Provider value={{ stateHover, setStateHover }}>
         <Search />

@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState, useRef } from "react";
+import { FcPodiumWithoutSpeaker } from "react-icons/fc";
 import "./App.scss";
 import Header from "./Header/Header";
 import Main from "./Main/Main.js";
@@ -10,11 +11,25 @@ export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
 };
 
+const getThemeStyle = (theme) => {
+  let themeStyle = {};
+  if (theme === "darkTheme") {
+    themeStyle = {
+      color: "white",
+      backgroundColor: "#181818",
+    };
+  } else if (theme === "lightTheme") {
+    themeStyle = {
+      color: "black",
+    };
+  }
+  return themeStyle;
+};
+
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
   const [languageState, setLanguageState] = useState("KOR");
-  // const a = {"KR":"어두운테마", "EN":"Dark Theme"};
   const [themeState, setThemeState] = useState("darkTheme");
   let scroll_y = useRef(window.scrollY * -1);
   let scroll_y_temp = useRef(0);
@@ -56,7 +71,8 @@ const App = () => {
   }, [isWindowSizeXL, isOpenSideBar]);
 
   return (
-    <div className="app">
+    // style={getThemeStyle(themeState)}
+    <div className="app" >
       <SideBarContext.Provider
         value={{
           isOpenSideBar,

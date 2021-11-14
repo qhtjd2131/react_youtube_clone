@@ -1,30 +1,27 @@
 import React, { useState, useContext } from "react";
 import "./FilterBar.scss";
 import * as data from "./MainData/filterbarData.js";
-import { SideBarContext, languageStateContext } from "../App";
-const mainData = [
-  "전체",
-  "실시간",
-  "음악",
-  "ASMR",
-  "축구",
-  "요리 프로그램",
-  "랩",
-  "미용",
-  "액션 어드벤처 게임",
-  "최근에 업로드 된 영상",
-];
+import {
+  SideBarContext,
+  languageStateContext,
+  themeState,
+  themeStateContext,
+} from "../App";
+
 const FilterBar = () => {
   const [selectedLabel, setSelectedLabel] = useState("all");
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
   const { languageState } = useContext(languageStateContext);
-  
+  const { themeState } = useContext(themeStateContext);
+
   return (
     <div
       className={
         isOpenSideBar && isWindowSizeXL
-          ? "filterbar-container"
-          : "filterbar-container side-close-filter"
+          ? "filterbar-container " + "filterbar-container-" + themeState
+          : "filterbar-container side-close-filter " +
+            "filterbar-container-" +
+            themeState
       }
     >
       <div className="filterbar-content-wrapper">
@@ -32,7 +29,9 @@ const FilterBar = () => {
           (key, index) => (
             <div
               className={
-                selectedLabel === key ? "label selected-label" : "label"
+                selectedLabel === key
+                  ? "label selected-label " + "selected-label-" + themeState
+                  : "label " + "label-" + themeState
               }
               key={index}
               onClick={() => {
