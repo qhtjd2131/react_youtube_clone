@@ -28,14 +28,21 @@
     background-color: $side-selected-item-color;
   }
 }
-.mini-side-item-darkTheme {
-    color : white;
-}
+
 .selected-mini-side-item {
   color: black;
 }
+.mini-side-item-darkTheme {
+    color: white;
+    &:hover {
+      background-color: #383838;
+    }
+  }
 .selected-mini-side-item-darkTheme {
-    color : gray;
+  color: gray;
+  &:hover {
+    background-color: #383838;
+  }
 }
 .mini-itemIcon {
   display: flex;

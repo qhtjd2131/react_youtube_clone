@@ -10,7 +10,8 @@ import { languageStateContext, themeStateContext } from "../App.js";
 export const selectedSideItemContext = createContext({});
 
 export const Line = () => {
-  return <div className="line"></div>;
+  const { themeState } = useContext(themeStateContext);
+  return <div className={"line " + "line-" + themeState}></div>;
 };
 
 export const Items = ({ item, theme, languageItem }) => {
@@ -18,11 +19,14 @@ export const Items = ({ item, theme, languageItem }) => {
     selectedSideItemContext
   );
   const { languageState } = useContext(languageStateContext);
+  const { themeState } = useContext(themeStateContext);
   //item : data.data_side_item1
   return Object.keys(item).map((i, index) => (
     <div
       className={
-        selectedSideItem === i ? "side-item selected-side-item" : "side-item"
+        selectedSideItem === i
+          ? "side-item selected-side-item " + "selected-side-item-" + themeState
+          : "side-item " + "side-item-" + themeState
       }
       key={index}
       onClick={() => {
@@ -42,12 +46,12 @@ const getThemeStyle = (theme) => {
   if (theme === "darkTheme") {
     themeStyle = {
       backgroundColor: "#212121",
-      color : 'white'
+      color: "white",
     };
   } else if (theme === "lightTheme") {
     themeStyle = {
       backgroundColor: "white",
-      color : 'black'
+      color: "black",
     };
   }
   return themeStyle;

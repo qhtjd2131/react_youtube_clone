@@ -31,7 +31,7 @@ const MiniSideBar = () => {
             className={
               selectedSideItem === i
                 ? "mini-side-item selected-mini-side-item" +
-                  +" selected-mini-side-item-" +
+                  " selected-mini-side-item-" +
                   themeState
                 : "mini-side-item" + " mini-side-item-" + themeState
             }

@@ -1,4 +1,10 @@
-import React, { createContext, createRef, useContext, useState } from "react";
+import React, {
+  createContext,
+  createRef,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 import "./SettingDropdown.scss";
 import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/SettingData.js";
@@ -39,7 +45,7 @@ const SettingDesign = () => {
         {Object.keys(data.DesignData[languageState]).map((i, index) => (
           <div key={index}>
             <div
-              className="side-item"
+              className={"side-item " + "side-item-" + themeState}
               onClick={() => {
                 setThemeState(() => {
                   return i;
@@ -73,7 +79,7 @@ const SettingDesign = () => {
 const SettingLanguage = () => {
   const { settingState } = useContext(settingStateContext);
   const { languageState, setLanguageState } = useContext(languageStateContext);
-  const { themeState, setThemeState } = useContext(themeStateContext);
+  const { themeState } = useContext(themeStateContext);
   return (
     settingState === "language" && (
       <div>
@@ -82,7 +88,7 @@ const SettingLanguage = () => {
         {Object.keys(data.LanguageData).map((i, index) => (
           <div key={index}>
             <div
-              className="side-item"
+              className={"side-item " + "side-item-" + themeState}
               onClick={() => {
                 setLanguageState(() => {
                   return i;
@@ -118,7 +124,7 @@ const DefaultSettingDropdown = () => {
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
 
-  const titleMaker = (title, nextPageState) => {
+  const titleMaker = useCallback((title, nextPageState) => {
     let resultTitle = title;
     if (nextPageState === "language") {
       resultTitle = title + data.LanguageData[languageState]["native"];
@@ -127,7 +133,7 @@ const DefaultSettingDropdown = () => {
       resultTitle = title + data.DesignData[languageState][themeState];
     }
     return resultTitle;
-  };
+  });
 
   return (
     settingState === "default" &&
@@ -139,7 +145,7 @@ const DefaultSettingDropdown = () => {
         return (
           <div key={index}>
             <div
-              className="side-item"
+              className={"side-item " + "side-item-" + themeState}
               onClick={() => {
                 if (nextPageState) {
                   setSettingState(() => nextPageState);

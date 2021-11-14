@@ -2,15 +2,19 @@ import React, { createRef, useContext, useEffect } from "react";
 import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/appMenuData.js";
 import "./AppMenuDropdown.scss";
-import { languageStateContext } from "../App";
+import { languageStateContext, themeStateContext } from "../App";
 const AppMenuItem = () => {
+  const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
   return Object.keys(data.appMenu_language[languageState]).map((i, index) => {
     const image = data.appMenu_data[i].image;
     const text = data.appMenu_language[languageState][i];
     return (
       <div key={index}>
-        <div className="side-item" onClick={(e) => {}}>
+        <div
+          className={"side-item " + "side-item-" + themeState}
+          onClick={(e) => {}}
+        >
           <div className="appmenu-item-icon">{image}</div>
           <div className="appmenu-item-label">{text}</div>
         </div>
@@ -39,13 +43,14 @@ export const useOutSideClick = (ref, setStateFunction) => {
 
 const AppMenu = ({ setIsOpenAppMenuModal }) => {
   const appMenuRef = createRef();
+  const { themeState } = useContext(themeStateContext);
   console.log("hi im AppMenu");
   useOutSideClick(appMenuRef, setIsOpenAppMenuModal);
 
   return (
     <div className="appmenu-container" ref={appMenuRef}>
       {console.log("rerender AppMenu")}
-      <div className="appmenu">
+      <div className={"appmenu " + "appmenu-" + themeState}>
         <AppMenuItem />
       </div>
     </div>
