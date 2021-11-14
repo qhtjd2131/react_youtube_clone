@@ -1,4 +1,4 @@
-export const setting_dropdown_data = {
+export const data_SettingDropdown = {
   appearance: {
     image: (
       <img
@@ -70,7 +70,7 @@ export const setting_dropdown_data = {
   },
 };
 
-export const settingDropdown_language = {
+export const language_SettingDropdown = {
   KOR: {
     appearance: "디자인: ",
     language: "언어: ",
@@ -96,12 +96,27 @@ export const settingDropdown_language = {
 };
 // Object.values(DesignData["한국어"]).map();
 
-export const DesignData = {
+export const data_SettingDesign = {
   KOR: { darkTheme: "어두운 테마", lightTheme: "밝은 테마" },
   EN: { darkTheme: "Dark Theme", lightTheme: "Light Theme" },
 };
 
-export const LanguageData = {
+
+export const language_SettingLocation = {
+    KOR : {
+        southKorea : "한국",
+        unitedStates : "미국"
+    },
+    EN : {
+        southKorea : "South Korea",
+        unitedStates : "United States"
+    }
+}
+
+export const data_SettingLocation = {
+
+}
+export const language = {
   KOR: {
     native: "한국어",
   },
@@ -110,3 +125,4 @@ export const LanguageData = {
     native: "English",
   },
 };
+

@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState, useRef } from "react";
-import { FcPodiumWithoutSpeaker } from "react-icons/fc";
 import "./App.scss";
 import Header from "./Header/Header";
 import Main from "./Main/Main.js";
@@ -30,7 +29,7 @@ const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
   const [languageState, setLanguageState] = useState("KOR");
-  const [themeState, setThemeState] = useState("darkTheme");
+  const [themeState, setThemeState] = useState("lightTheme");
   let scroll_y = useRef(window.scrollY * -1);
   let scroll_y_temp = useRef(0);
 
@@ -72,7 +71,7 @@ const App = () => {
 
   return (
     // style={getThemeStyle(themeState)}
-    <div className="app" >
+    <div className="app">
       <SideBarContext.Provider
         value={{
           isOpenSideBar,

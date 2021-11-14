@@ -32,6 +32,44 @@ const GoDefaultSettingDropDownButton = ({ label }) => {
     </div>
   );
 };
+
+const SettingLocation = () => {
+  const { settingState, locationState, setLocationState } =
+    useContext(settingStateContext);
+  const { themeState } = useContext(themeStateContext);
+  const { languageState } = useContext(languageStateContext);
+
+  const dataObject = data.language_SettingLocation[languageState];
+  return (
+    settingState === "location" && (
+      <div>
+        <GoDefaultSettingDropDownButton label="위치 선택" />
+        <Line />
+        {Object.keys(dataObject).map((key, index) => (
+          <div
+            className={"side-item " + "side-item-" + themeState}
+            onClick={() => setLocationState(() => key)}
+          >
+            <div
+              className={
+                "setting-dropdown-item-icon " +
+                "setting-dropdown-item-icon-" +
+                themeState
+              }
+            >
+              {locationState === key ? (
+                data.data_SettingDropdown.check.image
+              ) : (
+                <div style={{ width: "24px", height: "24px" }} />
+              )}
+            </div>
+            <div className="setting-dropdown-item-label">{dataObject[key]}</div>
+          </div>
+        ))}
+      </div>
+    )
+  );
+};
 const SettingDesign = () => {
   const { settingState } = useContext(settingStateContext);
   const { themeState, setThemeState } = useContext(themeStateContext);
@@ -42,7 +80,7 @@ const SettingDesign = () => {
       <div>
         <GoDefaultSettingDropDownButton label="디자인" />
         <Line />
-        {Object.keys(data.DesignData[languageState]).map((i, index) => (
+        {Object.keys(data.data_SettingDesign[languageState]).map((i, index) => (
           <div key={index}>
             <div
               className={"side-item " + "side-item-" + themeState}
@@ -60,13 +98,13 @@ const SettingDesign = () => {
                 }
               >
                 {themeState === i ? (
-                  data.setting_dropdown_data.check.image
+                  data.data_SettingDropdown.check.image
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}
               </div>
               <div className="setting-dropdown-item-label">
-                {data.DesignData[languageState][i]}
+                {data.data_SettingDesign[languageState][i]}
               </div>
             </div>
           </div>
@@ -85,7 +123,7 @@ const SettingLanguage = () => {
       <div>
         <GoDefaultSettingDropDownButton label="언어 선택" />
         <Line />
-        {Object.keys(data.LanguageData).map((i, index) => (
+        {Object.keys(data.language).map((i, index) => (
           <div key={index}>
             <div
               className={"side-item " + "side-item-" + themeState}
@@ -103,13 +141,13 @@ const SettingLanguage = () => {
                 }
               >
                 {languageState === i ? (
-                  data.setting_dropdown_data.check.image
+                  data.data_SettingDropdown.check.image
                 ) : (
                   <div style={{ width: "24px", height: "24px" }} />
                 )}
               </div>
               <div className="setting-dropdown-item-label">
-                {data.LanguageData[i].native}
+                {data.language[i].native}
               </div>
             </div>
           </div>
@@ -120,28 +158,31 @@ const SettingLanguage = () => {
 };
 
 const DefaultSettingDropdown = () => {
-  const { settingState, setSettingState } = useContext(settingStateContext);
+  const { settingState, setSettingState, locationState } =
+    useContext(settingStateContext);
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
 
   const titleMaker = useCallback((title, nextPageState) => {
     let resultTitle = title;
     if (nextPageState === "language") {
-      resultTitle = title + data.LanguageData[languageState]["native"];
-    }
-    if (nextPageState === "design") {
-      resultTitle = title + data.DesignData[languageState][themeState];
+      resultTitle = title + data.language[languageState]["native"];
+    } else if (nextPageState === "design") {
+      resultTitle = title + data.data_SettingDesign[languageState][themeState];
+    } else if (nextPageState === "location") {
+      resultTitle =
+        title + data.language_SettingLocation[languageState][locationState];
     }
     return resultTitle;
   });
 
   return (
     settingState === "default" &&
-    Object.keys(data.settingDropdown_language[languageState]).map(
+    Object.keys(data.language_SettingDropdown[languageState]).map(
       (i, index) => {
-        const nextPageState = data.setting_dropdown_data[i].nextPageState;
-        const image = data.setting_dropdown_data[i].image;
-        const text = data.settingDropdown_language[languageState][i];
+        const nextPageState = data.data_SettingDropdown[i].nextPageState;
+        const image = data.data_SettingDropdown[i].image;
+        const text = data.language_SettingDropdown[languageState][i];
         return (
           <div key={index}>
             <div
@@ -180,6 +221,7 @@ const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
   const settingDropdownRef = createRef();
   const { themeState, setThemeState } = useContext(themeStateContext);
   const [settingState, setSettingState] = useState("default");
+  const [locationState, setLocationState] = useState("southKorea");
 
   useOutSideClick(settingDropdownRef, setIsOpenSettingDropdown);
   return (
@@ -189,13 +231,14 @@ const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
           value={{
             settingState,
             setSettingState,
-            themeState,
-            setThemeState,
+            locationState,
+            setLocationState,
           }}
         >
           <DefaultSettingDropdown />
           <SettingDesign />
           <SettingLanguage />
+          <SettingLocation />
         </settingStateContext.Provider>
       </div>
     </div>
