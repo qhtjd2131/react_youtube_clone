@@ -98,7 +98,6 @@ const SettingLocation = () => {
             className={"side-item side-item-" + themeState}
             onClick={() =>
               setLocationState(() => {
-                console.log("setlocationstate :", key);
                 return key;
               })
             }
@@ -228,7 +227,6 @@ const DefaultSettingDropdown = () => {
       resultTitle =
         // title + data.language_SettingLocation[languageState][locationState];
         title + data.settingLocationData[locationState][languageState];
-      console.log("result:", resultTitle);
     }
     return resultTitle;
   });

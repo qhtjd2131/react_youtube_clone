@@ -44,12 +44,10 @@ export const useOutSideClick = (ref, setStateFunction) => {
 const AppMenu = ({ setIsOpenAppMenuModal }) => {
   const appMenuRef = createRef();
   const { themeState } = useContext(themeStateContext);
-  console.log("hi im AppMenu");
   useOutSideClick(appMenuRef, setIsOpenAppMenuModal);
 
   return (
     <div className="appmenu-container" ref={appMenuRef}>
-      {console.log("rerender AppMenu")}
       <div className={"appmenu " + "appmenu-" + themeState}>
         <AppMenuItem />
       </div>
