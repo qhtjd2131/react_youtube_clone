@@ -13,6 +13,7 @@ import {
   languageStateContext,
   themeStateContext,
   locationStateContext,
+  restrictedModeContext,
 } from "../App";
 
 const GoDefaultSettingDropDownButton = ({ label }) => {
@@ -40,10 +41,13 @@ const GoDefaultSettingDropDownButton = ({ label }) => {
 
 const SettingRestrictedMode = () => {
   const { settingState } = useContext(settingStateContext);
-  const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
+  const { restrictedMode, setRestrictedMode } = useContext(
+    restrictedModeContext
+  );
 
   const dataObject = data.restrictedModeData;
+
   return (
     settingState === "restrictedMode" && (
       <div>
@@ -60,7 +64,14 @@ const SettingRestrictedMode = () => {
         <div className={"restictedmode-active-label"}>
           {dataObject["buttonLabel"][languageState]}
           <label className="switch">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              defaultChecked={restrictedMode}
+              onChange={(e) => {
+                window.localStorage.setItem("restrictedMode", !restrictedMode);
+                setRestrictedMode(!restrictedMode);
+              }}
+            />
             <span className="slider round"></span>
           </label>
         </div>

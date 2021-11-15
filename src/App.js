@@ -12,25 +12,16 @@ export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
 };
 
-const getThemeStyle = (theme) => {
-  let themeStyle = {};
-  if (theme === "darkTheme") {
-    themeStyle = {
-      color: "white",
-      backgroundColor: "#181818",
-    };
-  } else if (theme === "lightTheme") {
-    themeStyle = {
-      color: "black",
-    };
-  }
-  return themeStyle;
-};
-
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
-  const [restrictedMode, setRestrictedMode] = useState(false);
+  const [restrictedMode, setRestrictedMode] = useState(() => {
+    const a = window.localStorage.getItem("restrictedMode");
+    if (a) {
+      return a;
+    }
+    return false;
+  });
   const [languageState, setLanguageState] = useState(() => {
     const a = window.localStorage.getItem("languageState");
     if (a) {
