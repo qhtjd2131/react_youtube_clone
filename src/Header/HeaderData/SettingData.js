@@ -101,22 +101,28 @@ export const data_SettingDesign = {
   EN: { darkTheme: "Dark Theme", lightTheme: "Light Theme" },
 };
 
-
-export const language_SettingLocation = {
-    KOR : {
-        southKorea : "한국",
-        unitedStates : "미국"
+// export const language_SettingLocation = {
+//   KOR: {
+//     southKorea: "한국",
+//     unitedStates: "미국",
+//   },
+//   EN: {
+//     southKorea: "South Korea",
+//     unitedStates: "United States",
+//   },
+// };
+export const settingLocationData = {
+    southKorea :{
+        KOR : "한국",
+        EN : "South Korea",
     },
-    EN : {
-        southKorea : "South Korea",
-        unitedStates : "United States"
+    unitedStates : {
+        KOR : "미국",
+        EN : "United States"
     }
 }
 
-export const data_SettingLocation = {
-
-}
-export const language = {
+export const language = { //native 굳이 없어도 됨. key : KOR, value: "한국어" 로 변경해야함
   KOR: {
     native: "한국어",
   },
@@ -126,3 +132,13 @@ export const language = {
   },
 };
 
+export const restrictedModeData = {
+    description : {
+        KOR : "이 모드를 사용하면 미성년자에게 부적합할 수 있는 동영상을 숨길 수 있습니다. 단, 필터링이 완벽할 수는 없다는 점에 유의하세요.\n\n이 설정은 이 브라우저에만 적용됩니다.",
+        EN : "This helps hide potentially mature videos. No filter is 100% accurate. \n\nThis setting only applies to this browser."
+    },
+    buttonLabel : {
+        KOR : "제한 모드 활성화",
+        EN : "ACTIVATE RESTRICTED MODE"
+    }
+}

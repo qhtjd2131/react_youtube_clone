@@ -9,7 +9,12 @@ import "./SettingDropdown.scss";
 import { Line } from "../Side/SideBar";
 import * as data from "./HeaderData/SettingData.js";
 import { useOutSideClick } from "./AppMenuDropdown";
-import { languageStateContext, themeStateContext } from "../App";
+import {
+  languageStateContext,
+  themeStateContext,
+  locationStateContext,
+} from "../App";
+
 const GoDefaultSettingDropDownButton = ({ label }) => {
   const { setSettingState } = useContext(settingStateContext);
   const { themeState } = useContext(themeStateContext);
@@ -32,14 +37,28 @@ const GoDefaultSettingDropDownButton = ({ label }) => {
     </div>
   );
 };
-
-const SettingLocation = () => {
+const SettingRestrictedMode = () => {
   const { settingState, locationState, setLocationState } =
     useContext(settingStateContext);
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
+  return (
+    settingState === "restictedMode" && (
+      <div>
+        <GoDefaultSettingDropDownButton label="제한 모드" />
+      </div>
+    )
+  );
+};
 
-  const dataObject = data.language_SettingLocation[languageState];
+const SettingLocation = () => {
+  const { locationState, setLocationState } = useContext(locationStateContext);
+  const { settingState } = useContext(settingStateContext);
+  const { themeState } = useContext(themeStateContext);
+  const { languageState } = useContext(languageStateContext);
+
+  //   const dataObject1 = data.language_SettingLocation[languageState];
+  const dataObject = data.settingLocationData;
   return (
     settingState === "location" && (
       <div>
@@ -47,13 +66,18 @@ const SettingLocation = () => {
         <Line />
         {Object.keys(dataObject).map((key, index) => (
           <div
-            className={"side-item " + "side-item-" + themeState}
-            onClick={() => setLocationState(() => key)}
+            className={"side-item side-item-" + themeState}
+            onClick={() =>
+              setLocationState(() => {
+                console.log("setlocationstate :", key);
+                return key;
+              })
+            }
+            key={index}
           >
             <div
               className={
-                "setting-dropdown-item-icon " +
-                "setting-dropdown-item-icon-" +
+                "setting-dropdown-item-icon setting-dropdown-item-icon-" +
                 themeState
               }
             >
@@ -63,7 +87,9 @@ const SettingLocation = () => {
                 <div style={{ width: "24px", height: "24px" }} />
               )}
             </div>
-            <div className="setting-dropdown-item-label">{dataObject[key]}</div>
+            <div className="setting-dropdown-item-label">
+              {dataObject[key][languageState]}
+            </div>
           </div>
         ))}
       </div>
@@ -83,17 +109,17 @@ const SettingDesign = () => {
         {Object.keys(data.data_SettingDesign[languageState]).map((i, index) => (
           <div key={index}>
             <div
-              className={"side-item " + "side-item-" + themeState}
+              className={"side-item side-item-" + themeState}
               onClick={() => {
                 setThemeState(() => {
+                  window.localStorage.setItem("themeState", i);
                   return i;
                 });
               }}
             >
               <div
                 className={
-                  "setting-dropdown-item-icon " +
-                  "setting-dropdown-item-icon-" +
+                  "setting-dropdown-item-icon setting-dropdown-item-icon-" +
                   themeState
                 }
               >
@@ -126,17 +152,17 @@ const SettingLanguage = () => {
         {Object.keys(data.language).map((i, index) => (
           <div key={index}>
             <div
-              className={"side-item " + "side-item-" + themeState}
+              className={"side-item side-item-" + themeState}
               onClick={() => {
                 setLanguageState(() => {
+                  window.localStorage.setItem("languageState", i);
                   return i;
                 });
               }}
             >
               <div
                 className={
-                  "setting-dropdown-item-icon " +
-                  "setting-dropdown-item-icon-" +
+                  "setting-dropdown-item-icon setting-dropdown-item-icon-" +
                   themeState
                 }
               >
@@ -158,8 +184,8 @@ const SettingLanguage = () => {
 };
 
 const DefaultSettingDropdown = () => {
-  const { settingState, setSettingState, locationState } =
-    useContext(settingStateContext);
+  const { settingState, setSettingState } = useContext(settingStateContext);
+  const { locationState } = useContext(locationStateContext);
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
 
@@ -171,7 +197,9 @@ const DefaultSettingDropdown = () => {
       resultTitle = title + data.data_SettingDesign[languageState][themeState];
     } else if (nextPageState === "location") {
       resultTitle =
-        title + data.language_SettingLocation[languageState][locationState];
+        // title + data.language_SettingLocation[languageState][locationState];
+        title + data.settingLocationData[locationState][languageState];
+      console.log("result:", resultTitle);
     }
     return resultTitle;
   });
@@ -186,7 +214,7 @@ const DefaultSettingDropdown = () => {
         return (
           <div key={index}>
             <div
-              className={"side-item " + "side-item-" + themeState}
+              className={"side-item side-item-" + themeState}
               onClick={() => {
                 if (nextPageState) {
                   setSettingState(() => nextPageState);
@@ -195,8 +223,7 @@ const DefaultSettingDropdown = () => {
             >
               <div
                 className={
-                  "setting-dropdown-item-icon " +
-                  "setting-dropdown-item-icon-" +
+                  "setting-dropdown-item-icon setting-dropdown-item-icon-" +
                   themeState
                 }
               >
@@ -219,22 +246,14 @@ const settingStateContext = createContext({});
 
 const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
   const settingDropdownRef = createRef();
-  const { themeState, setThemeState } = useContext(themeStateContext);
+  const { themeState } = useContext(themeStateContext);
   const [settingState, setSettingState] = useState("default");
-  const [locationState, setLocationState] = useState("southKorea");
 
   useOutSideClick(settingDropdownRef, setIsOpenSettingDropdown);
   return (
     <div className="setting-dropdown-container" ref={settingDropdownRef}>
-      <div className={"setting-dropdown " + "setting-dropdown-" + themeState}>
-        <settingStateContext.Provider
-          value={{
-            settingState,
-            setSettingState,
-            locationState,
-            setLocationState,
-          }}
-        >
+      <div className={"setting-dropdown setting-dropdown-" + themeState}>
+        <settingStateContext.Provider value={{ settingState, setSettingState }}>
           <DefaultSettingDropdown />
           <SettingDesign />
           <SettingLanguage />

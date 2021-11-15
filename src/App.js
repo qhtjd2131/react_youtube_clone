@@ -6,6 +6,7 @@ import SideBar from "./Side/SideBar";
 export const SideBarContext = createContext({});
 export const languageStateContext = createContext({});
 export const themeStateContext = createContext({});
+export const locationStateContext = createContext({});
 export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
 };
@@ -28,8 +29,22 @@ const getThemeStyle = (theme) => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
-  const [languageState, setLanguageState] = useState("KOR");
-  const [themeState, setThemeState] = useState("lightTheme");
+  const [languageState, setLanguageState] = useState(() => {
+    const a = window.localStorage.getItem("languageState");
+    if (a) {
+      return a;
+    }
+    return "KOR";
+  });
+  const [themeState, setThemeState] = useState(() => {
+    const a = window.localStorage.getItem("themeState");
+    if (a) {
+      return a;
+    }
+    return "lightTheme";
+  });
+  const [locationState, setLocationState] = useState("southKorea");
+
   let scroll_y = useRef(window.scrollY * -1);
   let scroll_y_temp = useRef(0);
 
@@ -70,7 +85,6 @@ const App = () => {
   }, [isWindowSizeXL, isOpenSideBar]);
 
   return (
-    // style={getThemeStyle(themeState)}
     <div className="app">
       <SideBarContext.Provider
         value={{
@@ -84,16 +98,20 @@ const App = () => {
           value={{ languageState, setLanguageState }}
         >
           <themeStateContext.Provider value={{ themeState, setThemeState }}>
-            <Header />
-            <Main />
-            <SideBar />
-            {isOpenSideBar && !isWindowSizeXL && (
-              <Overlay
-                overlayClick={() => {
-                  setIsOpenSideBar(false);
-                }}
-              />
-            )}
+            <locationStateContext.Provider
+              value={{ locationState, setLocationState }}
+            >
+              <Header />
+              <Main />
+              <SideBar />
+              {isOpenSideBar && !isWindowSizeXL && (
+                <Overlay
+                  overlayClick={() => {
+                    setIsOpenSideBar(false);
+                  }}
+                />
+              )}
+            </locationStateContext.Provider>
           </themeStateContext.Provider>
         </languageStateContext.Provider>
       </SideBarContext.Provider>

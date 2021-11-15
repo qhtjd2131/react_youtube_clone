@@ -160,6 +160,9 @@ const UserItems = () => {
             setIsOpenSettingDropdown={setIsOpenSettingDropdown}
           />
         )}
+        {/* <SettingDropdown
+            setIsOpenSettingDropdown={setIsOpenSettingDropdown}
+          /> */}
       </div>
       <div
         className="setting-icon"
