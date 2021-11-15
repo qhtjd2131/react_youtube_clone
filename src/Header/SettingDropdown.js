@@ -51,7 +51,7 @@ const SettingRestrictedMode = () => {
   return (
     settingState === "restrictedMode" && (
       <div>
-        <GoDefaultSettingDropDownButton label="제한 모드" />
+        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["restrictedMode"][languageState]} />
         <Line />
         <div className={"restrictedmode-description"}>
           <div className="description">
@@ -91,7 +91,7 @@ const SettingLocation = () => {
   return (
     settingState === "location" && (
       <div>
-        <GoDefaultSettingDropDownButton label="위치 선택" />
+        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["location"][languageState]} />
         <Line />
         {Object.keys(dataObject).map((key, index) => (
           <div
@@ -133,7 +133,7 @@ const SettingDesign = () => {
   return (
     settingState === "design" && (
       <div>
-        <GoDefaultSettingDropDownButton label="디자인" />
+        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["appearance"][languageState]} />
         <Line />
         {Object.keys(data.data_SettingDesign[languageState]).map((i, index) => (
           <div key={index}>
@@ -176,7 +176,7 @@ const SettingLanguage = () => {
   return (
     settingState === "language" && (
       <div>
-        <GoDefaultSettingDropDownButton label="언어 선택" />
+        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["language"][languageState]} />
         <Line />
         {Object.keys(data.language).map((i, index) => (
           <div key={index}>

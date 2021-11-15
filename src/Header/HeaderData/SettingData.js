@@ -147,3 +147,22 @@ export const restrictedModeData = {
     EN: "ACTIVATE RESTRICTED MODE",
   },
 };
+
+export const goDefaultSettingLabelData = {
+  appearance: {
+    KOR: "디자인",
+    EN: "Appearance",
+  },
+  language: {
+    KOR: "언어 선택",
+    EN: "Choose your language",
+  },
+  location: {
+    KOR: "위치 선택",
+    EN: "Choose your location",
+  },
+  restrictedMode: {
+    KOR: "제한 모드",
+    EN: "Restricted Mode",
+  },
+};
