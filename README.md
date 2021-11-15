@@ -75,6 +75,8 @@ const handlerResizeEvent = () => {
 그리고 다음으로, 3번의 해결방법과 같이 해결하였을 경우 sidebar를 open했을때 body {positon:fixed}가 되고 scroll이 랜더링 되지 않는데, 이 때 내가 이미 한 scroll을 무시하고 body의 가장 상위부분으로 강제로 이동하게된다.
 따라서 사용자가 마지막으로 위치한 scroll의 위치를 기억해서 scroll이없어질때 top속성을 이용하여 내려주어야 한다.
 
+
+
 현재 이 웹페이지는 Header bar 에 AppMenu 버튼을 클릭하면 MenuModal 컴포넌트가 랜더링 된다. 이때 아래와 같은 구조를 가지는데, AppMenuIcon을 hover하면 description 컴포넌트가 랜더링된다.
 
 ```
@@ -106,3 +108,85 @@ const handlerResizeEvent = () => {
 
 그리고 MenuModalWrapper 에 width:0px 속성을 주어서 AppMenuIcon를 기준으로 상대 위치를 지정할 수 있게 트릭을 사용하였다.
 이 트릭은 부모의 width가 0px이므로 position 위치를 지정할 때, % 단위는 적용되지 않는다.
+
+
+//
+언어설정을 위한 데이터셋 변경 과정 기록
+1, 처음 데이터 구조
+data = {
+   {
+      title : "item1",
+      image : <ImageFile1 />,
+   },
+   {
+      title : "item2",
+      image : <ImageFile2 />,
+   },
+   ...
+}
+
+2. 두번째 데이터 구조
+언어설정이 한국어든 영어든 Image파일은 같으니, title 부분만 국가별로 정해주면 되겠다고 생각했다.
+
+data = {
+   item1key : {
+      title : {
+         KOR : "아이템1",
+         EN : "Item1"
+      },
+      image : <ImageFile1 />
+   },
+   item2key : {
+      title : {
+         KOR : "아이템2",
+         EN : "Item2"
+      },
+      image : <ImageFile2 />
+   },
+}
+
+사용예시
+Object.keys(data).map((key, index)=>
+   (
+      console.log(data[key]["title"][languageState]) 
+   )
+);
+
+3. 언어데이터와 image나 변수 등을 저장하는 데이터 분리
+
+2번 구조와 3번구조 사이에서 고민했었는데, 나중에 데이터가 많아지고, 언어가 많아지면, 너무 데이터가 커질 수도 있다고 생각했다.
+그래서 3번구조를 채택했다. 
+
+language_data = {
+   KOR : {
+      item1 : "아이템1",
+      item2 : "아이템2",
+   },
+   EN : {
+      item1 : "item1",  
+      item2 : "item2",
+}
+data_data = {
+   item1 : {
+      image : <ImageFile1 />
+   },
+   item2 : {
+      image : <ImageFile2 />
+   }
+}
+
+나의 itemState 는 초기에 setItemState("아이템1") 과 같이 key값(setItemState("item1key")이 아닌 보여지는 값으로 세팅되어있었다.
+그래서 전체적인 구조변경에 어려움을 느꼈고, state안의 값을 직접 랜더링 하는것 보다, key값으로 설정하고
+미리 선언된 데이터셋을 이용하여 data[itemState] 으로 접근하는것이 효율적인 데이터 관리를 할 수 있다고 느꼈다.
+
+//
+
+테마설정으로 인해 styled components의 필요성을 느낌
+//
+dropdown 컴포넌트가 조건부 랜더링됨으로 인하여 unmount -> mount 되었을때, state가 초기화 되는 현상.
+state를 부모에게 주어서 문제 해결
+그리고 다음과 같은 방법을 생각함.
+1. localstorage 사용
+2. mount -> unmount가 아닌 display -> display:none 으로 스타일만 변경하는 방식.
+
+

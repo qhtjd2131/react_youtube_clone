@@ -7,6 +7,7 @@ export const SideBarContext = createContext({});
 export const languageStateContext = createContext({});
 export const themeStateContext = createContext({});
 export const locationStateContext = createContext({});
+export const restrictedModeContext = createContext({});
 export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
 };
@@ -29,6 +30,7 @@ const getThemeStyle = (theme) => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
+  const [restrictedMode, setRestrictedMode] = useState(false);
   const [languageState, setLanguageState] = useState(() => {
     const a = window.localStorage.getItem("languageState");
     if (a) {
@@ -70,6 +72,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    //overlay가 랜더링되면 스크롤바가 사라지고, 위치가 초기화된다.
+    //그래서 스크롤바 위치를 기억하는 코드이다
     scroll_y.current = window.scrollY * -1;
     if (!isWindowSizeXL && isOpenSideBar) {
       scroll_y_temp.current = scroll_y.current;
@@ -101,16 +105,20 @@ const App = () => {
             <locationStateContext.Provider
               value={{ locationState, setLocationState }}
             >
-              <Header />
-              <Main />
-              <SideBar />
-              {isOpenSideBar && !isWindowSizeXL && (
-                <Overlay
-                  overlayClick={() => {
-                    setIsOpenSideBar(false);
-                  }}
-                />
-              )}
+              <restrictedModeContext.Provider
+                value={{ restrictedMode, setRestrictedMode }}
+              >
+                <Header />
+                <Main />
+                <SideBar />
+                {isOpenSideBar && !isWindowSizeXL && (
+                  <Overlay
+                    overlayClick={() => {
+                      setIsOpenSideBar(false);
+                    }}
+                  />
+                )}
+              </restrictedModeContext.Provider>
             </locationStateContext.Provider>
           </themeStateContext.Provider>
         </languageStateContext.Provider>

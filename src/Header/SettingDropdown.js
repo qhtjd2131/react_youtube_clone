@@ -37,15 +37,33 @@ const GoDefaultSettingDropDownButton = ({ label }) => {
     </div>
   );
 };
+
 const SettingRestrictedMode = () => {
-  const { settingState, locationState, setLocationState } =
-    useContext(settingStateContext);
+  const { settingState } = useContext(settingStateContext);
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
+
+  const dataObject = data.restrictedModeData;
   return (
-    settingState === "restictedMode" && (
+    settingState === "restrictedMode" && (
       <div>
         <GoDefaultSettingDropDownButton label="제한 모드" />
+        <Line />
+        <div className={"restrictedmode-description"}>
+          <div className="description">
+            {dataObject["description1"][languageState]}
+          </div>
+          <div className="description">
+            {dataObject["description2"][languageState]}
+          </div>
+        </div>
+        <div className={"restictedmode-active-label"}>
+          {dataObject["buttonLabel"][languageState]}
+          <label className="switch">
+            <input type="checkbox" />
+            <span className="slider round"></span>
+          </label>
+        </div>
       </div>
     )
   );
@@ -258,6 +276,7 @@ const SettingDropdown = ({ setIsOpenSettingDropdown }) => {
           <SettingDesign />
           <SettingLanguage />
           <SettingLocation />
+          <SettingRestrictedMode />
         </settingStateContext.Provider>
       </div>
     </div>
