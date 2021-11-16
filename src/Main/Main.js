@@ -568,8 +568,8 @@ const Main = () => {
     <div
       className={
         isOpenSideBar && isWindowSizeXL
-          ? "main " + "main-" + themeState
-          : "main side-close-main " + "main-" + themeState
+          ? "main main-" + themeState
+          : "main side-close-main main-" + themeState
       }
     >
       {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
@@ -584,16 +584,12 @@ const Main = () => {
                 <div className="video-description-container">
                   <div className="channel-icon"></div>
                   <div className="video-description">
-                    <div
-                      className={"video-title " + "video-title-" + themeState}
-                    >
+                    <div className={"video-title video-title-" + themeState}>
                       {item.snippet.title}
                     </div>
                     <div
                       className={
-                        "video-channel-name " +
-                        "video-channel-name-" +
-                        themeState
+                        "video-channel-name video-channel-name-" + themeState
                       }
                     >
                       {item.snippet.channelTitle}

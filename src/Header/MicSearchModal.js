@@ -15,7 +15,7 @@ const MicSearchModal = ({ setIsOpenMicSearch }) => {
         }}
       />
       <div className="modal-container">
-        <div className={"modal "+"modal-"+themeState}>
+        <div className={"modal modal-"+themeState}>
           <div
             className="modal-ms-close-button"
             onClick={() => {
@@ -31,7 +31,7 @@ const MicSearchModal = ({ setIsOpenMicSearch }) => {
             {data.language_Search[languageState].searchWithYourVoiceDescription}
           </div>
           <div className="modal-ms-icon-wrapper">
-            <div className={"modal-ms-icon "+"modal-ms-icon-"+themeState }>
+            <div className={"modal-ms-icon modal-ms-icon-"+themeState }>
               {data.data_Search.searchWithYourVoice.image}
             </div>
           </div>

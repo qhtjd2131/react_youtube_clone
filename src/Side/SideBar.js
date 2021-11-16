@@ -11,7 +11,7 @@ export const selectedSideItemContext = createContext({});
 
 export const Line = () => {
   const { themeState } = useContext(themeStateContext);
-  return <div className={"line " + "line-" + themeState}></div>;
+  return <div className={"line line-" + themeState}></div>;
 };
 
 export const Items = ({ item, theme, languageItem }) => {
@@ -25,8 +25,8 @@ export const Items = ({ item, theme, languageItem }) => {
     <div
       className={
         selectedSideItem === i
-          ? "side-item selected-side-item " + "selected-side-item-" + themeState
-          : "side-item " + "side-item-" + themeState
+          ? "side-item selected-side-item selected-side-item-" + themeState
+          : "side-item side-item-" + themeState
       }
       key={index}
       onClick={() => {

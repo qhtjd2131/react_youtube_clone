@@ -52,12 +52,10 @@ const Search = () => {
     <div className="search-inputbox-container">
       <input
         placeholder={data.language_Search[languageState].search}
-        // style={getThemeStyleInSearch}
         className={themeState}
-        // style={getThemeStyleInSearch(themeState)}
       />
       <div
-        className={"search-button " + "search-button-" + themeState}
+        className={"search-button search-button-" + themeState}
         onMouseEnter={(e) => {
           handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
         }}
@@ -160,9 +158,6 @@ const UserItems = () => {
             setIsOpenSettingDropdown={setIsOpenSettingDropdown}
           />
         )}
-        {/* <SettingDropdown
-            setIsOpenSettingDropdown={setIsOpenSettingDropdown}
-          /> */}
       </div>
       <div
         className="setting-icon"

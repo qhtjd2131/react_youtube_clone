@@ -12,7 +12,7 @@ const AppMenuItem = () => {
     return (
       <div key={index}>
         <div
-          className={"side-item " + "side-item-" + themeState}
+          className={"side-item side-item-" + themeState}
           onClick={(e) => {}}
         >
           <div className="appmenu-item-icon">{image}</div>
@@ -48,7 +48,7 @@ const AppMenu = ({ setIsOpenAppMenuModal }) => {
 
   return (
     <div className="appmenu-container" ref={appMenuRef}>
-      <div className={"appmenu " + "appmenu-" + themeState}>
+      <div className={"appmenu appmenu-" + themeState}>
         <AppMenuItem />
       </div>
     </div>

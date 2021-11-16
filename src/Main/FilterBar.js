@@ -4,7 +4,6 @@ import * as data from "./MainData/filterbarData.js";
 import {
   SideBarContext,
   languageStateContext,
-  themeState,
   themeStateContext,
 } from "../App";
 
@@ -18,9 +17,8 @@ const FilterBar = () => {
     <div
       className={
         isOpenSideBar && isWindowSizeXL
-          ? "filterbar-container " + "filterbar-container-" + themeState
-          : "filterbar-container side-close-filter " +
-            "filterbar-container-" +
+          ? "filterbar-container filterbar-container-" + themeState
+          : "filterbar-container side-close-filter filterbar-container-" +
             themeState
       }
     >
@@ -30,8 +28,8 @@ const FilterBar = () => {
             <div
               className={
                 selectedLabel === key
-                  ? "label selected-label " + "selected-label-" + themeState
-                  : "label " + "label-" + themeState
+                  ? "label selected-label selected-label-" + themeState
+                  : "label label-" + themeState
               }
               key={index}
               onClick={() => {

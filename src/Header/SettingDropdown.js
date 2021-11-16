@@ -51,7 +51,11 @@ const SettingRestrictedMode = () => {
   return (
     settingState === "restrictedMode" && (
       <div>
-        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["restrictedMode"][languageState]} />
+        <GoDefaultSettingDropDownButton
+          label={
+            data.goDefaultSettingLabelData["restrictedMode"][languageState]
+          }
+        />
         <Line />
         <div className={"restrictedmode-description"}>
           <div className="description">
@@ -85,13 +89,14 @@ const SettingLocation = () => {
   const { settingState } = useContext(settingStateContext);
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
-
-  //   const dataObject1 = data.language_SettingLocation[languageState];
   const dataObject = data.settingLocationData;
+
   return (
     settingState === "location" && (
       <div>
-        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["location"][languageState]} />
+        <GoDefaultSettingDropDownButton
+          label={data.goDefaultSettingLabelData["location"][languageState]}
+        />
         <Line />
         {Object.keys(dataObject).map((key, index) => (
           <div
@@ -132,7 +137,9 @@ const SettingDesign = () => {
   return (
     settingState === "design" && (
       <div>
-        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["appearance"][languageState]} />
+        <GoDefaultSettingDropDownButton
+          label={data.goDefaultSettingLabelData["appearance"][languageState]}
+        />
         <Line />
         {Object.keys(data.data_SettingDesign[languageState]).map((i, index) => (
           <div key={index}>
@@ -175,7 +182,9 @@ const SettingLanguage = () => {
   return (
     settingState === "language" && (
       <div>
-        <GoDefaultSettingDropDownButton label={data.goDefaultSettingLabelData["language"][languageState]} />
+        <GoDefaultSettingDropDownButton
+          label={data.goDefaultSettingLabelData["language"][languageState]}
+        />
         <Line />
         {Object.keys(data.language).map((i, index) => (
           <div key={index}>
@@ -217,19 +226,22 @@ const DefaultSettingDropdown = () => {
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
 
-  const titleMaker = useCallback((title, nextPageState) => {
-    let resultTitle = title;
-    if (nextPageState === "language") {
-      resultTitle = title + data.language[languageState]["native"];
-    } else if (nextPageState === "design") {
-      resultTitle = title + data.data_SettingDesign[languageState][themeState];
-    } else if (nextPageState === "location") {
-      resultTitle =
-        // title + data.language_SettingLocation[languageState][locationState];
-        title + data.settingLocationData[locationState][languageState];
-    }
-    return resultTitle;
-  });
+  const titleMaker = useCallback(
+    (title, nextPageState) => {
+      let resultTitle = title;
+      if (nextPageState === "language") {
+        resultTitle = title + data.language[languageState]["native"];
+      } else if (nextPageState === "design") {
+        resultTitle =
+          title + data.data_SettingDesign[languageState][themeState];
+      } else if (nextPageState === "location") {
+        resultTitle =
+          title + data.settingLocationData[locationState][languageState];
+      }
+      return resultTitle;
+    },
+    [languageState, themeState, locationState]
+  );
 
   return (
     settingState === "default" &&
