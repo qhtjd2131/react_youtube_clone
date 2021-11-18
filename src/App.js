@@ -2,12 +2,18 @@ import React, { createContext, useEffect, useState, useRef } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Main from "./Main/Main.js";
+import SearchResult from "./Main/SearchResult";
 import SideBar from "./Side/SideBar";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+
+//Context
 export const SideBarContext = createContext({});
 export const languageStateContext = createContext({});
 export const themeStateContext = createContext({});
 export const locationStateContext = createContext({});
 export const restrictedModeContext = createContext({});
+export const searchTextContext = createContext({});
+
 export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
 };
@@ -15,6 +21,7 @@ export const Overlay = ({ overlayClick }) => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
+  const [searchText, setSearchText] = useState("");
   const [restrictedMode, setRestrictedMode] = useState(() => {
     const a = window.localStorage.getItem("restrictedMode");
     if (a) {
@@ -42,6 +49,7 @@ const App = () => {
   let scroll_y_temp = useRef(0);
 
   useEffect(() => {
+    //반응형을 위한 width 사이즈변경 감지
     const handlerResizeEvent = () => {
       if (window.innerWidth <= 1300) {
         setIsWindowSizeXL(false);
@@ -80,41 +88,51 @@ const App = () => {
   }, [isWindowSizeXL, isOpenSideBar]);
 
   return (
-    <div className="app">
-      <SideBarContext.Provider
-        value={{
-          isOpenSideBar,
-          setIsOpenSideBar,
-          isWindowSizeXL,
-          setIsWindowSizeXL,
-        }}
-      >
-        <languageStateContext.Provider
-          value={{ languageState, setLanguageState }}
+    <BrowserRouter>
+      <div className="app">
+        <SideBarContext.Provider
+          value={{
+            isOpenSideBar,
+            setIsOpenSideBar,
+            isWindowSizeXL,
+            setIsWindowSizeXL,
+          }}
         >
-          <themeStateContext.Provider value={{ themeState, setThemeState }}>
-            <locationStateContext.Provider
-              value={{ locationState, setLocationState }}
-            >
-              <restrictedModeContext.Provider
-                value={{ restrictedMode, setRestrictedMode }}
+          <languageStateContext.Provider
+            value={{ languageState, setLanguageState }}
+          >
+            <themeStateContext.Provider value={{ themeState, setThemeState }}>
+              <locationStateContext.Provider
+                value={{ locationState, setLocationState }}
               >
-                <Header />
-                <Main />
-                <SideBar />
-                {isOpenSideBar && !isWindowSizeXL && (
-                  <Overlay
-                    overlayClick={() => {
-                      setIsOpenSideBar(false);
-                    }}
-                  />
-                )}
-              </restrictedModeContext.Provider>
-            </locationStateContext.Provider>
-          </themeStateContext.Provider>
-        </languageStateContext.Provider>
-      </SideBarContext.Provider>
-    </div>
+                <restrictedModeContext.Provider
+                  value={{ restrictedMode, setRestrictedMode }}
+                >
+                  <searchTextContext.Provider
+                    value={{ searchText, setSearchText }}
+                  >
+                    <Header />
+                    {/* <Main /> */}
+                    <Routes>
+                      <Route path="/" element={<Main />} />
+                      <Route path="result" element={<SearchResult />} />
+                    </Routes>
+                  </searchTextContext.Provider>
+                  <SideBar />
+                  {isOpenSideBar && !isWindowSizeXL && (
+                    <Overlay
+                      overlayClick={() => {
+                        setIsOpenSideBar(false);
+                      }}
+                    />
+                  )}
+                </restrictedModeContext.Provider>
+              </locationStateContext.Provider>
+            </themeStateContext.Provider>
+          </languageStateContext.Provider>
+        </SideBarContext.Provider>
+      </div>
+    </BrowserRouter>
   );
 };
 

@@ -1,7 +1,7 @@
 @import "../variable/global_variables";
 
 .mini-sidebar-container {
-  height: 100%;
+  height: calc(100% - $header-height);
   box-sizing: border-box;
   z-index: 989;
   position: fixed;

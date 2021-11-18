@@ -4,11 +4,14 @@ import {
   SideBarContext,
   languageStateContext,
   themeStateContext,
+  searchTextContext,
 } from "../App";
 import MicSearchModal from "./MicSearchModal";
 import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
 import * as data from "./HeaderData/headerBarData.js";
+import { useEffect } from "react/cjs/react.development";
+import { Link } from "react-router-dom";
 
 export const LogIn = () => {
   const { languageState } = useContext(languageStateContext);
@@ -46,35 +49,50 @@ const Search = () => {
   const [isOpenMicSearch, setIsOpenMicSearch] = useState(false);
   const { languageState } = useContext(languageStateContext);
   const { themeState } = useContext(themeStateContext);
+  const { searchText, setSearchText } = useContext(searchTextContext);
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
+  let searchTextTemp = "";
+
+  useEffect(() => {
+    console.log("render");
+  }, []);
   return (
     <div className="search-inputbox-container">
       <input
         placeholder={data.language_Search[languageState].search}
         className={themeState}
+        onChange={(e) => {
+          // setSearchText(() => e.target.value);
+        }}
       />
-      <div
-        className={"search-button search-button-" + themeState}
-        onMouseEnter={(e) => {
-          handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
-        }}
-        onMouseLeave={(e) => {
-          handlerMouseLeave(e, searchHoverRef, setStateHover);
-        }}
-      >
-        {data.data_Search.search.image}
-        <div
-          className={
-            stateHover === "search"
-              ? "hover-description on-hover"
-              : "hover-description"
-          }
-          ref={searchHoverRef}
+      <Link to="result" style={{ textDecoration: "none" }}>
+        <div //search button
+          className={"search-button search-button-" + themeState}
+          onMouseEnter={(e) => {
+            handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
+          }}
+          onMouseLeave={(e) => {
+            handlerMouseLeave(e, searchHoverRef, setStateHover);
+          }}
+          onClick={() => {
+            console.log(searchText);
+          }}
         >
-          {data.language_Search[languageState].search}
+          {data.data_Search.search.image}
+          <div
+            className={
+              stateHover === "search"
+                ? "hover-description on-hover"
+                : "hover-description"
+            }
+            ref={searchHoverRef}
+          >
+            {data.language_Search[languageState].search}
+          </div>
         </div>
-      </div>
+      </Link>
+
       <div
         className="mic-button"
         onMouseEnter={(e) => {

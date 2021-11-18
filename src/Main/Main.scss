@@ -1,5 +1,8 @@
 @import "../variable/_global_variables.scss";
 
+// #root {
+//   transform: translateX(0);
+// }
 .main {
   //   grid-area: main;
   width: calc(100% - $side-width);
@@ -8,7 +11,10 @@
   position: absolute;
   top: $header-height;
   left: $side-width;
+  // margin-top: $header-height;
+  // margin-left:$mini-side-width;
   box-sizing: border-box;
+  min-height: calc(100% - $header-height);
 }
 .main-darkTheme {
   background-color: #181818;
@@ -26,13 +32,22 @@
 // }
 
 .contents-wrapper {
-  margin-top: $header-height;
+  padding: 20px;
+
+  padding-top: $header-height;
   width: 100%;
   box-sizing: border-box;
-  padding : 20px;
-
+  min-height: calc(100vh - $header-height);
   display: inline-flex;
   flex-wrap: wrap;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  width: 100%;
 }
 
 .item-container {
