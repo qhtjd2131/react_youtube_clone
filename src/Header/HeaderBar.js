@@ -39,7 +39,7 @@ export const Logo = () => {
       >
         {data.data_Logo.sidebarOpen.image}
       </div>
-      {data.data_Logo.logo.image[themeState]}
+      <Link to="/">{data.data_Logo.logo.image[themeState]}</Link>
     </div>
   );
 };
@@ -66,9 +66,8 @@ const Search = () => {
           // setSearchText(() => e.target.value);
         }}
       />
-      <Link to="result" style={{ textDecoration: "none" }}>
+      <Link to="result" className={"search-button search-button-" + themeState}>
         <div //search button
-          className={"search-button search-button-" + themeState}
           onMouseEnter={(e) => {
             handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
           }}

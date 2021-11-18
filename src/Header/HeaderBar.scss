@@ -8,7 +8,7 @@ $hover-state: "";
   justify-content: space-between;
   align-items: center;
   z-index: 990;
-  border : none;
+  border: none;
 }
 
 //LOGO
@@ -26,7 +26,7 @@ $hover-state: "";
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-left : 6px;
+  margin-left: 6px;
 }
 .logo-container img {
   padding: 0px 14px;
@@ -83,6 +83,7 @@ $hover-state: "";
 .search-button {
   border: 1px solid $border-color;
   border-left: none;
+  color: black;
   border-top-right-radius: $search-box-radius;
   border-bottom-right-radius: $search-box-radius;
   position: relative;
@@ -103,6 +104,7 @@ $hover-state: "";
 .search-button-darkTheme {
   background-color: #303030;
   border: 1px solid #303030;
+  color: white;
 
   &:hover {
     background-color: #4d4d4d;

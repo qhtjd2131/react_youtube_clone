@@ -7,6 +7,7 @@
   position: fixed;
   top: $header-height;
   width: $mini-side-width;
+  background-color: white;
 }
 .mini-sidebar-container-darkTheme {
   background-color: #212121;
@@ -33,11 +34,11 @@
   color: black;
 }
 .mini-side-item-darkTheme {
-    color: white;
-    &:hover {
-      background-color: #383838;
-    }
+  color: white;
+  &:hover {
+    background-color: #383838;
   }
+}
 .selected-mini-side-item-darkTheme {
   color: gray;
   &:hover {
