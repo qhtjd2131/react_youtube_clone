@@ -115,7 +115,7 @@ const App = () => {
                     {/* <Main /> */}
                     <Routes>
                       <Route path="/" element={<Main />} />
-                      <Route path="result" element={<SearchResult />} />
+                      <Route path="result/*" element={<SearchResult />} />
                     </Routes>
                   </searchTextContext.Provider>
                   <SideBar />

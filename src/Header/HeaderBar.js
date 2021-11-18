@@ -11,7 +11,7 @@ import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
 import * as data from "./HeaderData/headerBarData.js";
 import { useEffect } from "react/cjs/react.development";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export const LogIn = () => {
   const { languageState } = useContext(languageStateContext);
@@ -50,6 +50,9 @@ const Search = () => {
   const { languageState } = useContext(languageStateContext);
   const { themeState } = useContext(themeStateContext);
   const { searchText, setSearchText } = useContext(searchTextContext);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
   let searchTextTemp = "";
@@ -63,10 +66,23 @@ const Search = () => {
         placeholder={data.language_Search[languageState].search}
         className={themeState}
         onChange={(e) => {
+          let filter = e.target.value;
+          if (filter) {
+            setSearchParams({ filter });
+            console.log("searchParams :", searchParams);
+          } else {
+            setSearchParams({});
+          }
+          // searchTextTemp = e.target.value;
           // setSearchText(() => e.target.value);
         }}
       />
-      <Link to="result" className={"search-button search-button-" + themeState}>
+      <Link
+        to="result"
+        className={"search-button search-button-" + themeState}
+        search={"?search=exexex"}
+        state={{ query: "adfa", q: "saeara" }}
+      >
         <div //search button
           onMouseEnter={(e) => {
             handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
@@ -75,7 +91,7 @@ const Search = () => {
             handlerMouseLeave(e, searchHoverRef, setStateHover);
           }}
           onClick={() => {
-            console.log(searchText);
+            console.log(searchTextTemp);
           }}
         >
           {data.data_Search.search.image}

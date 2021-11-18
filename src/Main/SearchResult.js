@@ -1,14 +1,18 @@
 import React from "react";
+import { useLocation } from "react-router";
 import "./SearchResult.scss";
 
-const SearchResult = ({ match, location, history }) => {
-  console.log("match");
-  console.log(match);
-  console.log("location");
-  console.log(location);
-  console.log("history");
-  console.log(history);
-  return <div className="search-result"> hello world im search result</div>;
+const SearchResult = ({}) => {
+  const a = useLocation();
+  console.log(a);
+  return (
+    <div className="search-result">
+      {" "}
+      hello world im search result
+      <br />
+      <div>{a.search}</div>
+    </div>
+  );
 };
 
 export default SearchResult;
