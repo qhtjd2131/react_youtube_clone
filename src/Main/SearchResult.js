@@ -316,7 +316,26 @@ const SearchResult = () => {
         "Loading ..."
       ) : (
         <div className="search-result-container">
-          Hello world isLoading is false!!
+          {items.map((i, index) => (
+            <div className="search-item-wrapper">
+              <div className="search-thumbnail">
+                <img src={i.snippet.thumbnails.medium.url} alt="thumbnails" />
+              </div>
+              <div className="search-item-info">
+                <div className="search-item-title">{i.snippet.title}</div>
+                <div className="search-item-view-and-time"></div>
+                <div className="search-item-channel">
+                  <div className="search-channel-icon"></div>
+                  <div className="search-channel-title">
+                    {i.snippet.channelTitle}
+                  </div>
+                </div>
+                <div className="search-item-description">
+                  {i.snippet.description}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

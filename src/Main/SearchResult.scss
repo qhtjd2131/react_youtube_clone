@@ -1,8 +1,34 @@
 @import "../variable/_global_variables.scss";
 
 .search-result-container {
-    padding : 20px;
+  padding: 30px;
   width: 100%;
   box-sizing: border-box;
   min-height: calc(100vh - $header-height);
+}
+
+.search-item-wrapper {
+  padding: 10px;
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+}
+.search-thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  box-sizing: border-box;
+}
+.search-item-title {
+  font-size: 18px;
+}
+.search-item-channel {
+  display: flex;
+  padding: 10px;
+  padding-left: 0;
+}
+.search-item-description {
+  white-space: wrap;
+  word-break: keep-all;
 }
