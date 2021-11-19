@@ -5,6 +5,7 @@ import Main from "./Main/Main.js";
 import SearchResult from "./Main/SearchResult";
 import SideBar from "./Side/SideBar";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import Test from "./Main/Test";
 
 //Context
 export const SideBarContext = createContext({});
@@ -108,16 +109,17 @@ const App = () => {
                 <restrictedModeContext.Provider
                   value={{ restrictedMode, setRestrictedMode }}
                 >
-                  <searchTextContext.Provider
+                  {/* <searchTextContext.Provider
                     value={{ searchText, setSearchText }}
-                  >
+                  > */}
                     <Header />
                     {/* <Main /> */}
                     <Routes>
                       <Route path="/" element={<Main />} />
                       <Route path="result/*" element={<SearchResult />} />
+                      <Route path="test/*" element={<Test />} />
                     </Routes>
-                  </searchTextContext.Provider>
+                  {/* </searchTextContext.Provider> */}
                   <SideBar />
                   {isOpenSideBar && !isWindowSizeXL && (
                     <Overlay

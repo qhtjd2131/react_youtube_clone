@@ -1,16 +1,25 @@
 import React from "react";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
+import { useEffect } from "react/cjs/react.development";
 import "./SearchResult.scss";
 
-const SearchResult = ({}) => {
-  const a = useLocation();
-  console.log(a);
+const SearchResult = () => {
+  const location = useLocation();
+  console.log(location);
+
+  useEffect(() => {
+     
+    let query = location.search.slice(1).split('&');
+    
+    console.log("query:", query);
+
+    
+  }, [location.search]);
   return (
     <div className="search-result">
-      {" "}
-      hello world im search result
+      <div>hello world im search result</div>
       <br />
-      <div>{a.search}</div>
+      <div>{location.search}</div>
     </div>
   );
 };
