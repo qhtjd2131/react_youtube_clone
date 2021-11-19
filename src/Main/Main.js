@@ -53,7 +53,6 @@ const Main = () => {
       maxResults: 20,
       apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
     };
-    const url = `https://www.googleapis.com/youtube/v3/search?&part=${option.part}&regionCode=${option.regionCode}&maxResults=${option.maxResults}&key=${option.apiKey}`;
     const url_mostPopular = `https://www.googleapis.com/youtube/v3/videos?part=${option.part}&chart=${option.chart}&maxResults=${option.maxResults}&regionCode=${option.regionCode}&key=${option.apiKey}`;
     
     const getData = async () => {
@@ -1427,7 +1426,6 @@ const Main = () => {
     };
 
     getData().then((result) => {
-      console.log(result.items);
       setItems(result.items);
       setIsLoading(false);
     });
