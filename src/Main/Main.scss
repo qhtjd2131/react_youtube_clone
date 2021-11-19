@@ -52,15 +52,28 @@
 
 .item-container {
   padding: 8px;
+  padding-bottom: 30px;
   width: calc(100% / 4 - 16px - 0.01px);
 }
 
-.item-container img {
+.video-thumbnail {
+  width: 100%;
+}
+.video-thumbnail img {
   width: 100%;
 }
 
 .video-title {
-  font-size: 14px;
+  font-size: 0.9rem;
+  white-space: normal;
+  line-height: 1.2rem;
+  max-height: 2.4rem;
+  text-overflow: ellipsis;
+  display: box;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
 }
 .video-title-darkTheme {
   color: white;
