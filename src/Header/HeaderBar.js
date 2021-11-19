@@ -74,19 +74,16 @@ const Search = () => {
           let q = e.target.value;
           if (q) {
             setSearchText(q);
-
           } else {
             setSearchText();
           }
         }}
       />
       <Link
-        to={`result?q=${searchText}`}
+        to={`result?q=${encodeURI(searchText)}`}
         className={"search-button search-button-" + themeState}
         state={{ query: "adfa", q: "saeara" }}
-        onClick={() => {
-          
-        }}
+        onClick={() => {}}
       >
         <div //search button
           onMouseEnter={(e) => {
