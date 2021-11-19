@@ -317,12 +317,23 @@ const SearchResult = () => {
       ) : (
         <div className="search-result-container">
           {items.map((i, index) => (
-            <div className="search-item-wrapper">
+            <div
+              className={
+                "search-item-wrapper search-item-wrapper-" + themeState
+              }
+              key={index}
+            >
               <div className="search-thumbnail">
                 <img src={i.snippet.thumbnails.medium.url} alt="thumbnails" />
               </div>
               <div className="search-item-info">
-                <div className="search-item-title">{i.snippet.title}</div>
+                <div
+                  className={
+                    "search-item-title search-item-title-" + themeState
+                  }
+                >
+                  {i.snippet.title}
+                </div>
                 <div className="search-item-view-and-time"></div>
                 <div className="search-item-channel">
                   <div className="search-channel-icon"></div>

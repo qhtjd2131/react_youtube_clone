@@ -12,6 +12,10 @@
   display: flex;
   gap: 16px;
   font-size: 12px;
+  color : gray;
+}
+.search-item-wrapper-darkTheme{
+    color : gray;
 }
 .search-thumbnail {
   display: flex;
@@ -22,6 +26,11 @@
 }
 .search-item-title {
   font-size: 18px;
+  color : black;
+}
+
+.search-item-title-darkTheme{
+    color : white;
 }
 .search-item-channel {
   display: flex;

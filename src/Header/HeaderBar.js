@@ -55,15 +55,10 @@ const Search = () => {
   const [isOpenMicSearch, setIsOpenMicSearch] = useState(false);
   const { languageState } = useContext(languageStateContext);
   const { themeState } = useContext(themeStateContext);
-  // const { searchText, setSearchText } = useContext(searchTextContext);
   const [searchText, setSearchText] = useState();
 
   const searchHoverRef = createRef();
   const micHoverRef = createRef();
-
-  // useEffect(() => {
-  //   console.log("render");
-  // }, []);
 
   return (
     <div className="search-inputbox-container">
@@ -82,8 +77,7 @@ const Search = () => {
       <Link
         to={`result?q=${encodeURI(searchText)}`}
         className={"search-button search-button-" + themeState}
-        state={{ query: "adfa", q: "saeara" }}
-        onClick={() => {}}
+        state={{ sample: "sample" }}
       >
         <div //search button
           onMouseEnter={(e) => {
