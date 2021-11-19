@@ -5,26 +5,21 @@
   z-index: 990;
   top: 0;
   left: 0;
-  //   top: $header-height;
-  //   height: calc(100% - $header-height);
   height: 100%;
   width: $side-width;
   box-sizing: border-box;
-  //   background-color: white;
-
-  //   &:hover {
-  //     ::-webkit-scrollbar-thumb {
-  //       background-color: $scrollbar-color;
-  //     }
-  //   }
-}
-.sidebar-container ::-webkit-scrollbar {
-  width: 10px;
 }
 .sidebar-container ::-webkit-scrollbar-thumb {
-  background-color: $scrollbar-color;
   border-radius: 5px;
+  background-color: transparent;
 }
+
+.sidebar-container:hover ::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-color;
+}
+// .sidebar-container ::-webkit-scrollbar {
+//   width: 10px;
+// }
 
 .sidebar-close {
   left: -100%;
