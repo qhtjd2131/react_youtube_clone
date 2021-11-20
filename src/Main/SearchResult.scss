@@ -11,11 +11,11 @@
   padding: 10px;
   display: flex;
   gap: 16px;
-  font-size: 12px;
-  color : gray;
+  font-size: 13px;
+  color: gray;
 }
-.search-item-wrapper-darkTheme{
-    color : gray;
+.search-item-wrapper-darkTheme {
+  color: gray;
 }
 .search-thumbnail {
   display: flex;
@@ -26,16 +26,28 @@
 }
 .search-item-title {
   font-size: 18px;
-  color : black;
+  color: black;
 }
 
-.search-item-title-darkTheme{
-    color : white;
+.search-item-title-darkTheme {
+  color: white;
 }
 .search-item-channel {
   display: flex;
   padding: 10px;
   padding-left: 0;
+}
+.search-channel-icon {
+  padding-right: 8px;
+}
+.search-channel-icon img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.search-channel-title{
+    display: flex;
+    align-items: center;
 }
 .search-item-description {
   white-space: wrap;

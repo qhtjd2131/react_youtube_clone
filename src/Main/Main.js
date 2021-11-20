@@ -4,7 +4,6 @@ import "./Main.scss";
 import axios from "axios";
 import FilterBar from "./FilterBar";
 import { SideBarContext, themeStateContext, searchTextContext } from "../App";
-import { FaAllergies } from "react-icons/fa";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -1411,9 +1410,9 @@ const Main = () => {
       channelIDsString = channelIDsString.slice(0, -1);
 
       const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&key=${option.apiKey}`;
-      // const result2 = await axios.get(urlGetChannel);
+      // const channelData = await axios.get(urlGetChannel);
 
-      const result2 = {
+      const channelData = {
         "data": {
             "kind": "youtube#channelListResponse",
             "etag": "tGQ6h5WVf_zSa061MzY-7fhzUA4",
@@ -2081,17 +2080,17 @@ const Main = () => {
         },
         "request": {}
     }
-      return result2.data.items;
+      return channelData.data.items;
     };
 
     getData().then((result) => {
       // setItems(result.items);
       // console.log(result.items);
       setItems(result);
-      getChannelData(result).then((result2) => {
+      getChannelData(result).then((channelData) => {
         setChannelItems(() => {
           let table = {};
-          result2.forEach((i) => {
+          channelData.forEach((i) => {
             table[i.id] = {
               title: i.snippet.title,
               description: i.snippet.description,
