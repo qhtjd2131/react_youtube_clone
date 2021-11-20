@@ -4,10 +4,12 @@ import "./Main.scss";
 import axios from "axios";
 import FilterBar from "./FilterBar";
 import { SideBarContext, themeStateContext, searchTextContext } from "../App";
+import { FaAllergies } from "react-icons/fa";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [itemsState, setItems] = useState([]);
+  const [channelItemsState, setChannelItems] = useState([]);
   const [isScrollBottom, setIsScrollBottom] = useState(false);
 
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
@@ -1401,12 +1403,42 @@ const Main = () => {
       );
     };
 
+    const getChannelData = async (items) => {
+      console.log("getChennlData ", items);
+
+      let channelIDsString = "";
+      items.forEach((i) => {
+        channelIDsString += i.snippet.channelId + ",";
+      });
+      channelIDsString = channelIDsString.slice(0, -1);
+      console.log(channelIDsString);
+
+      const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&key=${option.apiKey}`;
+      const result2 = await axios.get(urlGetChannel);
+      console.log(result2);
+      return result2.data.items;
+    };
+
     getData().then((result) => {
       // setItems(result.items);
       // console.log(result.items);
-
       setItems(result);
-      setIsLoading(false);
+      getChannelData(result).then((result2) => {
+        setChannelItems(() => {
+          let table = {};
+          result2.forEach((i) => {
+            table[i.id] = {
+              title: i.snippet.title,
+              description: i.snippet.description,
+              thumbnails: i.snippet.thumbnails,
+            };
+          });
+          console.log(table);
+          setIsLoading(false);
+          return table;
+        });
+        
+      });
     });
   }, []);
 
@@ -1452,7 +1484,9 @@ const Main = () => {
                 <img src={item.snippet.thumbnails.medium.url} alt="" />
               </div>
               <div className="video-description-container">
-                <div className="channel-icon"></div>
+                <div className="channel-icon">
+                  <img src={channelItemsState[item.snippet.channelId].thumbnails.default} alt="" />
+                </div>
                 <div className="video-description">
                   <div className={"video-title video-title-" + themeState}>
                     {item.snippet.title}
@@ -1478,7 +1512,6 @@ const Main = () => {
 };
 
 // const UpdateVideo = () => {
-
 //   return;
 // }
 
