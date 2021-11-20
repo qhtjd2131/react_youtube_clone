@@ -1413,673 +1413,697 @@ const Main = () => {
       // const channelData = await axios.get(urlGetChannel);
 
       const channelData = {
-        "data": {
-            "kind": "youtube#channelListResponse",
-            "etag": "tGQ6h5WVf_zSa061MzY-7fhzUA4",
-            "pageInfo": {
-                "totalResults": 19,
-                "resultsPerPage": 5
+        data: {
+          kind: "youtube#channelListResponse",
+          etag: "tGQ6h5WVf_zSa061MzY-7fhzUA4",
+          pageInfo: {
+            totalResults: 19,
+            resultsPerPage: 5,
+          },
+          items: [
+            {
+              kind: "youtube#channel",
+              etag: "-_kuiQ13Gauv5Ristu7SRY-P4Tg",
+              id: "UC31-nUU7jhm3I5DCYh6uLBA",
+              snippet: {
+                title: "휴먼스토리",
+                description:
+                  "이 세상 모든 사람들의 \n이야기를 담는 공간입니다\n성공 실패 노하우 특별한 사연 등\n누구나 신청 하실수 있습니다\n소중한 지금을\n평생 남겨질 나의 추억을 영상에 남겨보세요\n\n출연신청 문의\nkoreahooning@gmail.com\n\n",
+                publishedAt: "2020-07-17T06:45:28.449017Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQaDnq2lI56ED13ZOZWDdPVIe_mKHP3Yokf2t5naQ=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQaDnq2lI56ED13ZOZWDdPVIe_mKHP3Yokf2t5naQ=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQaDnq2lI56ED13ZOZWDdPVIe_mKHP3Yokf2t5naQ=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "휴먼스토리",
+                  description:
+                    "이 세상 모든 사람들의 \n이야기를 담는 공간입니다\n성공 실패 노하우 특별한 사연 등\n누구나 신청 하실수 있습니다\n소중한 지금을\n평생 남겨질 나의 추억을 영상에 남겨보세요\n\n출연신청 문의\nkoreahooning@gmail.com\n\n",
+                },
+                country: "KR",
+              },
             },
-            "items": [
-                {
-                    "kind": "youtube#channel",
-                    "etag": "-_kuiQ13Gauv5Ristu7SRY-P4Tg",
-                    "id": "UC31-nUU7jhm3I5DCYh6uLBA",
-                    "snippet": {
-                        "title": "휴먼스토리",
-                        "description": "이 세상 모든 사람들의 \n이야기를 담는 공간입니다\n성공 실패 노하우 특별한 사연 등\n누구나 신청 하실수 있습니다\n소중한 지금을\n평생 남겨질 나의 추억을 영상에 남겨보세요\n\n출연신청 문의\nkoreahooning@gmail.com\n\n",
-                        "publishedAt": "2020-07-17T06:45:28.449017Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQaDnq2lI56ED13ZOZWDdPVIe_mKHP3Yokf2t5naQ=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQaDnq2lI56ED13ZOZWDdPVIe_mKHP3Yokf2t5naQ=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQaDnq2lI56ED13ZOZWDdPVIe_mKHP3Yokf2t5naQ=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "휴먼스토리",
-                            "description": "이 세상 모든 사람들의 \n이야기를 담는 공간입니다\n성공 실패 노하우 특별한 사연 등\n누구나 신청 하실수 있습니다\n소중한 지금을\n평생 남겨질 나의 추억을 영상에 남겨보세요\n\n출연신청 문의\nkoreahooning@gmail.com\n\n"
-                        },
-                        "country": "KR"
-                    }
+            {
+              kind: "youtube#channel",
+              etag: "qkE0r89ckPMTJGSOA4uywkbT_oo",
+              id: "UC-iJgiHZ0joj2cQWpszkqPw",
+              snippet: {
+                title: "조선남자 대길이 Chef in Joseon",
+                description: "21세기 조선 요리사.\nJoeson Chef Daegil.",
+                customUrl: "조선남자대길이",
+                publishedAt: "2020-01-01T05:27:30.449592Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRUAW7iqF_UnWQZee26yAA1pu678f211m-gWCrv8w=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRUAW7iqF_UnWQZee26yAA1pu678f211m-gWCrv8w=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRUAW7iqF_UnWQZee26yAA1pu678f211m-gWCrv8w=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
                 },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "qkE0r89ckPMTJGSOA4uywkbT_oo",
-                    "id": "UC-iJgiHZ0joj2cQWpszkqPw",
-                    "snippet": {
-                        "title": "조선남자 대길이 Chef in Joseon",
-                        "description": "21세기 조선 요리사.\nJoeson Chef Daegil.",
-                        "customUrl": "조선남자대길이",
-                        "publishedAt": "2020-01-01T05:27:30.449592Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRUAW7iqF_UnWQZee26yAA1pu678f211m-gWCrv8w=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRUAW7iqF_UnWQZee26yAA1pu678f211m-gWCrv8w=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRUAW7iqF_UnWQZee26yAA1pu678f211m-gWCrv8w=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "조선남자 대길이 Chef in Joseon",
-                            "description": "21세기 조선 요리사.\nJoeson Chef Daegil."
-                        },
-                        "country": "KR"
-                    }
+                localized: {
+                  title: "조선남자 대길이 Chef in Joseon",
+                  description: "21세기 조선 요리사.\nJoeson Chef Daegil.",
                 },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "XH2wFmBJ7sTXl2wEQbX1teboMWg",
-                    "id": "UCbFzvzDu17eDZ3RIeaLRswQ",
-                    "snippet": {
-                        "title": "감스트GAMST",
-                        "description": "재미와 감동을 동시에 느낄 수 있는\n감스트의 공식 유튜브 채널 (감튜브) 입니다!\n\n감스트와 같이 찢으실 분들은\n'구독' 눌러주시고 많이 시청하러 오세요 :-D\n\nTo have fun and be touched at the same time\nThe official YouTube channel of GAMST (GAMTUBE) *_*\n\nIf you want to have fun with GAMST\nPlease visit and subscribe to the channel for more videos",
-                        "publishedAt": "2013-08-08T17:01:47Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRTd2z5dvXsttjFKVEFe7S-LZ71P99BpwAoaC_qWg=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRTd2z5dvXsttjFKVEFe7S-LZ71P99BpwAoaC_qWg=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRTd2z5dvXsttjFKVEFe7S-LZ71P99BpwAoaC_qWg=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "감스트GAMST",
-                            "description": "재미와 감동을 동시에 느낄 수 있는\n감스트의 공식 유튜브 채널 (감튜브) 입니다!\n\n감스트와 같이 찢으실 분들은\n'구독' 눌러주시고 많이 시청하러 오세요 :-D\n\nTo have fun and be touched at the same time\nThe official YouTube channel of GAMST (GAMTUBE) *_*\n\nIf you want to have fun with GAMST\nPlease visit and subscribe to the channel for more videos"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "V5_ya7YI8zJs_aLM_G1ciFQaX-Y",
-                    "id": "UCRuSxVu4iqTK5kCh90ntAgA",
-                    "snippet": {
-                        "title": "총몇명",
-                        "description": "광고 및 비즈니스 문의 : \nchongmmyung@sandbox.co.kr\n페이스북 : facebook.com/chongmmyung/\n주소 : 서울시 용산구 서빙고로 17 센트럴파크타워, 30층 샌드박스 총몇명\n",
-                        "publishedAt": "2016-10-25T01:33:55Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRfTKHzc_pkDuAaOgCCwR4OxumvJSbHCplKPhYd=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRfTKHzc_pkDuAaOgCCwR4OxumvJSbHCplKPhYd=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRfTKHzc_pkDuAaOgCCwR4OxumvJSbHCplKPhYd=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "총몇명",
-                            "description": "광고 및 비즈니스 문의 : \nchongmmyung@sandbox.co.kr\n페이스북 : facebook.com/chongmmyung/\n주소 : 서울시 용산구 서빙고로 17 센트럴파크타워, 30층 샌드박스 총몇명\n"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "y5q0FOfbekk79fcGKU4iIbCdlog",
-                    "id": "UC4hNKDlFO3I9_KZzgESyQYw",
-                    "snippet": {
-                        "title": "dreamfactoryclub",
-                        "description": "(주)드림팩토리클럽 공식 유튜브채널",
-                        "publishedAt": "2010-06-05T14:09:39Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQb6hLUDKL-e-7KrphgM4Vo91oSvEgbJLMVOUvK=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQb6hLUDKL-e-7KrphgM4Vo91oSvEgbJLMVOUvK=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQb6hLUDKL-e-7KrphgM4Vo91oSvEgbJLMVOUvK=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "dreamfactoryclub",
-                            "description": "(주)드림팩토리클럽 공식 유튜브채널"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "jWqNQFYt1U9wkq7D175HYmt8Q90",
-                    "id": "UCjn-VbcIkAeXQKCmLJV8YwQ",
-                    "snippet": {
-                        "title": "쿠팡플레이 Coupang Play",
-                        "description": "와우회원을 위한 무제한 콘텐츠, 쿠팡플레이🎬\n쿠팡 와우 회원이라면? 쿠팡플레이 무료로 이용하세요!\n",
-                        "customUrl": "쿠팡플레이coupangplay",
-                        "publishedAt": "2020-11-10T04:06:27.034417Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSp_7nukhPhYc34XzTjK06ZKEE8zvNDgelmw6uZ=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSp_7nukhPhYc34XzTjK06ZKEE8zvNDgelmw6uZ=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSp_7nukhPhYc34XzTjK06ZKEE8zvNDgelmw6uZ=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "쿠팡플레이 Coupang Play",
-                            "description": "와우회원을 위한 무제한 콘텐츠, 쿠팡플레이🎬\n쿠팡 와우 회원이라면? 쿠팡플레이 무료로 이용하세요!\n"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "dDgWT_xX5fBYKBG2pwDgQjWQ0lc",
-                    "id": "UCj3_t5p4L4aFsvdW3uHjnnw",
-                    "snippet": {
-                        "title": "연합뉴스 Yonhapnews",
-                        "description": "대한민국 뉴스의 허브 연합뉴스 \n글로벌 역량을 갖춘 뉴스통신사로 도약합니다.\n\n* 비즈니스 문의 및 광고는 연합뉴스 디지털기획부 \n영상구매는 연합뉴스TV 방송사업팀을 통해 진행해주시기 바랍니다.\n02-398-3114\n",
-                        "customUrl": "yonhap",
-                        "publishedAt": "2016-06-13T06:43:10Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLTCFoVTOiba60T59cECantmqx1vbkcG4rcAKcOqyA=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLTCFoVTOiba60T59cECantmqx1vbkcG4rcAKcOqyA=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLTCFoVTOiba60T59cECantmqx1vbkcG4rcAKcOqyA=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "연합뉴스 Yonhapnews",
-                            "description": "대한민국 뉴스의 허브 연합뉴스 \n글로벌 역량을 갖춘 뉴스통신사로 도약합니다.\n\n* 비즈니스 문의 및 광고는 연합뉴스 디지털기획부 \n영상구매는 연합뉴스TV 방송사업팀을 통해 진행해주시기 바랍니다.\n02-398-3114\n"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "DuEDeuX1oEaR8KFk5IRwr9xbYKs",
-                    "id": "UCweOkPb1wVVH0Q0Tlj4a5Pw",
-                    "snippet": {
-                        "title": "1theK (원더케이)",
-                        "description": "\"K-pop Wonderland\" 1theK\n\nK-pop을 이끄는 국내 최고 아티스트들의 뮤직비디오부터,\n전 세계 팬들이 보고, 듣고, 참여할 수 있는 오리지널 컨텐츠들까지!\n1theK에서 가장 빠르게 만나보세요! :)\n\n\nWelcome to the official YouTube page of \"K-pop Wonderland\" 1theK\nEnjoy the leading K-Pop artists’ M/Vs, teasers and more exclusive originals for the K-pop fans all over the world on 1theK! \n\n\nㅇㅇㅇ\nStay tuned for the latest updates!\n\n\n*Business contact : 1theK.ad@kakao-m.com",
-                        "customUrl": "1thek",
-                        "publishedAt": "2011-01-31T07:04:16Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQ3v9GsbycKbHSr-p4WO8eCe3ncbhbTde3IFDPKEOY=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQ3v9GsbycKbHSr-p4WO8eCe3ncbhbTde3IFDPKEOY=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQ3v9GsbycKbHSr-p4WO8eCe3ncbhbTde3IFDPKEOY=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "defaultLanguage": "en",
-                        "localized": {
-                            "title": "1theK (원더케이)",
-                            "description": "\"K-pop Wonderland\" 1theK\n\nK-pop을 이끄는 국내 최고 아티스트들의 뮤직비디오부터,\n전 세계 팬들이 보고, 듣고, 참여할 수 있는 오리지널 컨텐츠들까지!\n1theK에서 가장 빠르게 만나보세요! :)\n\n\nWelcome to the official YouTube page of \"K-pop Wonderland\" 1theK\nEnjoy the leading K-Pop artists’ M/Vs, teasers and more exclusive originals for the K-pop fans all over the world on 1theK! \n\n\nㅇㅇㅇ\nStay tuned for the latest updates!\n\n\n*Business contact : 1theK.ad@kakao-m.com"
-                        }
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "a21bOpwHtkuC5fDmhwV9gYxKICc",
-                    "id": "UCviI9lzTe2pkxJ9M2ArA7WQ",
-                    "snippet": {
-                        "title": "dingo freestyle",
-                        "description": "소셜 모바일 세대를 위한 미디어 딩고 Dingo의 블랙 뮤직&컬처 채널 딩고 프리스타일(Dingo Freestyle)! \n킬링벌스, DF LIVE, 리얼리티 예능, 콜라보 음원 등 블랙뮤직의 매력 속으로\n\nCopyright 2015 MakeUs Co.,Ltd. All rights reserved",
-                        "customUrl": "dingofreestyle",
-                        "publishedAt": "2014-11-19T09:35:59Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLThNDRUPv0RosQ1iyBPvHytgl12-Sc3-xNUtGdAsg=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLThNDRUPv0RosQ1iyBPvHytgl12-Sc3-xNUtGdAsg=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLThNDRUPv0RosQ1iyBPvHytgl12-Sc3-xNUtGdAsg=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "defaultLanguage": "ko",
-                        "localized": {
-                            "title": "dingo freestyle",
-                            "description": "소셜 모바일 세대를 위한 미디어 딩고 Dingo의 블랙 뮤직&컬처 채널 딩고 프리스타일(Dingo Freestyle)! \n킬링벌스, DF LIVE, 리얼리티 예능, 콜라보 음원 등 블랙뮤직의 매력 속으로\n\nCopyright 2015 MakeUs Co.,Ltd. All rights reserved"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "uuGE4v7KwZeOK_rdMG4jtM_rOb0",
-                    "id": "UCIG4gr_wIy5CIlcFciUbIQw",
-                    "snippet": {
-                        "title": "진용진",
-                        "description": "진용진 유튜브입니다\n\n제보 및 각종문의 : jinyongjin12@naver.com\n인스타그램 : https://www.instagram.com/jinyongjin92/\n",
-                        "customUrl": "진용진",
-                        "publishedAt": "2014-05-30T06:30:52Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQZDV-yDWNZbxl8HFifJ3ADj5Bb5nd1r4DNhrksjg=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQZDV-yDWNZbxl8HFifJ3ADj5Bb5nd1r4DNhrksjg=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLQZDV-yDWNZbxl8HFifJ3ADj5Bb5nd1r4DNhrksjg=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "진용진",
-                            "description": "진용진 유튜브입니다\n\n제보 및 각종문의 : jinyongjin12@naver.com\n인스타그램 : https://www.instagram.com/jinyongjin92/\n"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "3yue3QU1d6Aj1KABzuwTWyfP4kU",
-                    "id": "UCpH3rUuBQH9CkjXRumRWZIQ",
-                    "snippet": {
-                        "title": "임영웅 Shorts",
-                        "description": "임영웅X물고기뮤직 official",
-                        "publishedAt": "2020-03-27T01:06:02.364893Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRJlV5csDs5MbaGNkVPGyxN8YxLAk2XlgF6Xu0=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRJlV5csDs5MbaGNkVPGyxN8YxLAk2XlgF6Xu0=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRJlV5csDs5MbaGNkVPGyxN8YxLAk2XlgF6Xu0=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "임영웅 Shorts",
-                            "description": "임영웅X물고기뮤직 official"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "0BPWMjjXu6QNpCIiChjYj43f0E0",
-                    "id": "UCUyfkq9e9ZfPzxOW5WQ9rzQ",
-                    "snippet": {
-                        "title": "문명특급 - MMTG",
-                        "description": "글로벌 신문물 전파 프로젝트",
-                        "customUrl": "oopssofastexpress",
-                        "publishedAt": "2013-05-30T04:48:33Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSZorSgXQTdUoOKLe_JWEQgtpaVlXmO-23qZiRAYA=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSZorSgXQTdUoOKLe_JWEQgtpaVlXmO-23qZiRAYA=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSZorSgXQTdUoOKLe_JWEQgtpaVlXmO-23qZiRAYA=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "문명특급 - MMTG",
-                            "description": "글로벌 신문물 전파 프로젝트"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "h8i6LctCvESV4AhLOrZrkqnk3e0",
-                    "id": "UCBLO7HA_4Kw-sp8WLed2WrA",
-                    "snippet": {
-                        "title": "세진 SEJIN",
-                        "description": "contact - park208405@naver.com\n모든 문의는 이메일로 주세요 :) \nIG - sejin.kr",
-                        "publishedAt": "2016-02-06T02:42:48Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/b5cAEpHYMwJmKeg0mpY5u3SsuxY41HXZ7RXrl8GUgkfUql063zBRrx6RMhd-j6s-vq-6WFI6kx4=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/b5cAEpHYMwJmKeg0mpY5u3SsuxY41HXZ7RXrl8GUgkfUql063zBRrx6RMhd-j6s-vq-6WFI6kx4=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/b5cAEpHYMwJmKeg0mpY5u3SsuxY41HXZ7RXrl8GUgkfUql063zBRrx6RMhd-j6s-vq-6WFI6kx4=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "세진 SEJIN",
-                            "description": "contact - park208405@naver.com\n모든 문의는 이메일로 주세요 :) \nIG - sejin.kr"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "DDYyeYGSTna6vaEkgd560SRBeE4",
-                    "id": "UClQh-fomLym80liSi2-jaeQ",
-                    "snippet": {
-                        "title": "백년밥상TV",
-                        "description": "백년밥상TV 채널은 요리 · 손질 · 보관법 꿀팁  전문 채널입니다.\n\n\n",
-                        "customUrl": "백년밥상tv",
-                        "publishedAt": "2016-08-29T03:29:35Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSrXDKbpsum8A60rY1Gwf6nHCvOjaLnnElC8g14xQ=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSrXDKbpsum8A60rY1Gwf6nHCvOjaLnnElC8g14xQ=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLSrXDKbpsum8A60rY1Gwf6nHCvOjaLnnElC8g14xQ=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "defaultLanguage": "ko",
-                        "localized": {
-                            "title": "백년밥상TV",
-                            "description": "백년밥상TV 채널은 요리 · 손질 · 보관법 꿀팁  전문 채널입니다.\n\n\n"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "uYPBndIBl2lCHJ_ZzjcZzD73b1g",
-                    "id": "UC3WZlO2Zl8NE1yIUgtwUtQw",
-                    "snippet": {
-                        "title": "임영웅",
-                        "description": "임영웅 LimYoungWoong I'm HERO Official YouTube Channel\n\n",
-                        "customUrl": "임영웅",
-                        "publishedAt": "2011-12-02T09:10:23Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRWFYNj0PDSNGb_WrRwValOjlfmApNSLrC41R7N0A=s88-c-k-c0x00ffffff-no-rj-mo",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRWFYNj0PDSNGb_WrRwValOjlfmApNSLrC41R7N0A=s240-c-k-c0x00ffffff-no-rj-mo",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRWFYNj0PDSNGb_WrRwValOjlfmApNSLrC41R7N0A=s800-c-k-c0x00ffffff-no-rj-mo",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "임영웅",
-                            "description": "임영웅 LimYoungWoong I'm HERO Official YouTube Channel\n\n"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "vrY3wy5XogQOFY8DPzTDY9aIaHo",
-                    "id": "UCY2wHBgv2W30w6lqoLxq99g",
-                    "snippet": {
-                        "title": "소니픽쳐스코리아",
-                        "description": "안녕하세요 한국 소니픽쳐스 코리아의 공식 유튜브 채널입니다.",
-                        "publishedAt": "2012-03-16T08:08:52Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/tS1IVcRrIzPzufDtzt0QEm6m-3HlKADhZOsD-SzmE2BTcLYwkgeKPRMYrljinKqla9WJRfKvQQ=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/tS1IVcRrIzPzufDtzt0QEm6m-3HlKADhZOsD-SzmE2BTcLYwkgeKPRMYrljinKqla9WJRfKvQQ=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/tS1IVcRrIzPzufDtzt0QEm6m-3HlKADhZOsD-SzmE2BTcLYwkgeKPRMYrljinKqla9WJRfKvQQ=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "소니픽쳐스코리아",
-                            "description": "안녕하세요 한국 소니픽쳐스 코리아의 공식 유튜브 채널입니다."
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "pTqxUWospYOKE6CUKiO_Vy8KuQ8",
-                    "id": "UCbCr1dWFedL5lMcRWthb_bA",
-                    "snippet": {
-                        "title": "모비딕 Mobidic",
-                        "description": "즐거움의 바다 모비딕에 오신 것을 환영합니다!\n구독하고 매일매일 새롭게 올라오는 모비딕의 콘텐츠를 확인하세요!\nWelcome to the official YouTube channel of Mobidic!\nSubscribe to see Mobidic’s latest videos :)\n\n▶모비딕 구독하기/Subscribe \nhttps://goo.gl/v2b6rR\n\nE-Mail : mobidic@sbs.co.kr\n\n[방송 중인 콘텐츠]\n▣모비딕 ▣\nRULE THE NEXT - 수, 금요일 PM 6:30\n제시의 쇼!터뷰 - 목요일 PM 6:30\n\n▶컨텐츠 구매 및 제휴 문의: mobidic@sbs.co.kr\n    Content Purchase and Alliance Inquiry : mobidic@sbs.co.kr",
-                        "customUrl": "mobidic",
-                        "publishedAt": "2016-06-01T05:44:11Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRlrKdPskIzhTXdUK8pcHBrHeO7XXYyksBVV_AmZQ=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRlrKdPskIzhTXdUK8pcHBrHeO7XXYyksBVV_AmZQ=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLRlrKdPskIzhTXdUK8pcHBrHeO7XXYyksBVV_AmZQ=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "defaultLanguage": "ko",
-                        "localized": {
-                            "title": "모비딕 Mobidic",
-                            "description": "즐거움의 바다 모비딕에 오신 것을 환영합니다!\n구독하고 매일매일 새롭게 올라오는 모비딕의 콘텐츠를 확인하세요!\nWelcome to the official YouTube channel of Mobidic!\nSubscribe to see Mobidic’s latest videos :)\n\n▶모비딕 구독하기/Subscribe \nhttps://goo.gl/v2b6rR\n\nE-Mail : mobidic@sbs.co.kr\n\n[방송 중인 콘텐츠]\n▣모비딕 ▣\nRULE THE NEXT - 수, 금요일 PM 6:30\n제시의 쇼!터뷰 - 목요일 PM 6:30\n\n▶컨텐츠 구매 및 제휴 문의: mobidic@sbs.co.kr\n    Content Purchase and Alliance Inquiry : mobidic@sbs.co.kr"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "s7D5_G7K0sikwE9btjF6HBViP1E",
-                    "id": "UC2tbZfs11e-5MND58_jfDCA",
-                    "snippet": {
-                        "title": "순자엄마",
-                        "description": "순자엄마 PD (개그맨 쫑구) - Instagram 아이디 : jwkim365\n\n큐~시트콤 보듯 재밌게 봐주세요^^ 순자네 시트콤\n\n인생 뭐 있나~재밌으면 대는거지~\n\n항상 웃자구요^^\n\n\n\n",
-                        "customUrl": "순자엄마",
-                        "publishedAt": "2017-05-07T09:25:01Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLR7InD0SYC7KX_udO4Dn4oHdQuJhMcFYyD5v-D4EQ=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLR7InD0SYC7KX_udO4Dn4oHdQuJhMcFYyD5v-D4EQ=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/ytc/AKedOLR7InD0SYC7KX_udO4Dn4oHdQuJhMcFYyD5v-D4EQ=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "순자엄마",
-                            "description": "순자엄마 PD (개그맨 쫑구) - Instagram 아이디 : jwkim365\n\n큐~시트콤 보듯 재밌게 봐주세요^^ 순자네 시트콤\n\n인생 뭐 있나~재밌으면 대는거지~\n\n항상 웃자구요^^\n\n\n\n"
-                        },
-                        "country": "KR"
-                    }
-                },
-                {
-                    "kind": "youtube#channel",
-                    "etag": "GrbwCCL0D7DyVAcBsc5SLjYIPdc",
-                    "id": "UCtybqqaTj6Nx74Azdz1KrsA",
-                    "snippet": {
-                        "title": "tvN SPORTS",
-                        "description": "",
-                        "publishedAt": "2021-05-25T03:05:06.822097Z",
-                        "thumbnails": {
-                            "default": {
-                                "url": "https://yt3.ggpht.com/aoNwgC7PHE3vzX7_MNK1slyonN3ie0ukXP_v6phbwWEqHoD5crGz72J12aEf6pKZAeEpGjPGPeo=s88-c-k-c0x00ffffff-no-rj",
-                                "width": 88,
-                                "height": 88
-                            },
-                            "medium": {
-                                "url": "https://yt3.ggpht.com/aoNwgC7PHE3vzX7_MNK1slyonN3ie0ukXP_v6phbwWEqHoD5crGz72J12aEf6pKZAeEpGjPGPeo=s240-c-k-c0x00ffffff-no-rj",
-                                "width": 240,
-                                "height": 240
-                            },
-                            "high": {
-                                "url": "https://yt3.ggpht.com/aoNwgC7PHE3vzX7_MNK1slyonN3ie0ukXP_v6phbwWEqHoD5crGz72J12aEf6pKZAeEpGjPGPeo=s800-c-k-c0x00ffffff-no-rj",
-                                "width": 800,
-                                "height": 800
-                            }
-                        },
-                        "localized": {
-                            "title": "tvN SPORTS",
-                            "description": ""
-                        }
-                    }
-                }
-            ]
-        },
-        "status": 200,
-        "statusText": "",
-        "headers": {
-            "cache-control": "private",
-            "content-encoding": "gzip",
-            "content-length": "5513",
-            "content-type": "application/json; charset=UTF-8",
-            "date": "Sat, 20 Nov 2021 21:03:57 GMT",
-            "server": "scaffolding on HTTPServer2",
-            "vary": "Origin, X-Origin, Referer"
-        },
-        "config": {
-            "transitional": {
-                "silentJSONParsing": true,
-                "forcedJSONParsing": true,
-                "clarifyTimeoutError": false
+                country: "KR",
+              },
             },
-            "transformRequest": [
-                null
-            ],
-            "transformResponse": [
-                null
-            ],
-            "timeout": 0,
-            "xsrfCookieName": "XSRF-TOKEN",
-            "xsrfHeaderName": "X-XSRF-TOKEN",
-            "maxContentLength": -1,
-            "maxBodyLength": -1,
-            "headers": {
-                "Accept": "application/json, text/plain, */*"
+            {
+              kind: "youtube#channel",
+              etag: "XH2wFmBJ7sTXl2wEQbX1teboMWg",
+              id: "UCbFzvzDu17eDZ3RIeaLRswQ",
+              snippet: {
+                title: "감스트GAMST",
+                description:
+                  "재미와 감동을 동시에 느낄 수 있는\n감스트의 공식 유튜브 채널 (감튜브) 입니다!\n\n감스트와 같이 찢으실 분들은\n'구독' 눌러주시고 많이 시청하러 오세요 :-D\n\nTo have fun and be touched at the same time\nThe official YouTube channel of GAMST (GAMTUBE) *_*\n\nIf you want to have fun with GAMST\nPlease visit and subscribe to the channel for more videos",
+                publishedAt: "2013-08-08T17:01:47Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRTd2z5dvXsttjFKVEFe7S-LZ71P99BpwAoaC_qWg=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRTd2z5dvXsttjFKVEFe7S-LZ71P99BpwAoaC_qWg=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRTd2z5dvXsttjFKVEFe7S-LZ71P99BpwAoaC_qWg=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "감스트GAMST",
+                  description:
+                    "재미와 감동을 동시에 느낄 수 있는\n감스트의 공식 유튜브 채널 (감튜브) 입니다!\n\n감스트와 같이 찢으실 분들은\n'구독' 눌러주시고 많이 시청하러 오세요 :-D\n\nTo have fun and be touched at the same time\nThe official YouTube channel of GAMST (GAMTUBE) *_*\n\nIf you want to have fun with GAMST\nPlease visit and subscribe to the channel for more videos",
+                },
+                country: "KR",
+              },
             },
-            "method": "get",
-            "url": "https://www.googleapis.com/youtube/v3/channels?part=snippet&id=UC3WZlO2Zl8NE1yIUgtwUtQw,UCtybqqaTj6Nx74Azdz1KrsA,UCY2wHBgv2W30w6lqoLxq99g,UCUyfkq9e9ZfPzxOW5WQ9rzQ,UCbCr1dWFedL5lMcRWthb_bA,UCUyfkq9e9ZfPzxOW5WQ9rzQ,UCjn-VbcIkAeXQKCmLJV8YwQ,UCbFzvzDu17eDZ3RIeaLRswQ,UCviI9lzTe2pkxJ9M2ArA7WQ,UCRuSxVu4iqTK5kCh90ntAgA,UCpH3rUuBQH9CkjXRumRWZIQ,UC2tbZfs11e-5MND58_jfDCA,UCj3_t5p4L4aFsvdW3uHjnnw,UC4hNKDlFO3I9_KZzgESyQYw,UCweOkPb1wVVH0Q0Tlj4a5Pw,UCIG4gr_wIy5CIlcFciUbIQw,UCBLO7HA_4Kw-sp8WLed2WrA,UC-iJgiHZ0joj2cQWpszkqPw,UC31-nUU7jhm3I5DCYh6uLBA,UClQh-fomLym80liSi2-jaeQ&key=AIzaSyCnSYEgItutcgRmMnwnH-AXh3LdQ3Nbzrw"
+            {
+              kind: "youtube#channel",
+              etag: "V5_ya7YI8zJs_aLM_G1ciFQaX-Y",
+              id: "UCRuSxVu4iqTK5kCh90ntAgA",
+              snippet: {
+                title: "총몇명",
+                description:
+                  "광고 및 비즈니스 문의 : \nchongmmyung@sandbox.co.kr\n페이스북 : facebook.com/chongmmyung/\n주소 : 서울시 용산구 서빙고로 17 센트럴파크타워, 30층 샌드박스 총몇명\n",
+                publishedAt: "2016-10-25T01:33:55Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRfTKHzc_pkDuAaOgCCwR4OxumvJSbHCplKPhYd=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRfTKHzc_pkDuAaOgCCwR4OxumvJSbHCplKPhYd=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRfTKHzc_pkDuAaOgCCwR4OxumvJSbHCplKPhYd=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "총몇명",
+                  description:
+                    "광고 및 비즈니스 문의 : \nchongmmyung@sandbox.co.kr\n페이스북 : facebook.com/chongmmyung/\n주소 : 서울시 용산구 서빙고로 17 센트럴파크타워, 30층 샌드박스 총몇명\n",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "y5q0FOfbekk79fcGKU4iIbCdlog",
+              id: "UC4hNKDlFO3I9_KZzgESyQYw",
+              snippet: {
+                title: "dreamfactoryclub",
+                description: "(주)드림팩토리클럽 공식 유튜브채널",
+                publishedAt: "2010-06-05T14:09:39Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQb6hLUDKL-e-7KrphgM4Vo91oSvEgbJLMVOUvK=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQb6hLUDKL-e-7KrphgM4Vo91oSvEgbJLMVOUvK=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQb6hLUDKL-e-7KrphgM4Vo91oSvEgbJLMVOUvK=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "dreamfactoryclub",
+                  description: "(주)드림팩토리클럽 공식 유튜브채널",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "jWqNQFYt1U9wkq7D175HYmt8Q90",
+              id: "UCjn-VbcIkAeXQKCmLJV8YwQ",
+              snippet: {
+                title: "쿠팡플레이 Coupang Play",
+                description:
+                  "와우회원을 위한 무제한 콘텐츠, 쿠팡플레이🎬\n쿠팡 와우 회원이라면? 쿠팡플레이 무료로 이용하세요!\n",
+                customUrl: "쿠팡플레이coupangplay",
+                publishedAt: "2020-11-10T04:06:27.034417Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSp_7nukhPhYc34XzTjK06ZKEE8zvNDgelmw6uZ=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSp_7nukhPhYc34XzTjK06ZKEE8zvNDgelmw6uZ=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSp_7nukhPhYc34XzTjK06ZKEE8zvNDgelmw6uZ=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "쿠팡플레이 Coupang Play",
+                  description:
+                    "와우회원을 위한 무제한 콘텐츠, 쿠팡플레이🎬\n쿠팡 와우 회원이라면? 쿠팡플레이 무료로 이용하세요!\n",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "dDgWT_xX5fBYKBG2pwDgQjWQ0lc",
+              id: "UCj3_t5p4L4aFsvdW3uHjnnw",
+              snippet: {
+                title: "연합뉴스 Yonhapnews",
+                description:
+                  "대한민국 뉴스의 허브 연합뉴스 \n글로벌 역량을 갖춘 뉴스통신사로 도약합니다.\n\n* 비즈니스 문의 및 광고는 연합뉴스 디지털기획부 \n영상구매는 연합뉴스TV 방송사업팀을 통해 진행해주시기 바랍니다.\n02-398-3114\n",
+                customUrl: "yonhap",
+                publishedAt: "2016-06-13T06:43:10Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLTCFoVTOiba60T59cECantmqx1vbkcG4rcAKcOqyA=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLTCFoVTOiba60T59cECantmqx1vbkcG4rcAKcOqyA=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLTCFoVTOiba60T59cECantmqx1vbkcG4rcAKcOqyA=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "연합뉴스 Yonhapnews",
+                  description:
+                    "대한민국 뉴스의 허브 연합뉴스 \n글로벌 역량을 갖춘 뉴스통신사로 도약합니다.\n\n* 비즈니스 문의 및 광고는 연합뉴스 디지털기획부 \n영상구매는 연합뉴스TV 방송사업팀을 통해 진행해주시기 바랍니다.\n02-398-3114\n",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "DuEDeuX1oEaR8KFk5IRwr9xbYKs",
+              id: "UCweOkPb1wVVH0Q0Tlj4a5Pw",
+              snippet: {
+                title: "1theK (원더케이)",
+                description:
+                  '"K-pop Wonderland" 1theK\n\nK-pop을 이끄는 국내 최고 아티스트들의 뮤직비디오부터,\n전 세계 팬들이 보고, 듣고, 참여할 수 있는 오리지널 컨텐츠들까지!\n1theK에서 가장 빠르게 만나보세요! :)\n\n\nWelcome to the official YouTube page of "K-pop Wonderland" 1theK\nEnjoy the leading K-Pop artists’ M/Vs, teasers and more exclusive originals for the K-pop fans all over the world on 1theK! \n\n\nㅇㅇㅇ\nStay tuned for the latest updates!\n\n\n*Business contact : 1theK.ad@kakao-m.com',
+                customUrl: "1thek",
+                publishedAt: "2011-01-31T07:04:16Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQ3v9GsbycKbHSr-p4WO8eCe3ncbhbTde3IFDPKEOY=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQ3v9GsbycKbHSr-p4WO8eCe3ncbhbTde3IFDPKEOY=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQ3v9GsbycKbHSr-p4WO8eCe3ncbhbTde3IFDPKEOY=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                defaultLanguage: "en",
+                localized: {
+                  title: "1theK (원더케이)",
+                  description:
+                    '"K-pop Wonderland" 1theK\n\nK-pop을 이끄는 국내 최고 아티스트들의 뮤직비디오부터,\n전 세계 팬들이 보고, 듣고, 참여할 수 있는 오리지널 컨텐츠들까지!\n1theK에서 가장 빠르게 만나보세요! :)\n\n\nWelcome to the official YouTube page of "K-pop Wonderland" 1theK\nEnjoy the leading K-Pop artists’ M/Vs, teasers and more exclusive originals for the K-pop fans all over the world on 1theK! \n\n\nㅇㅇㅇ\nStay tuned for the latest updates!\n\n\n*Business contact : 1theK.ad@kakao-m.com',
+                },
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "a21bOpwHtkuC5fDmhwV9gYxKICc",
+              id: "UCviI9lzTe2pkxJ9M2ArA7WQ",
+              snippet: {
+                title: "dingo freestyle",
+                description:
+                  "소셜 모바일 세대를 위한 미디어 딩고 Dingo의 블랙 뮤직&컬처 채널 딩고 프리스타일(Dingo Freestyle)! \n킬링벌스, DF LIVE, 리얼리티 예능, 콜라보 음원 등 블랙뮤직의 매력 속으로\n\nCopyright 2015 MakeUs Co.,Ltd. All rights reserved",
+                customUrl: "dingofreestyle",
+                publishedAt: "2014-11-19T09:35:59Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLThNDRUPv0RosQ1iyBPvHytgl12-Sc3-xNUtGdAsg=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLThNDRUPv0RosQ1iyBPvHytgl12-Sc3-xNUtGdAsg=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLThNDRUPv0RosQ1iyBPvHytgl12-Sc3-xNUtGdAsg=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                defaultLanguage: "ko",
+                localized: {
+                  title: "dingo freestyle",
+                  description:
+                    "소셜 모바일 세대를 위한 미디어 딩고 Dingo의 블랙 뮤직&컬처 채널 딩고 프리스타일(Dingo Freestyle)! \n킬링벌스, DF LIVE, 리얼리티 예능, 콜라보 음원 등 블랙뮤직의 매력 속으로\n\nCopyright 2015 MakeUs Co.,Ltd. All rights reserved",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "uuGE4v7KwZeOK_rdMG4jtM_rOb0",
+              id: "UCIG4gr_wIy5CIlcFciUbIQw",
+              snippet: {
+                title: "진용진",
+                description:
+                  "진용진 유튜브입니다\n\n제보 및 각종문의 : jinyongjin12@naver.com\n인스타그램 : https://www.instagram.com/jinyongjin92/\n",
+                customUrl: "진용진",
+                publishedAt: "2014-05-30T06:30:52Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQZDV-yDWNZbxl8HFifJ3ADj5Bb5nd1r4DNhrksjg=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQZDV-yDWNZbxl8HFifJ3ADj5Bb5nd1r4DNhrksjg=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLQZDV-yDWNZbxl8HFifJ3ADj5Bb5nd1r4DNhrksjg=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "진용진",
+                  description:
+                    "진용진 유튜브입니다\n\n제보 및 각종문의 : jinyongjin12@naver.com\n인스타그램 : https://www.instagram.com/jinyongjin92/\n",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "3yue3QU1d6Aj1KABzuwTWyfP4kU",
+              id: "UCpH3rUuBQH9CkjXRumRWZIQ",
+              snippet: {
+                title: "임영웅 Shorts",
+                description: "임영웅X물고기뮤직 official",
+                publishedAt: "2020-03-27T01:06:02.364893Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRJlV5csDs5MbaGNkVPGyxN8YxLAk2XlgF6Xu0=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRJlV5csDs5MbaGNkVPGyxN8YxLAk2XlgF6Xu0=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRJlV5csDs5MbaGNkVPGyxN8YxLAk2XlgF6Xu0=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "임영웅 Shorts",
+                  description: "임영웅X물고기뮤직 official",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "0BPWMjjXu6QNpCIiChjYj43f0E0",
+              id: "UCUyfkq9e9ZfPzxOW5WQ9rzQ",
+              snippet: {
+                title: "문명특급 - MMTG",
+                description: "글로벌 신문물 전파 프로젝트",
+                customUrl: "oopssofastexpress",
+                publishedAt: "2013-05-30T04:48:33Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSZorSgXQTdUoOKLe_JWEQgtpaVlXmO-23qZiRAYA=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSZorSgXQTdUoOKLe_JWEQgtpaVlXmO-23qZiRAYA=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSZorSgXQTdUoOKLe_JWEQgtpaVlXmO-23qZiRAYA=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "문명특급 - MMTG",
+                  description: "글로벌 신문물 전파 프로젝트",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "h8i6LctCvESV4AhLOrZrkqnk3e0",
+              id: "UCBLO7HA_4Kw-sp8WLed2WrA",
+              snippet: {
+                title: "세진 SEJIN",
+                description:
+                  "contact - park208405@naver.com\n모든 문의는 이메일로 주세요 :) \nIG - sejin.kr",
+                publishedAt: "2016-02-06T02:42:48Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/b5cAEpHYMwJmKeg0mpY5u3SsuxY41HXZ7RXrl8GUgkfUql063zBRrx6RMhd-j6s-vq-6WFI6kx4=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/b5cAEpHYMwJmKeg0mpY5u3SsuxY41HXZ7RXrl8GUgkfUql063zBRrx6RMhd-j6s-vq-6WFI6kx4=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/b5cAEpHYMwJmKeg0mpY5u3SsuxY41HXZ7RXrl8GUgkfUql063zBRrx6RMhd-j6s-vq-6WFI6kx4=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "세진 SEJIN",
+                  description:
+                    "contact - park208405@naver.com\n모든 문의는 이메일로 주세요 :) \nIG - sejin.kr",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "DDYyeYGSTna6vaEkgd560SRBeE4",
+              id: "UClQh-fomLym80liSi2-jaeQ",
+              snippet: {
+                title: "백년밥상TV",
+                description:
+                  "백년밥상TV 채널은 요리 · 손질 · 보관법 꿀팁  전문 채널입니다.\n\n\n",
+                customUrl: "백년밥상tv",
+                publishedAt: "2016-08-29T03:29:35Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSrXDKbpsum8A60rY1Gwf6nHCvOjaLnnElC8g14xQ=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSrXDKbpsum8A60rY1Gwf6nHCvOjaLnnElC8g14xQ=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLSrXDKbpsum8A60rY1Gwf6nHCvOjaLnnElC8g14xQ=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                defaultLanguage: "ko",
+                localized: {
+                  title: "백년밥상TV",
+                  description:
+                    "백년밥상TV 채널은 요리 · 손질 · 보관법 꿀팁  전문 채널입니다.\n\n\n",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "uYPBndIBl2lCHJ_ZzjcZzD73b1g",
+              id: "UC3WZlO2Zl8NE1yIUgtwUtQw",
+              snippet: {
+                title: "임영웅",
+                description:
+                  "임영웅 LimYoungWoong I'm HERO Official YouTube Channel\n\n",
+                customUrl: "임영웅",
+                publishedAt: "2011-12-02T09:10:23Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRWFYNj0PDSNGb_WrRwValOjlfmApNSLrC41R7N0A=s88-c-k-c0x00ffffff-no-rj-mo",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRWFYNj0PDSNGb_WrRwValOjlfmApNSLrC41R7N0A=s240-c-k-c0x00ffffff-no-rj-mo",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRWFYNj0PDSNGb_WrRwValOjlfmApNSLrC41R7N0A=s800-c-k-c0x00ffffff-no-rj-mo",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "임영웅",
+                  description:
+                    "임영웅 LimYoungWoong I'm HERO Official YouTube Channel\n\n",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "vrY3wy5XogQOFY8DPzTDY9aIaHo",
+              id: "UCY2wHBgv2W30w6lqoLxq99g",
+              snippet: {
+                title: "소니픽쳐스코리아",
+                description:
+                  "안녕하세요 한국 소니픽쳐스 코리아의 공식 유튜브 채널입니다.",
+                publishedAt: "2012-03-16T08:08:52Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/tS1IVcRrIzPzufDtzt0QEm6m-3HlKADhZOsD-SzmE2BTcLYwkgeKPRMYrljinKqla9WJRfKvQQ=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/tS1IVcRrIzPzufDtzt0QEm6m-3HlKADhZOsD-SzmE2BTcLYwkgeKPRMYrljinKqla9WJRfKvQQ=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/tS1IVcRrIzPzufDtzt0QEm6m-3HlKADhZOsD-SzmE2BTcLYwkgeKPRMYrljinKqla9WJRfKvQQ=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "소니픽쳐스코리아",
+                  description:
+                    "안녕하세요 한국 소니픽쳐스 코리아의 공식 유튜브 채널입니다.",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "pTqxUWospYOKE6CUKiO_Vy8KuQ8",
+              id: "UCbCr1dWFedL5lMcRWthb_bA",
+              snippet: {
+                title: "모비딕 Mobidic",
+                description:
+                  "즐거움의 바다 모비딕에 오신 것을 환영합니다!\n구독하고 매일매일 새롭게 올라오는 모비딕의 콘텐츠를 확인하세요!\nWelcome to the official YouTube channel of Mobidic!\nSubscribe to see Mobidic’s latest videos :)\n\n▶모비딕 구독하기/Subscribe \nhttps://goo.gl/v2b6rR\n\nE-Mail : mobidic@sbs.co.kr\n\n[방송 중인 콘텐츠]\n▣모비딕 ▣\nRULE THE NEXT - 수, 금요일 PM 6:30\n제시의 쇼!터뷰 - 목요일 PM 6:30\n\n▶컨텐츠 구매 및 제휴 문의: mobidic@sbs.co.kr\n    Content Purchase and Alliance Inquiry : mobidic@sbs.co.kr",
+                customUrl: "mobidic",
+                publishedAt: "2016-06-01T05:44:11Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRlrKdPskIzhTXdUK8pcHBrHeO7XXYyksBVV_AmZQ=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRlrKdPskIzhTXdUK8pcHBrHeO7XXYyksBVV_AmZQ=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLRlrKdPskIzhTXdUK8pcHBrHeO7XXYyksBVV_AmZQ=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                defaultLanguage: "ko",
+                localized: {
+                  title: "모비딕 Mobidic",
+                  description:
+                    "즐거움의 바다 모비딕에 오신 것을 환영합니다!\n구독하고 매일매일 새롭게 올라오는 모비딕의 콘텐츠를 확인하세요!\nWelcome to the official YouTube channel of Mobidic!\nSubscribe to see Mobidic’s latest videos :)\n\n▶모비딕 구독하기/Subscribe \nhttps://goo.gl/v2b6rR\n\nE-Mail : mobidic@sbs.co.kr\n\n[방송 중인 콘텐츠]\n▣모비딕 ▣\nRULE THE NEXT - 수, 금요일 PM 6:30\n제시의 쇼!터뷰 - 목요일 PM 6:30\n\n▶컨텐츠 구매 및 제휴 문의: mobidic@sbs.co.kr\n    Content Purchase and Alliance Inquiry : mobidic@sbs.co.kr",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "s7D5_G7K0sikwE9btjF6HBViP1E",
+              id: "UC2tbZfs11e-5MND58_jfDCA",
+              snippet: {
+                title: "순자엄마",
+                description:
+                  "순자엄마 PD (개그맨 쫑구) - Instagram 아이디 : jwkim365\n\n큐~시트콤 보듯 재밌게 봐주세요^^ 순자네 시트콤\n\n인생 뭐 있나~재밌으면 대는거지~\n\n항상 웃자구요^^\n\n\n\n",
+                customUrl: "순자엄마",
+                publishedAt: "2017-05-07T09:25:01Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLR7InD0SYC7KX_udO4Dn4oHdQuJhMcFYyD5v-D4EQ=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLR7InD0SYC7KX_udO4Dn4oHdQuJhMcFYyD5v-D4EQ=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/ytc/AKedOLR7InD0SYC7KX_udO4Dn4oHdQuJhMcFYyD5v-D4EQ=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "순자엄마",
+                  description:
+                    "순자엄마 PD (개그맨 쫑구) - Instagram 아이디 : jwkim365\n\n큐~시트콤 보듯 재밌게 봐주세요^^ 순자네 시트콤\n\n인생 뭐 있나~재밌으면 대는거지~\n\n항상 웃자구요^^\n\n\n\n",
+                },
+                country: "KR",
+              },
+            },
+            {
+              kind: "youtube#channel",
+              etag: "GrbwCCL0D7DyVAcBsc5SLjYIPdc",
+              id: "UCtybqqaTj6Nx74Azdz1KrsA",
+              snippet: {
+                title: "tvN SPORTS",
+                description: "",
+                publishedAt: "2021-05-25T03:05:06.822097Z",
+                thumbnails: {
+                  default: {
+                    url: "https://yt3.ggpht.com/aoNwgC7PHE3vzX7_MNK1slyonN3ie0ukXP_v6phbwWEqHoD5crGz72J12aEf6pKZAeEpGjPGPeo=s88-c-k-c0x00ffffff-no-rj",
+                    width: 88,
+                    height: 88,
+                  },
+                  medium: {
+                    url: "https://yt3.ggpht.com/aoNwgC7PHE3vzX7_MNK1slyonN3ie0ukXP_v6phbwWEqHoD5crGz72J12aEf6pKZAeEpGjPGPeo=s240-c-k-c0x00ffffff-no-rj",
+                    width: 240,
+                    height: 240,
+                  },
+                  high: {
+                    url: "https://yt3.ggpht.com/aoNwgC7PHE3vzX7_MNK1slyonN3ie0ukXP_v6phbwWEqHoD5crGz72J12aEf6pKZAeEpGjPGPeo=s800-c-k-c0x00ffffff-no-rj",
+                    width: 800,
+                    height: 800,
+                  },
+                },
+                localized: {
+                  title: "tvN SPORTS",
+                  description: "",
+                },
+              },
+            },
+          ],
         },
-        "request": {}
-    }
+        status: 200,
+        statusText: "",
+        headers: {
+          "cache-control": "private",
+          "content-encoding": "gzip",
+          "content-length": "5513",
+          "content-type": "application/json; charset=UTF-8",
+          date: "Sat, 20 Nov 2021 21:03:57 GMT",
+          server: "scaffolding on HTTPServer2",
+          vary: "Origin, X-Origin, Referer",
+        },
+        config: {
+          transitional: {
+            silentJSONParsing: true,
+            forcedJSONParsing: true,
+            clarifyTimeoutError: false,
+          },
+          transformRequest: [null],
+          transformResponse: [null],
+          timeout: 0,
+          xsrfCookieName: "XSRF-TOKEN",
+          xsrfHeaderName: "X-XSRF-TOKEN",
+          maxContentLength: -1,
+          maxBodyLength: -1,
+          headers: {
+            Accept: "application/json, text/plain, */*",
+          },
+          method: "get",
+          url: "https://www.googleapis.com/youtube/v3/channels?part=snippet&id=UC3WZlO2Zl8NE1yIUgtwUtQw,UCtybqqaTj6Nx74Azdz1KrsA,UCY2wHBgv2W30w6lqoLxq99g,UCUyfkq9e9ZfPzxOW5WQ9rzQ,UCbCr1dWFedL5lMcRWthb_bA,UCUyfkq9e9ZfPzxOW5WQ9rzQ,UCjn-VbcIkAeXQKCmLJV8YwQ,UCbFzvzDu17eDZ3RIeaLRswQ,UCviI9lzTe2pkxJ9M2ArA7WQ,UCRuSxVu4iqTK5kCh90ntAgA,UCpH3rUuBQH9CkjXRumRWZIQ,UC2tbZfs11e-5MND58_jfDCA,UCj3_t5p4L4aFsvdW3uHjnnw,UC4hNKDlFO3I9_KZzgESyQYw,UCweOkPb1wVVH0Q0Tlj4a5Pw,UCIG4gr_wIy5CIlcFciUbIQw,UCBLO7HA_4Kw-sp8WLed2WrA,UC-iJgiHZ0joj2cQWpszkqPw,UC31-nUU7jhm3I5DCYh6uLBA,UClQh-fomLym80liSi2-jaeQ&key=AIzaSyCnSYEgItutcgRmMnwnH-AXh3LdQ3Nbzrw",
+        },
+        request: {},
+      };
       return channelData.data.items;
     };
 
@@ -2112,12 +2136,14 @@ const Main = () => {
         document.documentElement.scrollHeight
       ) {
         console.log("here is bottm");
-        setIsScrollBottom(true);
+        // setIsScrollBottom(true);
       } else {
         // setIsScrollBottom(false);
       }
     };
     window.addEventListener("scroll", handlerScrollEvent);
+
+    return window.removeEventListener("scroll", handlerScrollEvent);
   }, []);
 
   const video_opt = {

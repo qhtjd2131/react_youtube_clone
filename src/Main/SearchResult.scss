@@ -23,10 +23,12 @@
   align-items: center;
   min-width: 320px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .search-item-title {
   font-size: 18px;
   color: black;
+  cursor: pointer;
 }
 
 .search-item-title-darkTheme {
@@ -44,10 +46,12 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  cursor: pointer;
 }
-.search-channel-title{
-    display: flex;
-    align-items: center;
+.search-channel-title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 .search-item-description {
   white-space: wrap;

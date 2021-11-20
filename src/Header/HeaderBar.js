@@ -73,6 +73,7 @@ const Search = () => {
             setSearchText();
           }
         }}
+       
       />
       <Link
         to={`result?q=${encodeURI(searchText)}`}

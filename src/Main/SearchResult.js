@@ -5,15 +5,12 @@ import { themeStateContext, SideBarContext } from "../App";
 import axios from "axios";
 
 const SearchResult = () => {
-  //   const [queryString, setQueryString] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState();
   const [channelItems, setChannelItems] = useState();
   const location = useLocation();
   const { themeState } = useContext(themeStateContext);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
-
-  //   console.log(location);
 
   useEffect(() => {
     setIsLoading(true);
@@ -290,8 +287,80 @@ const SearchResult = () => {
       channelIDsString = channelIDsString.slice(0, -1);
 
       const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&key=${option.apiKey}`;
-      const channelData = await axios.get(urlGetChannel);
-      return channelData.data.items;
+      //   const channelData = await axios.get(urlGetChannel);
+      //   return channelData.data.items;
+      const channelData = [
+        {
+          kind: "youtube#channel",
+          etag: "_Y-xHENcyexcq-TSuFCqI_4tdKM",
+          id: "UCdfhK0yIMjmhcQ3gP-qpXRw",
+          snippet: {
+            title: "산적TV 밥굽남",
+            description:
+              "술과 고기를 수행중인 밥굽남입니다~\n\n문의 및 제보: ojk0131@naver.com",
+            publishedAt: "2017-03-16T12:02:32Z",
+            thumbnails: {
+              default: {
+                url: "https://yt3.ggpht.com/ytc/AKedOLSQvUD4F2XiEbm39p05bEpOPxERhBELeBGvSgoQFg=s88-c-k-c0x00ffffff-no-rj",
+                width: 88,
+                height: 88,
+              },
+              medium: {
+                url: "https://yt3.ggpht.com/ytc/AKedOLSQvUD4F2XiEbm39p05bEpOPxERhBELeBGvSgoQFg=s240-c-k-c0x00ffffff-no-rj",
+                width: 240,
+                height: 240,
+              },
+              high: {
+                url: "https://yt3.ggpht.com/ytc/AKedOLSQvUD4F2XiEbm39p05bEpOPxERhBELeBGvSgoQFg=s800-c-k-c0x00ffffff-no-rj",
+                width: 800,
+                height: 800,
+              },
+            },
+            localized: {
+              title: "산적TV 밥굽남",
+              description:
+                "술과 고기를 수행중인 밥굽남입니다~\n\n문의 및 제보: ojk0131@naver.com",
+            },
+            country: "KR",
+          },
+        },
+        {
+          kind: "youtube#channel",
+          etag: "BE2oBNLS0iS6SChyK5B2FFZY5BU",
+          id: "UCT3CumbFIJiW33uq0UI3zlg",
+          snippet: {
+            title: "고기남자 MeatMan",
+            description:
+              "요리를 하고 나누며 행복한 남자\n\n부족하기만 한 저를 사랑해 주셔서 감사합니다\n보시고 미소 지으실 수 있는 영상으로 보답하겠습니다\n",
+            customUrl: "고기남자",
+            publishedAt: "2019-08-06T03:26:25Z",
+            thumbnails: {
+              default: {
+                url: "https://yt3.ggpht.com/ytc/AKedOLQa6lNRBpeoNcULQ1okihahP1rqdDoxF4txlNZLEQ=s88-c-k-c0x00ffffff-no-rj",
+                width: 88,
+                height: 88,
+              },
+              medium: {
+                url: "https://yt3.ggpht.com/ytc/AKedOLQa6lNRBpeoNcULQ1okihahP1rqdDoxF4txlNZLEQ=s240-c-k-c0x00ffffff-no-rj",
+                width: 240,
+                height: 240,
+              },
+              high: {
+                url: "https://yt3.ggpht.com/ytc/AKedOLQa6lNRBpeoNcULQ1okihahP1rqdDoxF4txlNZLEQ=s800-c-k-c0x00ffffff-no-rj",
+                width: 800,
+                height: 800,
+              },
+            },
+            localized: {
+              title: "고기남자 MeatMan",
+              description:
+                "요리를 하고 나누며 행복한 남자\n\n부족하기만 한 저를 사랑해 주셔서 감사합니다\n보시고 미소 지으실 수 있는 영상으로 보답하겠습니다\n",
+            },
+            country: "KR",
+          },
+        },
+      ];
+      return channelData;
     };
     const setStateFunc = async () => {
       return await new Promise((resolve) => {
@@ -300,7 +369,6 @@ const SearchResult = () => {
         let firstEqualIndex = q.indexOf("=");
         // const key = q.slice(0, firstEqualIndex); //q
         const value = q.slice(firstEqualIndex + 1); //apple
-        // setQueryString(() => value);
         resolve(value);
       });
     };
@@ -321,6 +389,7 @@ const SearchResult = () => {
               };
             });
             setIsLoading(false);
+            console.log("Ttt", table);
             return table;
           });
         });
@@ -361,8 +430,7 @@ const SearchResult = () => {
                   <div className="search-channel-icon">
                     <img
                       src={
-                        channelItems[i.snippet.channelId].thumbnails
-                          .default.url
+                        channelItems[i.snippet.channelId].thumbnails.default.url
                       }
                       alt=""
                     />

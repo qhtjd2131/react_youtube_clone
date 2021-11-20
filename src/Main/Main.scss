@@ -59,7 +59,6 @@
 .video-description-container {
   display: flex;
   height: 90px;
-  
 }
 .channel-icon {
   display: flex;
@@ -68,14 +67,16 @@
 }
 .channel-icon img {
   box-sizing: border-box;
-  padding : 4px;
+  padding: 4px;
   border-radius: 50%;
   width: 36px;
   height: 36px;
+  cursor: pointer;
 }
 
 .video-thumbnail {
   width: 100%;
+  cursor: pointer;
 }
 .video-thumbnail img {
   width: 100%;
@@ -93,6 +94,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 2;
+  cursor: pointer;
 }
 .video-title-darkTheme {
   color: white;
@@ -100,6 +102,7 @@
 
 .video-channel-name {
   font-size: 12px;
+  cursor: pointer;
 }
 .video-channel-name-darkTheme {
   color: gray;
