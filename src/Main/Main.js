@@ -1433,11 +1433,10 @@ const Main = () => {
               thumbnails: i.snippet.thumbnails,
             };
           });
-          console.log(table);
+          console.log("table:", table);
           setIsLoading(false);
           return table;
         });
-        
       });
     });
   }, []);
@@ -1485,7 +1484,13 @@ const Main = () => {
               </div>
               <div className="video-description-container">
                 <div className="channel-icon">
-                  <img src={channelItemsState[item.snippet.channelId].thumbnails.default} alt="" />
+                  <img
+                    src={
+                      channelItemsState[item.snippet.channelId].thumbnails
+                        .default.url
+                    }
+                    alt=""
+                  />
                 </div>
                 <div className="video-description">
                   <div className={"video-title video-title-" + themeState}>
