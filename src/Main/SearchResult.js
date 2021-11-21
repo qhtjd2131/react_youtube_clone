@@ -18,7 +18,7 @@ const SearchResult = () => {
     setIsOpenMiniSideBar(true);
     setIsLoading(true);
     const option = {
-      part: "snippet",
+      part: "snippet, statistics",
       regionCode: "KR",
       chart: "mostPopular",
       maxResults: 7,

@@ -36,12 +36,14 @@ const WatchVideo = () => {
         <div className="watch-video">
           <YouTube videoId={getQueryString()} opts={video_opt}></YouTube>
         </div>
-        <div className="watch-video-title">video title</div>
+        <div className="watch-video-title">{location.state.title}</div>
         <div className="watch-video-info">viewcount:302302k</div>
         <div className="watch-video-channel">
-          <div className="watch-video-channel-icon">icon</div>
+          <div className="watch-video-channel-icon">
+              <img src={location.state.channelIconUrl} alt=""/>
+          </div>
           <div className="watch-video-channel-info">
-            <div className="watch-video-channel-title">channel title</div>
+            <div className="watch-video-channel-title">{location.state.channelTitle}</div>
             <div className="watch-video-channel-subscribers">
               subscribers : 300k
             </div>
