@@ -6,6 +6,7 @@ import SearchResult from "./Main/SearchResult";
 import SideBar from "./Side/SideBar";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Test from "./Main/Test";
+import WatchVideo from "./Main/WatchVideo";
 
 //Context
 export const SideBarContext = createContext({});
@@ -14,6 +15,7 @@ export const themeStateContext = createContext({});
 export const locationStateContext = createContext({});
 export const restrictedModeContext = createContext({});
 export const searchTextContext = createContext({});
+export const MiniSideBarContext = createContext({});
 
 export const Overlay = ({ overlayClick }) => {
   return <div className="overlay" onClick={overlayClick}></div>;
@@ -23,6 +25,7 @@ const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
   const [searchText, setSearchText] = useState("");
+  const [isOpenMiniSideBar, setIsOpenMiniSideBar] = useState(true);
   const [restrictedMode, setRestrictedMode] = useState(() => {
     const a = window.localStorage.getItem("restrictedMode");
     if (a) {
@@ -109,25 +112,26 @@ const App = () => {
                 <restrictedModeContext.Provider
                   value={{ restrictedMode, setRestrictedMode }}
                 >
-                  {/* <searchTextContext.Provider
-                    value={{ searchText, setSearchText }}
-                  > */}
+                  <MiniSideBarContext.Provider
+                    value={{ isOpenMiniSideBar, setIsOpenMiniSideBar }}
+                  >
                     <Header />
                     {/* <Main /> */}
                     <Routes>
                       <Route path="/" element={<Main />} />
                       <Route path="result/*" element={<SearchResult />} />
+                      <Route path="watch/*" element={<WatchVideo />} />
                       <Route path="test/*" element={<Test />} />
                     </Routes>
-                  {/* </searchTextContext.Provider> */}
-                  <SideBar />
-                  {isOpenSideBar && !isWindowSizeXL && (
-                    <Overlay
-                      overlayClick={() => {
-                        setIsOpenSideBar(false);
-                      }}
-                    />
-                  )}
+                    <SideBar />
+                    {isOpenSideBar && !isWindowSizeXL && (
+                      <Overlay
+                        overlayClick={() => {
+                          setIsOpenSideBar(false);
+                        }}
+                      />
+                    )}
+                  </MiniSideBarContext.Provider>
                 </restrictedModeContext.Provider>
               </locationStateContext.Provider>
             </themeStateContext.Provider>

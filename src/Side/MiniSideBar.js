@@ -2,7 +2,11 @@ import React, { useContext } from "react";
 import * as data from "./SideData/data.js";
 import "./MiniSideBar.scss";
 import { selectedSideItemContext } from "./SideBar.js";
-import { languageStateContext, themeStateContext } from "../App.js";
+import {
+  languageStateContext,
+  themeStateContext,
+  MiniSideBarContext,
+} from "../App.js";
 
 const MiniSideBar = () => {
   const { selectedSideItem, setSelectedSideItem } = useContext(
@@ -10,6 +14,7 @@ const MiniSideBar = () => {
   );
   const { languageState } = useContext(languageStateContext);
   const { themeState } = useContext(themeStateContext);
+  const { isOpenMiniSideBar } = useContext(MiniSideBarContext);
 
   const minibarKey = Object.keys(data.data_side_item1).concat(
     Object.keys(data.data_side_item2)
@@ -22,7 +27,10 @@ const MiniSideBar = () => {
   return (
     <div
       className={
-        "mini-sidebar-container mini-sidebar-container-" + themeState
+        "mini-sidebar-container mini-sidebar-container-" +
+        themeState +
+        " " +
+        (!isOpenMiniSideBar && "close-mini-sidebar")
       }
     >
       {minibarKey.map((i, index) => (

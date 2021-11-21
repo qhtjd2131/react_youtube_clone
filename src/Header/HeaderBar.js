@@ -50,7 +50,7 @@ export const Logo = () => {
         to="/"
         onClick={() => {
           navigate("/");
-          window.location.reload();
+          window.location.reload();   //같은 path에서도 page refresh 되도록.
         }}
       >
         {data.data_Logo.logo.image[themeState]}

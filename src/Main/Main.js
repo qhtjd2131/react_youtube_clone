@@ -3,7 +3,13 @@ import YouTube from "react-youtube";
 import "./Main.scss";
 import axios from "axios";
 import FilterBar from "./FilterBar";
-import { SideBarContext, themeStateContext, searchTextContext } from "../App";
+import {
+  SideBarContext,
+  themeStateContext,
+  searchTextContext,
+  MiniSideBarContext,
+} from "../App";
+import { Link } from "react-router-dom";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,6 +17,8 @@ const Main = () => {
   const [channelItemsState, setChannelItems] = useState([]);
   const [isScrollBottom, setIsScrollBottom] = useState(false);
 
+  const { isOpenMiniSideBar, setIsOpenMiniSideBar } =
+    useContext(MiniSideBarContext);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
   const { themeState } = useContext(themeStateContext);
   const { searchText, setSearchText } = useContext(searchTextContext);
@@ -46,6 +54,7 @@ const Main = () => {
   };
 
   useEffect(() => {
+    setIsOpenMiniSideBar(true);
     const option = {
       part: "snippet",
       regionCode: "KR",
@@ -2168,9 +2177,11 @@ const Main = () => {
         ) : (
           itemsState.map((item, index) => (
             <div className="item-container" key={index}>
-              <div className="video-thumbnail">
-                <img src={item.snippet.thumbnails.medium.url} alt="" />
-              </div>
+              <Link to={"/watch"}>
+                <div className="video-thumbnail">
+                  <img src={item.snippet.thumbnails.medium.url} alt="" />
+                </div>
+              </Link>
               <div className="video-description-container">
                 <div className="channel-icon">
                   <img

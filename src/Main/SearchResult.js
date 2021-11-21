@@ -13,6 +13,7 @@ const SearchResult = () => {
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
 
   useEffect(() => {
+      
     setIsLoading(true);
     const option = {
       part: "snippet",
