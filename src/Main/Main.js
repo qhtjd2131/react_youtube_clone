@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext, createRef } from "react";
-import YouTube from "react-youtube";
+import React, { useEffect, useState, useContext } from "react";
 import "./Main.scss";
 import axios from "axios";
 import FilterBar from "./FilterBar";
@@ -2155,10 +2154,7 @@ const Main = () => {
     return window.removeEventListener("scroll", handlerScrollEvent);
   }, []);
 
-  const video_opt = {
-    height: "auto",
-    width: "100%",
-  };
+
 
   return (
     <div
@@ -2168,7 +2164,6 @@ const Main = () => {
           : "main side-close-main main-" + themeState
       }
     >
-      {/* <YouTube videoId={"Lkrby-_NJTs"} opts={video_opt}></YouTube> */}
 
       <div className="contents-wrapper">
         <FilterBar />
@@ -2177,7 +2172,12 @@ const Main = () => {
         ) : (
           itemsState.map((item, index) => (
             <div className="item-container" key={index}>
-              <Link to={"/watch"}>
+              <Link
+                to={`/watch?v=${item.id}`}
+                state={{
+                  id: item.id,
+                }}
+              >
                 <div className="video-thumbnail">
                   <img src={item.snippet.thumbnails.medium.url} alt="" />
                 </div>

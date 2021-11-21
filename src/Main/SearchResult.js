@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import "./SearchResult.scss";
-import { themeStateContext, SideBarContext } from "../App";
+import { themeStateContext, SideBarContext, MiniSideBarContext } from "../App";
 import axios from "axios";
+import MiniSideBar from "../Side/MiniSideBar";
 
 const SearchResult = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,9 +12,10 @@ const SearchResult = () => {
   const location = useLocation();
   const { themeState } = useContext(themeStateContext);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
+  const { setIsOpenMiniSideBar } = useContext(MiniSideBarContext);
 
   useEffect(() => {
-      
+    setIsOpenMiniSideBar(true);
     setIsLoading(true);
     const option = {
       part: "snippet",

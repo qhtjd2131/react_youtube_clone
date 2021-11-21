@@ -1,8 +1,73 @@
-.test-watch-video {
+@import "../variable/global_variables";
+
+.watch-video-container {
+  padding-top: $header-height;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+.watch-video-container-darkTheme {
+  background-color: #181818;
+  color: white;
+}
+
+.watch-video-wrapper {
+  background-color: chartreuse;
+  padding: 20px;
+
+  width: 66%;
+  display: flex;
+  flex-direction: column;
+}
+.watch-video {
+  box-sizing: border-box;
+  background-color: cornflowerblue;
+  //   height: 700px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.5%;
+  //   overflow: hidden;
+}
+.watch-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.watch-video-channel {
+  background-color: cornsilk;
+  height: 40px;
+  font-size: 12px;
+
+  display: flex;
+  align-items: center;
+}
+
+.watch-video-channel-icon {
+  background-color: darkblue;
+
+  width: 28px;
+  height: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
-  width: 100%;
+}
+.watch-video-channel-info {
+  height: 100%;
+}
+.watch-video-channel-title {
+  height: 50%;
+  background-color: darkgreen;
+}
+
+.watch-video-relative-list {
+  max-width: 400px;
+  flex: 1;
+  background-color: darkseagreen;
   height: 100%;
 }
