@@ -17,7 +17,7 @@ import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
 import * as data from "./HeaderData/headerBarData.js";
 import { useEffect } from "react/cjs/react.development";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 
 export const LogIn = () => {
   const { languageState } = useContext(languageStateContext);
@@ -34,6 +34,7 @@ export const LogIn = () => {
 export const Logo = () => {
   const { themeState } = useContext(themeStateContext);
   const { isOpenSideBar, setIsOpenSideBar } = useContext(SideBarContext);
+  const navigate = useNavigate();
 
   return (
     <div className="logo-container">
@@ -45,7 +46,15 @@ export const Logo = () => {
       >
         {data.data_Logo.sidebarOpen.image}
       </div>
-      <Link to="/">{data.data_Logo.logo.image[themeState]}</Link>
+      <Link
+        to="/"
+        onClick={() => {
+          navigate("/");
+          window.location.reload();
+        }}
+      >
+        {data.data_Logo.logo.image[themeState]}
+      </Link>
     </div>
   );
 };
@@ -73,7 +82,6 @@ const Search = () => {
             setSearchText();
           }
         }}
-       
       />
       <Link
         to={`result?q=${encodeURI(searchText)}`}
