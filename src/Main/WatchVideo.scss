@@ -6,7 +6,6 @@
   justify-content: center;
   font-size: 30px;
   width: 100%;
-  height: 100%;
 }
 
 .watch-video-container-darkTheme {
@@ -15,16 +14,15 @@
 }
 
 .watch-video-wrapper {
-  background-color: chartreuse;
   padding: 20px;
 
   width: 66%;
   display: flex;
   flex-direction: column;
+  font-size: 14px;
 }
 .watch-video {
   box-sizing: border-box;
-  background-color: cornflowerblue;
   //   height: 700px;
   width: 100%;
   position: relative;
@@ -38,36 +36,99 @@
   width: 100%;
   height: 100%;
 }
-
-.watch-video-channel {
-  background-color: cornsilk;
-  height: 40px;
+.watch-video-tags-wrapper {
+  padding-top: 20px;
   font-size: 12px;
+  color: #2da6ff;
+  display: flex;
+
+  flex-wrap: wrap;
+}
+.watch-video-tag {
+  padding: 0px 6px;
+  white-space: nowrap;
+  cursor: pointer;
+  &::before {
+    content: "#";
+  }
+}
+.watch-video-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 0px;
+}
+.watch-video-info {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+}
+.watch-video-info-etc {
+  display: flex;
+  font-size: 16px;
+  color: white;
+  gap: 10px;
+}
+.wvi-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.wvi-item-icon {
+  font-size: 24px;
+}
+.watch-video-channel {
+  width: 100%;
+  height: 56px;
+  font-size: 14px;
 
   display: flex;
   align-items: center;
 }
 
 .watch-video-channel-icon {
-  background-color: darkblue;
-
-  width: 28px;
-  height: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.watch-video-channel-icon img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
 .watch-video-channel-info {
   height: 100%;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
 }
 .watch-video-channel-title {
-  height: 50%;
-  background-color: darkgreen;
+  height: 40%;
+}
+.watch-video-channel-subscribers {
+  height: 40%;
+}
+.watch-video-channel-subscribtion-button {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  width: 70px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.watch-video-description {
+  padding-left: calc(56px + 20px);
 }
 
 .watch-video-relative-list {
   max-width: 400px;
   flex: 1;
-  background-color: darkseagreen;
+  background-color: gray;
   height: 100%;
 }
