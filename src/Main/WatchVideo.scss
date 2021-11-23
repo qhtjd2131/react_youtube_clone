@@ -135,9 +135,52 @@
   word-break: break-all;
 }
 
+//관련된 비디오 목록
+
 .watch-video-relative-list {
   max-width: 400px;
   flex: 1;
-  background-color: gray;
   height: 100%;
+  font-size: 14px;
+}
+
+.relative-item-wrapper {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 6px 0px;
+  padding-right: 10px;
+  gap: 6px;
+}
+
+.relative-item-thumbnails {
+}
+.relative-item-thumbnails img {
+  width: 168px;
+}
+
+.relative-item-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.relative-item-title {
+  // multiline
+  white-space: normal;
+  line-height: 1rem;
+  max-height: 1.6rem;
+  //   height: 2.4rem;
+  text-overflow: ellipsis;
+  display: flex;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  cursor: pointer;
+  padding-bottom: 6px;
+}
+.relative-item-channel-name {
+  color: gray;
+  font-size: 12px;
 }

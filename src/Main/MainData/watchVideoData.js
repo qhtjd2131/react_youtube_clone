@@ -2,7 +2,7 @@
 
 
 export const watchVideoData = {
-    subscribtion : {
+    subscribe : {
         KOR : "구독",
         EN : "SUBSCRIBE"
     }
