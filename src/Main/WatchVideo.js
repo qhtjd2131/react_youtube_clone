@@ -1,12 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./WatchVideo.scss";
-import { MiniSideBarContext, themeStateContext, SideBarContext } from "../App";
+import {
+  MiniSideBarContext,
+  languageStateContext,
+  themeStateContext,
+  SideBarContext,
+} from "../App";
 import YouTube from "react-youtube";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { RiShareForwardLine } from "react-icons/ri";
 import { GiSaveArrow } from "react-icons/gi";
 import { BsThreeDots } from "react-icons/bs";
+import { Line } from "../Side/SideBar";
 
 const WatchVideo = () => {
   const location = useLocation();
@@ -15,6 +21,7 @@ const WatchVideo = () => {
     useContext(MiniSideBarContext);
   const { setIsOpenSideBar } = useContext(SideBarContext);
   const { themeState } = useContext(themeStateContext);
+  const { languageState } = useContext(languageStateContext);
   const video_opt = {
     // width: "100%",
   };
@@ -32,6 +39,28 @@ const WatchVideo = () => {
     setIsOpenMiniSideBar(false);
   }, []);
 
+  const getDescription = (descriptionString) => {
+    const res = descriptionString.split("");
+  };
+
+  const formattingNumber = (num) => {
+    switch (languageState) {
+      case "KOR":
+        if (num >= 100000) {
+          console.log(parseInt(num / 10000) + "만");
+          return parseInt(num / 10000) + "만";
+        } else if (num >= 10000) {
+          console.log((num / 10000).toFixed(1) + "만");
+          return (num / 10000).toFixed(1) + "만";
+        } else if (num >= 1000) {
+          console.log((num / 1000).toFixed(1) + "천");
+          return (num / 1000).toFixed(1) + "천";
+        } else {
+          return num;
+        }
+      //   case "EN":
+    }
+  };
   return (
     <div
       className={"watch-video-container watch-video-container-" + themeState}
@@ -48,30 +77,32 @@ const WatchVideo = () => {
         <div className="watch-video-title">{location.state.title}</div>
         <div className="watch-video-info">
           <div className="watch-video-info-viewcount">
-            {location.state.viewCount}
+            조회수 {location.state.viewCount}회
           </div>
           <div className="watch-video-info-etc">
             <div className="wvi-item">
               <div className="wvi-item-icon">
                 <AiOutlineLike />
               </div>
-              {location.state.likeCount}
+              {formattingNumber(location.state.likeCount)}
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
                 <AiOutlineDislike />
               </div>
-              {location.state.dislikeCount}
+              {formattingNumber(location.state.dislikeCount)}
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
                 <RiShareForwardLine />
               </div>
+              공유
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
                 <GiSaveArrow />
               </div>
+              저장
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
@@ -80,6 +111,7 @@ const WatchVideo = () => {
             </div>
           </div>
         </div>
+        <Line />
         <div className="watch-video-channel">
           <div className="watch-video-channel-icon">
             <img src={location.state.channelIconUrl} alt="" />
@@ -89,7 +121,7 @@ const WatchVideo = () => {
               {location.state.channelTitle}
             </div>
             <div className="watch-video-channel-subscribers">
-              {location.state.subscriberCount}
+              구독자 {location.state.subscriberCount}명
             </div>
           </div>
           <div className="watch-video-channel-subscribtion-button">구독</div>
@@ -97,8 +129,9 @@ const WatchVideo = () => {
         <div className="watch-video-description">
           {location.state.videoDescription}
         </div>
+        <Line />
         <div className="watch-video-comments">
-          댓글 : {location.state.commentCount}
+          댓글 {location.state.commentCount}개
         </div>
       </div>
       <div className="watch-video-relative-list"></div>

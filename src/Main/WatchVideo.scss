@@ -61,21 +61,26 @@
   display: flex;
   justify-content: space-between;
   color: gray;
+  padding: 10px 0px;
 }
 .watch-video-info-etc {
   display: flex;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
-  gap: 10px;
+  gap: 12px;
 }
 .wvi-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  cursor: pointer;
 }
 .wvi-item-icon {
-  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 }
 .watch-video-channel {
   width: 100%;
@@ -112,6 +117,7 @@
 }
 .watch-video-channel-subscribtion-button {
   background-color: red;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,9 +127,12 @@
   height: 40px;
   font-size: 15px;
   font-weight: 500;
+  cursor: pointer;
 }
 .watch-video-description {
   padding-left: calc(56px + 20px);
+  white-space: pre-line;
+  word-break: break-all;
 }
 
 .watch-video-relative-list {
