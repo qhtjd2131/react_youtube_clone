@@ -14,6 +14,7 @@ import { GiSaveArrow } from "react-icons/gi";
 import { BsThreeDots } from "react-icons/bs";
 import { Line } from "../Side/SideBar";
 import { useState } from "react/cjs/react.development";
+import * as data from "./MainData/watchVideoData.js";
 import axios from "axios";
 
 const WatchVideo = () => {
@@ -1008,13 +1009,14 @@ const WatchVideo = () => {
               <div className="wvi-item-icon">
                 <RiShareForwardLine />
               </div>
-              공유
+
+              {data.watchVideoData.share[languageState]}
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
                 <GiSaveArrow />
               </div>
-              저장
+              {data.watchVideoData.save[languageState]}
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
@@ -1041,7 +1043,10 @@ const WatchVideo = () => {
                 )} subscribers`}
             </div>
           </div>
-          <div className="watch-video-channel-subscribtion-button">구독</div>
+          <div className="watch-video-channel-subscribtion-button">
+            {" "}
+            {data.watchVideoData.subscribe[languageState]}
+          </div>
         </div>
         <div className="watch-video-description">
           {location.state.videoDescription}
@@ -1049,6 +1054,8 @@ const WatchVideo = () => {
         <Line />
         <div className="watch-video-comments">
           댓글 {location.state.commentCount}개
+          {languageState === "KOR" && `댓글 ${location.state.commentCount}개`}
+          {languageState === "EN" && `${location.state.commentCount} Comments`}
         </div>
       </div>
       <div className="watch-video-relative-list">
