@@ -154,6 +154,7 @@
 }
 
 .relative-item-thumbnails {
+  cursor: pointer;
 }
 .relative-item-thumbnails img {
   width: 168px;
@@ -168,8 +169,8 @@
 .relative-item-title {
   // multiline
   white-space: normal;
-  line-height: 1rem;
-  max-height: 1.6rem;
+  //   line-height: 1rem;
+  max-height: 2rem;
   //   height: 2.4rem;
   text-overflow: ellipsis;
   display: flex;
@@ -183,4 +184,5 @@
 .relative-item-channel-name {
   color: gray;
   font-size: 12px;
+  padding-top: 6px;
 }
