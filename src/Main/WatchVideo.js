@@ -1053,7 +1053,6 @@ const WatchVideo = () => {
         </div>
         <Line />
         <div className="watch-video-comments">
-          댓글 {location.state.commentCount}개
           {languageState === "KOR" && `댓글 ${location.state.commentCount}개`}
           {languageState === "EN" && `${location.state.commentCount} Comments`}
         </div>
