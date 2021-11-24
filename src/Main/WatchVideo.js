@@ -982,9 +982,10 @@ const WatchVideo = () => {
           <YouTube videoId={getQueryString()} opts={video_opt}></YouTube>
         </div>
         <div className="watch-video-tags-wrapper">
-          {location.state.tags.map((i, index) => (
-            <div className="watch-video-tag">{i}</div>
-          ))}
+          {[] ??
+            location.state.tags.map((i, index) => (
+              <div className="watch-video-tag">{i}</div>
+            ))}
         </div>
         <div className="watch-video-title">{location.state.title}</div>
         <div className="watch-video-info">
@@ -1044,7 +1045,6 @@ const WatchVideo = () => {
             </div>
           </div>
           <div className="watch-video-channel-subscribtion-button">
-            {" "}
             {data.watchVideoData.subscribe[languageState]}
           </div>
         </div>
