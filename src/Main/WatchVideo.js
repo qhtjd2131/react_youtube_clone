@@ -63,6 +63,7 @@ const WatchVideo = () => {
   useEffect(() => {
     setIsOpenSideBar(false);
     setIsOpenMiniSideBar(false);
+    window.scrollTo(0,0);
   }, []);
 
   useEffect(() => {
