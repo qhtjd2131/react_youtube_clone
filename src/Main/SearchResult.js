@@ -407,7 +407,7 @@ const SearchResult = () => {
         console.log(e);
         navigate("/");
       });
-  }, [location, navigate]);
+  }, [location, navigate,setIsOpenMiniSideBar]);
   return (
     <div
       className={
@@ -425,7 +425,6 @@ const SearchResult = () => {
               검색 결과 없음
             </div>
           )}
-          {console.log(!items)}
           {(items ?? []).map((i, index) => (
             <div
               className={

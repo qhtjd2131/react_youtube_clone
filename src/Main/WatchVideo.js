@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./WatchVideo.scss";
 import {
@@ -10,7 +10,7 @@ import {
 import YouTube from "react-youtube";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { RiShareForwardLine } from "react-icons/ri";
-import { GiSaveArrow, GiTurret } from "react-icons/gi";
+import { GiSaveArrow } from "react-icons/gi";
 import { BsThreeDots } from "react-icons/bs";
 import { Line } from "../Side/SideBar";
 import { useState } from "react/cjs/react.development";
@@ -54,19 +54,19 @@ const WatchVideo = () => {
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
 
-  const getQueryString = () => {
+  const getQueryString = useCallback(() => {
     //query string이 한개일때만 가정
     let q = decodeURI(location.search).slice(1); // "q=apple"
     let firstEqualIndex = q.indexOf("=");
     // const key = q.slice(0, firstEqualIndex); //q
     const value = q.slice(firstEqualIndex + 1); //apple
     return value;
-  };
+  }, [location.search]);
   useEffect(() => {
     setIsOpenSideBar(false);
     setIsOpenMiniSideBar(false);
     window.scrollTo(0, 0);
-  }, []);
+  }, [setIsOpenMiniSideBar, setIsOpenSideBar]);
 
   useEffect(() => {
     const getRelativeVideo = async () => {
@@ -87,14 +87,13 @@ const WatchVideo = () => {
       return result.data.items;
     };
 
-    getRelativeVideo()
-      .then((items) => {
+    getRelativeVideo().then((items) => {
+      setIsRelativeVideoLoading(() => {
         setRelativeVideoItems(items);
-      })
-      .then(() => {
-        setIsRelativeVideoLoading(false);
+        return false;
       });
-  }, []);
+    });
+  }, [getQueryString]);
 
   useEffect(() => {
     if (!location.state) {
@@ -141,7 +140,7 @@ const WatchVideo = () => {
 
           setWatchVideoState(() => ({ ...res }));
         })
-        .then((res) => {
+        .then(() => {
           setIsWatchVideoLoading(false);
         })
         .catch((e) => {
@@ -151,7 +150,7 @@ const WatchVideo = () => {
     } else {
       setIsWatchVideoLoading(false);
     }
-  }, []);
+  }, [getQueryString, location.search, location.state,navigate]);
 
   const formattingNumber = (num) => {
     if (!num) return 0;
@@ -178,6 +177,8 @@ const WatchVideo = () => {
         } else {
           return num;
         }
+      default:
+        return 0;
     }
   };
   return (
