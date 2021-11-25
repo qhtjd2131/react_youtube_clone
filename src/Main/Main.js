@@ -2655,12 +2655,13 @@ const Main = () => {
                   channelIconUrl:
                     channelItemsState[item.snippet.channelId].thumbnails.default
                       .url,
+                  // thumbnails : item.snippet.
                   viewCount: item.statistics.viewCount,
                   likeCount: item.statistics.likeCount,
                   dislikeCount: item.statistics.dislikeCount,
                   commentCount: item.statistics.commentCount,
                   publishedAt: item.snippet.publishedAt,
-                  videoDescription: item.snippet.description,
+                  description: item.snippet.description,
                   tags: item.snippet.tags,
                   subscriberCount:
                     channelItemsState[item.snippet.channelId].subscriberCount,

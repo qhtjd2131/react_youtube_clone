@@ -21,6 +21,30 @@ const WatchVideo = () => {
   const location = useLocation();
 
   const [relativeVideoItems, setRelativeVideoItems] = useState([]);
+  const [watchVideoState, setWatchVideoState] = useState(() => {
+    let stateTemp = {};
+    if (location.state) {
+      stateTemp = {
+        ...location.state,
+      };
+      return stateTemp;
+    } else {
+      stateTemp = {
+        title: "",
+        channelTitle: "",
+        channelIconUrl: "",
+        viewCount: "",
+        likeCount: "",
+        dislikeCount: "",
+        commentCount: "",
+        publishedAt: "",
+        description: "",
+        tags: [],
+        subscriberCount: "",
+      };
+      return stateTemp;
+    }
+  });
 
   const { isOpenMiniSideBar, setIsOpenMiniSideBar } =
     useContext(MiniSideBarContext);
@@ -50,7 +74,6 @@ const WatchVideo = () => {
       const option = {
         part: "snippet",
         regionCode: "KR",
-        chart: "mostPopular",
         maxResults: 20,
         apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
       };
@@ -943,24 +966,70 @@ const WatchVideo = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (!location.state) {
+      const option = {
+        part: "snippet,statistics",
+        apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
+      };
+
+      const getVideoInfo = async () => {
+        const getVideoInfoUrl = `https://www.googleapis.com/youtube/v3/videos?part=${
+          option.part
+        }&id=${getQueryString()}&key=${option.apiKey}`;
+        const result = await axios.get(getVideoInfoUrl);
+        return result.data.items[0];
+      };
+
+      const getChannelInfo = async (channelId) => {
+        const getChannelInfoUrl = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelId}&key=${option.apiKey}`;
+        const result = await axios.get(getChannelInfoUrl);
+
+        console.log("channel info :", result.data.items[0]);
+        return result.data.items[0];
+      };
+
+      let res = {};
+      getVideoInfo()
+        .then((item) => {
+          const itemTemp = {
+            ...item.snippet,
+            ...item.statistics,
+            channelIconUrl: "",
+          };
+          return itemTemp;
+        })
+        .then((itemTemp) => {
+          res = { ...itemTemp };
+          return getChannelInfo(itemTemp.channelId);
+        })
+        .then((channelInfo) => {
+          res = {
+            ...res,
+            channelIconUrl: channelInfo.snippet.thumbnails.default.url,
+            subscriberCount: channelInfo.statistics.subscriberCount,
+          };
+          console.log("res :", res);
+          setWatchVideoState(() => ({ ...res }));
+        });
+    }
+  }, []);
+
   const formattingNumber = (num) => {
+    if (!num) return 0;
     switch (languageState) {
       case "KOR":
         if (num >= 100000) {
-          console.log(parseInt(num / 10000) + "만");
           return parseInt(num / 10000) + "만";
         } else if (num >= 10000) {
-          console.log((num / 10000).toFixed(1) + "만");
           return (num / 10000).toFixed(1) + "만";
         } else if (num >= 1000) {
-          console.log((num / 1000).toFixed(1) + "천");
           return (num / 1000).toFixed(1) + "천";
         } else {
           return num;
         }
       case "EN":
         if (num >= 10000000) {
-          console.log();
           return parseInt(num / 10000000) + "M";
         } else if (num >= 1000000) {
           return (num / 1000000).toFixed(1) + "M";
@@ -984,27 +1053,29 @@ const WatchVideo = () => {
         <div className="watch-video-tags-wrapper">
           {[] ??
             location.state.tags.map((i, index) => (
-              <div className="watch-video-tag">{i}</div>
+              <div className="watch-video-tag" key={index}>
+                {i}
+              </div>
             ))}
         </div>
-        <div className="watch-video-title">{location.state.title}</div>
+        <div className="watch-video-title">{watchVideoState.title}</div>
         <div className="watch-video-info">
           <div className="watch-video-info-viewcount">
-            {languageState === "KOR" && `조회수 ${location.state.viewCount}회`}
-            {languageState === "EN" && `${location.state.viewCount} views`}
+            {languageState === "KOR" && `조회수 ${watchVideoState.viewCount}회`}
+            {languageState === "EN" && `${watchVideoState.viewCount} views`}
           </div>
           <div className="watch-video-info-etc">
             <div className="wvi-item">
               <div className="wvi-item-icon">
                 <AiOutlineLike />
               </div>
-              {formattingNumber(location.state.likeCount)}
+              {formattingNumber(watchVideoState.likeCount)}
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
                 <AiOutlineDislike />
               </div>
-              {formattingNumber(location.state.dislikeCount)}
+              {formattingNumber(watchVideoState.dislikeCount)}
             </div>
             <div className="wvi-item">
               <div className="wvi-item-icon">
@@ -1029,18 +1100,20 @@ const WatchVideo = () => {
         <Line />
         <div className="watch-video-channel">
           <div className="watch-video-channel-icon">
-            <img src={location.state.channelIconUrl} alt="" />
+            <img src={watchVideoState.channelIconUrl} alt="" />
           </div>
           <div className="watch-video-channel-info">
             <div className="watch-video-channel-title">
-              {location.state.channelTitle}
+              {watchVideoState.channelTitle}
             </div>
             <div className="watch-video-channel-subscribers">
               {languageState === "KOR" &&
-                `구독자 ${formattingNumber(location.state.subscriberCount)} 명`}
+                `구독자 ${formattingNumber(
+                  watchVideoState.subscriberCount
+                )} 명`}
               {languageState === "EN" &&
                 `${formattingNumber(
-                  location.state.subscriberCount
+                  watchVideoState.subscriberCount
                 )} subscribers`}
             </div>
           </div>
@@ -1049,12 +1122,12 @@ const WatchVideo = () => {
           </div>
         </div>
         <div className="watch-video-description">
-          {location.state.videoDescription}
+          {watchVideoState.description}
         </div>
         <Line />
         <div className="watch-video-comments">
-          {languageState === "KOR" && `댓글 ${location.state.commentCount}개`}
-          {languageState === "EN" && `${location.state.commentCount} Comments`}
+          {languageState === "KOR" && `댓글 ${watchVideoState.commentCount}개`}
+          {languageState === "EN" && `${watchVideoState.commentCount} Comments`}
         </div>
       </div>
       <div className="watch-video-relative-list">

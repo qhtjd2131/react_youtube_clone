@@ -28,7 +28,6 @@ const SearchResult = () => {
     const getSearchData = async (value) => {
       const url = `https://www.googleapis.com/youtube/v3/search?&part=${option.part}&q=${value}&regionCode=${option.regionCode}&maxResults=${option.maxResults}&key=${option.apiKey}`;
       const result = await axios.get(url);
-      console.log(result);
       return result.data.items;
 
       //   const result = {
@@ -383,7 +382,6 @@ const SearchResult = () => {
       .then((value) => getSearchData(value))
       .then((items) => {
         setItems(items);
-        console.log("items :", items);
         getChannelData(items).then((channelData) => {
           setChannelItems(() => {
             let table = {};
@@ -395,7 +393,6 @@ const SearchResult = () => {
               };
             });
             setIsLoading(false);
-            console.log("Ttt", table);
             return table;
           });
         });
