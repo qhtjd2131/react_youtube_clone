@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import "./SearchResult.scss";
 import { themeStateContext, SideBarContext, MiniSideBarContext } from "../App";
@@ -13,6 +13,8 @@ const SearchResult = () => {
   const { themeState } = useContext(themeStateContext);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
   const { setIsOpenMiniSideBar } = useContext(MiniSideBarContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsOpenMiniSideBar(true);
@@ -380,23 +382,32 @@ const SearchResult = () => {
     setStateFunc()
       .then((value) => getSearchData(value))
       .then((items) => {
+        console.log("itmes : ", items);
         setItems(items);
         getChannelData(items).then((channelData) => {
           setChannelItems(() => {
             let table = {};
-            channelData.forEach((i) => {
-              table[i.id] = {
-                title: i.snippet.title,
-                description: i.snippet.description,
-                thumbnails: i.snippet.thumbnails,
-              };
-            });
+
+            if (channelData) {
+              channelData.forEach((i) => {
+                table[i.id] = {
+                  title: i.snippet.title,
+                  description: i.snippet.description,
+                  thumbnails: i.snippet.thumbnails,
+                };
+              });
+            }
+
             setIsLoading(false);
             return table;
           });
         });
+      })
+      .catch((e) => {
+        console.log(e);
+        navigate("/");
       });
-  }, [location.search]);
+  }, [location, navigate]);
   return (
     <div
       className={
@@ -409,7 +420,13 @@ const SearchResult = () => {
         "Loading ..."
       ) : (
         <div className="search-result-container">
-          {items.map((i, index) => (
+          {items.length < 1 && (
+            <div className={"no-result-found no-result-found-" + themeState}>
+              검색 결과 없음
+            </div>
+          )}
+          {console.log(!items)}
+          {(items ?? []).map((i, index) => (
             <div
               className={
                 "search-item-wrapper search-item-wrapper-" + themeState

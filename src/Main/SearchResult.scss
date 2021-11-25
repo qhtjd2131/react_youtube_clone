@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 
-.search-item-info a{
+.search-item-info a {
   text-decoration: none;
 }
 
@@ -60,4 +60,13 @@
 .search-item-description {
   white-space: wrap;
   word-break: keep-all;
+}
+
+.no-result-found {
+  font-size: 32px;
+  color: black;
+}
+
+.no-result-found-darkTheme {
+  color: white;
 }
