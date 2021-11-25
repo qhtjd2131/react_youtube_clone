@@ -5,7 +5,6 @@ import FilterBar from "./FilterBar";
 import {
   SideBarContext,
   themeStateContext,
-  searchTextContext,
   MiniSideBarContext,
 } from "../App";
 import { Link } from "react-router-dom";
@@ -15,42 +14,11 @@ const Main = () => {
   const [itemsState, setItems] = useState([]);
   const [channelItemsState, setChannelItems] = useState([]);
   const [isScrollBottom, setIsScrollBottom] = useState(false);
-
-  const { isOpenMiniSideBar, setIsOpenMiniSideBar } =
+  const { setIsOpenMiniSideBar } =
     useContext(MiniSideBarContext);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
   const { themeState } = useContext(themeStateContext);
-  const { searchText, setSearchText } = useContext(searchTextContext);
 
-  const dataset_Search = {
-    snippet: {
-      publishedAt: "2018-04-11T15:00:01Z",
-      channelId: "UCLkAepWjdylmXSltofFvsYQ",
-      title: "Ep4 It‘s on you and I | BTS: Burn the Stage",
-      description:
-        "Can the show go on? BTS begin to wrap up their South America tour. Day-by-day, we see how the members passionately discuss how they can improve their ...",
-      thumbnails: {
-        default: {
-          url: "https://i.ytimg.com/vi/Iiukq_ilT0Y/default.jpg",
-          width: 120,
-          height: 90,
-        },
-        medium: {
-          url: "https://i.ytimg.com/vi/Iiukq_ilT0Y/mqdefault.jpg",
-          width: 320,
-          height: 180,
-        },
-        high: {
-          url: "https://i.ytimg.com/vi/Iiukq_ilT0Y/hqdefault.jpg",
-          width: 480,
-          height: 360,
-        },
-      },
-      channelTitle: "BANGTANTV",
-      liveBroadcastContent: "none",
-      publishTime: "2018-04-11T15:00:01Z",
-    },
-  };
 
   useEffect(() => {
     setIsOpenMiniSideBar(true);
@@ -66,7 +34,6 @@ const Main = () => {
     const getData = async () => {
       // const result = await axios.get(url_mostPopular);
       // console.log("result:", result);
-
       // return result.data.items;
       return await new Promise((resolve) =>
         setTimeout(() => {

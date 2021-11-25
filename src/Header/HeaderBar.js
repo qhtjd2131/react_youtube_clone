@@ -16,8 +16,7 @@ import MicSearchModal from "./MicSearchModal";
 import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
 import * as data from "./HeaderData/headerBarData.js";
-import { useEffect } from "react/cjs/react.development";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LogIn = () => {
   const { languageState } = useContext(languageStateContext);
@@ -50,7 +49,7 @@ export const Logo = () => {
         to="/"
         onClick={() => {
           navigate("/");
-          window.location.reload();   //같은 path에서도 page refresh 되도록.
+          window.location.reload(); //같은 path에서도 page refresh 되도록.
         }}
       >
         {data.data_Logo.logo.image[themeState]}
@@ -111,32 +110,30 @@ const Search = () => {
         </div>
       </Link>
 
-      <Link to="test">
+      <div
+        className="mic-button"
+        onMouseEnter={(e) => {
+          handlerMouseEnter(e, "mic", micHoverRef, setStateHover);
+        }}
+        onMouseLeave={(e) => {
+          handlerMouseLeave(e, micHoverRef, setStateHover);
+        }}
+        onClick={() => {
+          setIsOpenMicSearch(true);
+        }}
+      >
+        {data.data_Search.searchWithYourVoice.image}
         <div
-          className="mic-button"
-          onMouseEnter={(e) => {
-            handlerMouseEnter(e, "mic", micHoverRef, setStateHover);
-          }}
-          onMouseLeave={(e) => {
-            handlerMouseLeave(e, micHoverRef, setStateHover);
-          }}
-          onClick={() => {
-            setIsOpenMicSearch(true);
-          }}
+          className={
+            stateHover === "mic"
+              ? "hover-description on-hover"
+              : "hover-description"
+          }
+          ref={micHoverRef}
         >
-          {data.data_Search.searchWithYourVoice.image}
-          <div
-            className={
-              stateHover === "mic"
-                ? "hover-description on-hover"
-                : "hover-description"
-            }
-            ref={micHoverRef}
-          >
-            {data.language_Search[languageState].searchWithYourVoice}
-          </div>
+          {data.language_Search[languageState].searchWithYourVoice}
         </div>
-      </Link>
+      </div>
 
       {isOpenMicSearch && (
         <MicSearchModal setIsOpenMicSearch={setIsOpenMicSearch} />

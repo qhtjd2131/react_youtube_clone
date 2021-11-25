@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./SearchResult.scss";
 import { themeStateContext, SideBarContext, MiniSideBarContext } from "../App";
 import axios from "axios";
-import MiniSideBar from "../Side/MiniSideBar";
 
 const SearchResult = () => {
   const [isLoading, setIsLoading] = useState(true);

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./WatchVideo.scss";
 import {
   MiniSideBarContext,
@@ -19,6 +19,7 @@ import axios from "axios";
 
 const WatchVideo = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [relativeVideoItems, setRelativeVideoItems] = useState([]);
   const [watchVideoState, setWatchVideoState] = useState(() => {
@@ -46,15 +47,10 @@ const WatchVideo = () => {
     }
   });
 
-  const { isOpenMiniSideBar, setIsOpenMiniSideBar } =
-    useContext(MiniSideBarContext);
+  const { setIsOpenMiniSideBar } = useContext(MiniSideBarContext);
   const { setIsOpenSideBar } = useContext(SideBarContext);
   const { themeState } = useContext(themeStateContext);
   const { languageState } = useContext(languageStateContext);
-
-  const video_opt = {
-    // width: "100%",
-  };
 
   const getQueryString = () => {
     //query string이 한개일때만 가정
@@ -968,6 +964,7 @@ const WatchVideo = () => {
 
   useEffect(() => {
     if (!location.state) {
+      console.log("state가 없어 api를 사용해 데이터를 가져옵니다!!");
       const option = {
         part: "snippet,statistics",
         apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
@@ -984,8 +981,6 @@ const WatchVideo = () => {
       const getChannelInfo = async (channelId) => {
         const getChannelInfoUrl = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelId}&key=${option.apiKey}`;
         const result = await axios.get(getChannelInfoUrl);
-
-        console.log("channel info :", result.data.items[0]);
         return result.data.items[0];
       };
 
@@ -1009,8 +1004,11 @@ const WatchVideo = () => {
             channelIconUrl: channelInfo.snippet.thumbnails.default.url,
             subscriberCount: channelInfo.statistics.subscriberCount,
           };
-          console.log("res :", res);
           setWatchVideoState(() => ({ ...res }));
+        })
+        .catch((e) => {
+          console.log("error", e);
+          navigate("/");
         });
     }
   }, []);
@@ -1048,7 +1046,7 @@ const WatchVideo = () => {
     >
       <div className="watch-video-wrapper">
         <div className="watch-video">
-          <YouTube videoId={getQueryString()} opts={video_opt}></YouTube>
+          <YouTube videoId={getQueryString()}></YouTube>
         </div>
         <div className="watch-video-tags-wrapper">
           {[] ??

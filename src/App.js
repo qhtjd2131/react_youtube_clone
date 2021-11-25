@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import Main from "./Main/Main.js";
 import SearchResult from "./Main/SearchResult";
 import SideBar from "./Side/SideBar";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Test from "./Main/Test";
 import WatchVideo from "./Main/WatchVideo";
 
@@ -14,7 +14,6 @@ export const languageStateContext = createContext({});
 export const themeStateContext = createContext({});
 export const locationStateContext = createContext({});
 export const restrictedModeContext = createContext({});
-export const searchTextContext = createContext({});
 export const MiniSideBarContext = createContext({});
 
 export const Overlay = ({ overlayClick }) => {
@@ -24,7 +23,6 @@ export const Overlay = ({ overlayClick }) => {
 const App = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isWindowSizeXL, setIsWindowSizeXL] = useState(true);
-  const [searchText, setSearchText] = useState("");
   const [isOpenMiniSideBar, setIsOpenMiniSideBar] = useState(true);
   const [restrictedMode, setRestrictedMode] = useState(() => {
     const a = window.localStorage.getItem("restrictedMode");
