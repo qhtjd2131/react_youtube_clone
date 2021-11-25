@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/react_youtube_clone/static/css/main.718d72fa.chunk.css",
+    "main.js": "/react_youtube_clone/static/js/main.65bb8767.chunk.js",
+    "main.js.map": "/react_youtube_clone/static/js/main.65bb8767.chunk.js.map",
+    "runtime-main.js": "/react_youtube_clone/static/js/runtime-main.684cc087.js",
+    "runtime-main.js.map": "/react_youtube_clone/static/js/runtime-main.684cc087.js.map",
+    "static/js/2.af230195.chunk.js": "/react_youtube_clone/static/js/2.af230195.chunk.js",
+    "static/js/2.af230195.chunk.js.map": "/react_youtube_clone/static/js/2.af230195.chunk.js.map",
+    "index.html": "/react_youtube_clone/index.html",
+    "static/css/main.718d72fa.chunk.css.map": "/react_youtube_clone/static/css/main.718d72fa.chunk.css.map",
+    "static/js/2.af230195.chunk.js.LICENSE.txt": "/react_youtube_clone/static/js/2.af230195.chunk.js.LICENSE.txt",
+    "static/media/yt_logo_rgb_light.a676ea31.png": "/react_youtube_clone/static/media/yt_logo_rgb_light.a676ea31.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.684cc087.js",
+    "static/js/2.af230195.chunk.js",
+    "static/css/main.718d72fa.chunk.css",
+    "static/js/main.65bb8767.chunk.js"
+  ]
+}
