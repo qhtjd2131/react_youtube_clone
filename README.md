@@ -200,3 +200,32 @@ api key 노출 문제.
 1. .env 파일로 환경변수 설정 => 빌드파일에 포함되므로 누구든지 api key를 볼 수 있음.
 2. backend 단에서 apiKey 를 저장하고 사용하는게 올바른 apiKey 사용 방법임.
 
+youtube api 호출 할당량 관리
+1. 큰 데이터셋을 가져와 필요한것만 사용하는 현재의 프로젝트
+2. 이는  불필요한 데이터를 검색하고 가져오므로, 사용가능한 할당량을 감소시키고, 더 많은 시간과 대역폭이 필요함.
+3. 결론적으로 본 프로젝트 테스트 중 할당량 제한으로 테스트를 못하게 되는 상황 발생
+3. 따라서 할당량 관리가 필요함.
+
+  3-1. 할당량 계산 (https://developers.google.com/youtube/v3/determine_quota_cost) 참고
+  main
+-search : 100  (20개)
+-channel : 1  (20개)
+
+2020
+
+searchResult
+-search : 100 (7)
+-channel:1 (7)
+
+707
+
+watchVideo
+-search : 100 (20)
+-video : 1 
+-channel : 1
+
+2002
+
+total : 4729  cost
+
+  3-2. fields 매개변수로 필요한 데이터만 중첩없이 설정. (https://developers.google.com/youtube/v3/getting-started#fields))

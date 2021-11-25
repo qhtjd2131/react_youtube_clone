@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./WatchVideo.scss";
 import {
@@ -13,7 +13,6 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { GiSaveArrow } from "react-icons/gi";
 import { BsThreeDots } from "react-icons/bs";
 import { Line } from "../Side/SideBar";
-import { useState } from "react/cjs/react.development";
 import * as data from "./MainData/watchVideoData.js";
 import axios from "axios";
 
@@ -69,11 +68,12 @@ const WatchVideo = () => {
   }, [setIsOpenMiniSideBar, setIsOpenSideBar]);
 
   useEffect(() => {
+    console.log("watvideo useeffect num 1");
     const getRelativeVideo = async () => {
       const option = {
         part: "snippet",
         regionCode: "KR",
-        maxResults: 20,
+        maxResults: 10,
         apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
       };
       const getRelativeVideoUrl = `https://www.googleapis.com/youtube/v3/search?part=${
@@ -87,13 +87,16 @@ const WatchVideo = () => {
       return result.data.items;
     };
 
-    getRelativeVideo().then((items) => {
-      setIsRelativeVideoLoading(() => {
+    getRelativeVideo()
+      .then((items) => {
+        setIsRelativeVideoLoading(() => false);
         setRelativeVideoItems(items);
-        return false;
+        console.log("!!!! fdafs");
+      })
+      .catch((e) => {
+        alert(e + "\n 관련된 비디오 목록을 가져오는데 실패했습니다.");
       });
-    });
-  }, [getQueryString]);
+  }, [getQueryString, setIsRelativeVideoLoading, setRelativeVideoItems]);
 
   useEffect(() => {
     if (!location.state) {
@@ -144,13 +147,13 @@ const WatchVideo = () => {
           setIsWatchVideoLoading(false);
         })
         .catch((e) => {
-          console.log("error", e);
+          alert(e);
           navigate("/");
         });
     } else {
       setIsWatchVideoLoading(false);
     }
-  }, [getQueryString, location.search, location.state,navigate]);
+  }, [getQueryString, location.search, location.state, navigate]);
 
   const formattingNumber = (num) => {
     if (!num) return 0;

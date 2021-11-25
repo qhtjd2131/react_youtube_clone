@@ -16,18 +16,30 @@ const Main = () => {
 
   useEffect(() => {
     setIsOpenMiniSideBar(true);
+  }, [setIsOpenMiniSideBar]);
+
+  useEffect(() => {
     const option = {
-      part: "snippet, statistics",
+      part: "snippet,statistics",
       regionCode: "KR",
       chart: "mostPopular",
       maxResults: 20,
+      fields:
+        "items(snippet.title,snippet.channelTitle,snippet.channelId,snippet.publishedAt,snippet.description,snippet.tags,snippet.thumbnails.medium.url,statistics)",
       apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
     };
-    const url_mostPopular = `https://www.googleapis.com/youtube/v3/videos?part=${option.part}&chart=${option.chart}&maxResults=${option.maxResults}&regionCode=${option.regionCode}&key=${option.apiKey}`;
 
     const getData = async () => {
+      const url_mostPopular = `https://www.googleapis.com/youtube/v3/videos?part=${option.part}&chart=${option.chart}&maxResults=${option.maxResults}&regionCode=${option.regionCode}&fields=${option.fields}&key=${option.apiKey}`;
+
       const result = await axios.get(url_mostPopular);
+      console.log(result);
       return result.data.items;
+    };
+
+    const option2 = {
+      fields:
+        "items(snippet.title,snippet.description,snippet.thumbnails.default.url,statistics)",
     };
 
     const getChannelData = async (items) => {
@@ -37,31 +49,39 @@ const Main = () => {
       });
       channelIDsString = channelIDsString.slice(0, -1);
 
-      const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&key=${option.apiKey}`;
+      console.log("len :", channelIDsString.split(",").length);
+      const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&fields=${option2.fields}&key=${option.apiKey}`;
       const channelData = await axios.get(urlGetChannel);
+      console.log(channelData);
       return channelData.data.items;
     };
 
-    getData().then((result) => {
-      // setItems(result.items);
-      setItems(result);
-      getChannelData(result).then((channelData) => {
-        setChannelItems(() => {
-          let table = {};
-          channelData.forEach((i) => {
-            table[i.id] = {
-              title: i.snippet.title,
-              description: i.snippet.description,
-              thumbnails: i.snippet.thumbnails,
-              subscriberCount: i.statistics.subscriberCount,
-            };
+    getData()
+      .then((result) => {
+        // setItems(result.items);
+        setItems(result);
+        getChannelData(result).then((channelData) => {
+          setChannelItems(() => {
+            let table = {};
+            channelData.forEach((i) => {
+              table[i.id] = {
+                title: i.snippet.title,
+                description: i.snippet.description,
+                thumbnails: i.snippet.thumbnails,
+                subscriberCount: i.statistics.subscriberCount,
+              };
+            });
+            return table;
           });
-          setIsLoading(false);
-          return table;
         });
+      })
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        alert(e + "\n 인기 동영상 불러오기 실패");
       });
-    });
-  }, [setIsOpenMiniSideBar]);
+  }, []);
 
   /* 스크롤바가 제일 하단에 도착했을때, api call 을 하기위한 useeffect*/
   // useEffect(() => {
