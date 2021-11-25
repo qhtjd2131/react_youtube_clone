@@ -10,7 +10,7 @@ import {
 import YouTube from "react-youtube";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { RiShareForwardLine } from "react-icons/ri";
-import { GiSaveArrow } from "react-icons/gi";
+import { GiSaveArrow, GiTurret } from "react-icons/gi";
 import { BsThreeDots } from "react-icons/bs";
 import { Line } from "../Side/SideBar";
 import { useState } from "react/cjs/react.development";
@@ -21,6 +21,8 @@ const WatchVideo = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [isRelativeVideoLoading, setIsRelativeVideoLoading] = useState(true);
+  const [isWatchVideoLoading, setIsWatchVideoLoading] = useState(true);
   const [relativeVideoItems, setRelativeVideoItems] = useState([]);
   const [watchVideoState, setWatchVideoState] = useState(() => {
     let stateTemp = {};
@@ -63,7 +65,7 @@ const WatchVideo = () => {
   useEffect(() => {
     setIsOpenSideBar(false);
     setIsOpenMiniSideBar(false);
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
@@ -958,9 +960,13 @@ const WatchVideo = () => {
       return result2;
     };
 
-    getRelativeVideo().then((items) => {
-      setRelativeVideoItems(items);
-    });
+    getRelativeVideo()
+      .then((items) => {
+        setRelativeVideoItems(items);
+      })
+      .then(() => {
+        setIsRelativeVideoLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -1005,12 +1011,18 @@ const WatchVideo = () => {
             channelIconUrl: channelInfo.snippet.thumbnails.default.url,
             subscriberCount: channelInfo.statistics.subscriberCount,
           };
+
           setWatchVideoState(() => ({ ...res }));
+        })
+        .then((res) => {
+          setIsWatchVideoLoading(false);
         })
         .catch((e) => {
           console.log("error", e);
           navigate("/");
         });
+    } else {
+      setIsWatchVideoLoading(false);
     }
   }, []);
 
@@ -1045,105 +1057,115 @@ const WatchVideo = () => {
     <div
       className={"watch-video-container watch-video-container-" + themeState}
     >
-      <div className="watch-video-wrapper">
-        <div className="watch-video">
-          <YouTube videoId={getQueryString()}></YouTube>
-        </div>
-        <div className="watch-video-tags-wrapper">
-          {[] ??
-            location.state.tags.map((i, index) => (
-              <div className="watch-video-tag" key={index}>
-                {i}
-              </div>
-            ))}
-        </div>
-        <div className="watch-video-title">{watchVideoState.title}</div>
-        <div className="watch-video-info">
-          <div className="watch-video-info-viewcount">
-            {languageState === "KOR" && `조회수 ${watchVideoState.viewCount}회`}
-            {languageState === "EN" && `${watchVideoState.viewCount} views`}
+      {isWatchVideoLoading ? (
+        <div className="watch-video-wrapper">Loading... </div>
+      ) : (
+        <div className="watch-video-wrapper">
+          <div className="watch-video">
+            <YouTube videoId={getQueryString()}></YouTube>
           </div>
-          <div className="watch-video-info-etc">
-            <div className="wvi-item">
-              <div className="wvi-item-icon">
-                <AiOutlineLike />
-              </div>
-              {formattingNumber(watchVideoState.likeCount)}
-            </div>
-            <div className="wvi-item">
-              <div className="wvi-item-icon">
-                <AiOutlineDislike />
-              </div>
-              {formattingNumber(watchVideoState.dislikeCount)}
-            </div>
-            <div className="wvi-item">
-              <div className="wvi-item-icon">
-                <RiShareForwardLine />
-              </div>
-
-              {data.watchVideoData.share[languageState]}
-            </div>
-            <div className="wvi-item">
-              <div className="wvi-item-icon">
-                <GiSaveArrow />
-              </div>
-              {data.watchVideoData.save[languageState]}
-            </div>
-            <div className="wvi-item">
-              <div className="wvi-item-icon">
-                <BsThreeDots />
-              </div>
-            </div>
+          <div className="watch-video-tags-wrapper">
+            {[] ??
+              location.state.tags.map((i, index) => (
+                <div className="watch-video-tag" key={index}>
+                  {i}
+                </div>
+              ))}
           </div>
-        </div>
-        <Line />
-        <div className="watch-video-channel">
-          <div className="watch-video-channel-icon">
-            <img src={watchVideoState.channelIconUrl} alt="" />
-          </div>
-          <div className="watch-video-channel-info">
-            <div className="watch-video-channel-title">
-              {watchVideoState.channelTitle}
-            </div>
-            <div className="watch-video-channel-subscribers">
+          <div className="watch-video-title">{watchVideoState.title}</div>
+          <div className="watch-video-info">
+            <div className="watch-video-info-viewcount">
               {languageState === "KOR" &&
-                `구독자 ${formattingNumber(
-                  watchVideoState.subscriberCount
-                )} 명`}
-              {languageState === "EN" &&
-                `${formattingNumber(
-                  watchVideoState.subscriberCount
-                )} subscribers`}
+                `조회수 ${watchVideoState.viewCount}회`}
+              {languageState === "EN" && `${watchVideoState.viewCount} views`}
+            </div>
+            <div className="watch-video-info-etc">
+              <div className="wvi-item">
+                <div className="wvi-item-icon">
+                  <AiOutlineLike />
+                </div>
+                {formattingNumber(watchVideoState.likeCount)}
+              </div>
+              <div className="wvi-item">
+                <div className="wvi-item-icon">
+                  <AiOutlineDislike />
+                </div>
+                {formattingNumber(watchVideoState.dislikeCount)}
+              </div>
+              <div className="wvi-item">
+                <div className="wvi-item-icon">
+                  <RiShareForwardLine />
+                </div>
+
+                {data.watchVideoData.share[languageState]}
+              </div>
+              <div className="wvi-item">
+                <div className="wvi-item-icon">
+                  <GiSaveArrow />
+                </div>
+                {data.watchVideoData.save[languageState]}
+              </div>
+              <div className="wvi-item">
+                <div className="wvi-item-icon">
+                  <BsThreeDots />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="watch-video-channel-subscribtion-button">
-            {data.watchVideoData.subscribe[languageState]}
+          <Line />
+          <div className="watch-video-channel">
+            <div className="watch-video-channel-icon">
+              <img src={watchVideoState.channelIconUrl} alt="" />
+            </div>
+            <div className="watch-video-channel-info">
+              <div className="watch-video-channel-title">
+                {watchVideoState.channelTitle}
+              </div>
+              <div className="watch-video-channel-subscribers">
+                {languageState === "KOR" &&
+                  `구독자 ${formattingNumber(
+                    watchVideoState.subscriberCount
+                  )} 명`}
+                {languageState === "EN" &&
+                  `${formattingNumber(
+                    watchVideoState.subscriberCount
+                  )} subscribers`}
+              </div>
+            </div>
+            <div className="watch-video-channel-subscribtion-button">
+              {data.watchVideoData.subscribe[languageState]}
+            </div>
+          </div>
+          <div className="watch-video-description">
+            {watchVideoState.description}
+          </div>
+          <Line />
+          <div className="watch-video-comments">
+            {languageState === "KOR" &&
+              `댓글 ${watchVideoState.commentCount}개`}
+            {languageState === "EN" &&
+              `${watchVideoState.commentCount} Comments`}
           </div>
         </div>
-        <div className="watch-video-description">
-          {watchVideoState.description}
-        </div>
-        <Line />
-        <div className="watch-video-comments">
-          {languageState === "KOR" && `댓글 ${watchVideoState.commentCount}개`}
-          {languageState === "EN" && `${watchVideoState.commentCount} Comments`}
-        </div>
-      </div>
+      )}
+
       <div className="watch-video-relative-list">
         {/* 오른쪽에 관련된 비디오 추천목록 */}
-        {relativeVideoItems.map((i, index) => (
-          <div className="relative-item-wrapper" key={index}>
-            <div className="relative-item-thumbnails">
-              <img src={i.snippet.thumbnails.medium.url} alt="" />
-            </div>
-            <div className="relative-item-info">
-              <div className="relative-item-title">{i.snippet.title}</div>
-              <div className="relative-item-channel-name">
-                {i.snippet.channelTitle}
+        {isRelativeVideoLoading
+          ? "Loading..."
+          : relativeVideoItems.map((i, index) => (
+              <div className="relative-item-wrapper" key={index}>
+                <div className="relative-item-thumbnails">
+                  <img src={i.snippet.thumbnails.medium.url} alt="" />
+                </div>
+                <div className="relative-item-info">
+                  <div className="relative-item-title">{i.snippet.title}</div>
+                  <div className="relative-item-channel-name">
+                    {i.snippet.channelTitle}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            ))}
       </div>
     </div>
   );

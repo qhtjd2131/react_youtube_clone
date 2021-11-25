@@ -13,7 +13,7 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [itemsState, setItems] = useState([]);
   const [channelItemsState, setChannelItems] = useState([]);
-  const [isScrollBottom, setIsScrollBottom] = useState(false);
+  // const [isScrollBottom, setIsScrollBottom] = useState(false);
   const { setIsOpenMiniSideBar } =
     useContext(MiniSideBarContext);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
@@ -33,7 +33,6 @@ const Main = () => {
 
     const getData = async () => {
       // const result = await axios.get(url_mostPopular);
-      // console.log("result:", result);
       // return result.data.items;
       return await new Promise((resolve) =>
         setTimeout(() => {
@@ -1789,7 +1788,6 @@ const Main = () => {
 
       // const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&key=${option.apiKey}`;
       // const channelData = await axios.get(urlGetChannel);
-      // console.log(channelData);
 
       const channelData = {
         data: {
@@ -2561,7 +2559,6 @@ const Main = () => {
 
     getData().then((result) => {
       // setItems(result.items);
-      // console.log(result.items);
       setItems(result);
       getChannelData(result).then((channelData) => {
         setChannelItems(() => {
@@ -2581,23 +2578,24 @@ const Main = () => {
     });
   }, []);
 
-  useEffect(() => {
-    //scroll 시 data update
-    const handlerScrollEvent = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight
-      ) {
-        console.log("here is bottm");
-        // setIsScrollBottom(true);
-      } else {
-        // setIsScrollBottom(false);
-      }
-    };
-    window.addEventListener("scroll", handlerScrollEvent);
+  /* 스크롤바가 제일 하단에 도착했을때, api call 을 하기위한 useeffect*/
+  // useEffect(() => {
+  //   //scroll 시 data update
+  //   const handlerScrollEvent = () => {
+  //     if (
+  //       window.innerHeight + window.scrollY >=
+  //       document.documentElement.scrollHeight
+  //     ) {
+  //       console.log("here is bottm");
+  //       // setIsScrollBottom(true);
+  //     } else {
+  //       // setIsScrollBottom(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handlerScrollEvent);
 
-    return window.removeEventListener("scroll", handlerScrollEvent);
-  }, []);
+  //   return window.removeEventListener("scroll", handlerScrollEvent);
+  // }, []);
 
   return (
     <div
@@ -2622,7 +2620,6 @@ const Main = () => {
                   channelIconUrl:
                     channelItemsState[item.snippet.channelId].thumbnails.default
                       .url,
-                  // thumbnails : item.snippet.
                   viewCount: item.statistics.viewCount,
                   likeCount: item.statistics.likeCount,
                   dislikeCount: item.statistics.dislikeCount,

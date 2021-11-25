@@ -3,14 +3,12 @@ import React, {
   useState,
   useContext,
   createContext,
-  useRef,
 } from "react";
 import "./HeaderBar.scss";
 import {
   SideBarContext,
   languageStateContext,
   themeStateContext,
-  searchTextContext,
 } from "../App";
 import MicSearchModal from "./MicSearchModal";
 import AppMenuDropdown from "./AppMenuDropdown";
