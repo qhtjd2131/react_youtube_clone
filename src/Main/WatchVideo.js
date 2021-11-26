@@ -73,7 +73,7 @@ const WatchVideo = () => {
       const option = {
         part: "snippet",
         regionCode: "KR",
-        maxResults: 10,
+        maxResults: 8,
         apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
       };
       const getRelativeVideoUrl = `https://www.googleapis.com/youtube/v3/search?part=${
@@ -104,18 +104,22 @@ const WatchVideo = () => {
       const option = {
         part: "snippet,statistics",
         apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
-      };
+        fields:
+        "items(snippet.title,snippet.channelTitle,snippet.channelId,snippet.publishedAt,snippet.description,snippet.tags,snippet.thumbnails.medium.url,statistics)",
+        fields2:
+        "items(snippet.title,snippet.description,snippet.thumbnails.default.url,statistics)",
+    };
 
       const getVideoInfo = async () => {
         const getVideoInfoUrl = `https://www.googleapis.com/youtube/v3/videos?part=${
           option.part
-        }&id=${getQueryString()}&key=${option.apiKey}`;
+        }&id=${getQueryString()}&fields=${option.fields}&key=${option.apiKey}`;
         const result = await axios.get(getVideoInfoUrl);
         return result.data.items[0];
       };
 
       const getChannelInfo = async (channelId) => {
-        const getChannelInfoUrl = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelId}&key=${option.apiKey}`;
+        const getChannelInfoUrl = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelId}&fields=${option.fields2}&key=${option.apiKey}`;
         const result = await axios.get(getChannelInfoUrl);
         return result.data.items[0];
       };
@@ -196,7 +200,7 @@ const WatchVideo = () => {
             <YouTube videoId={getQueryString()}></YouTube>
           </div>
           <div className="watch-video-tags-wrapper">
-            {[] ??
+            {
               location.state.tags.map((i, index) => (
                 <div className="watch-video-tag" key={index}>
                   {i}

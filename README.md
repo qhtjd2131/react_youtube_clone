@@ -1,4 +1,154 @@
-# Getting Started with Create React App
+# React Youtube Clone
+## 소개
+
+- Window 환경에서 create-react-app 을 사용하여 Youtube 메인, 검색결과, 동영상 시청 페이지를 클론코딩했습니다.
+- Chrome 을 기준으로 개발했기 때문에, 다른 브라우저와 호환이 되지 않을 수 도 있습니다.
+- 반응형을 고려하지 않고 X-Large 사이즈의 크기를 기준으로 작성되었습니다.
+- 백엔드를 컨트롤 하지 못하여, apiKey가 노출되어있습니다. 그리고 apiKey의 하루 할당량을 초과 할 시, youtube data를 내려받지 못하여 Loading이 계속 될 수 있습니다. Youtube Api의 하루 할당량은 10,000 이며, 자세한 사항은 아래 링크를 참고해주세요.
+https://developers.google.com/youtube/v3/determine_quota_cost
+
+
+Youtube : https://www.youtube.com/
+My Youtube Clone : https://qhtjd2131.github.io/react_youtube_clone
+
+
+### 시작하기	
+```
+npm install
+npm run start
+```
+
+ ---
+
+### 기술 스택 
+**1. HTML5**
+
+**2. CSS3**
+ - SCSS 사용 (이번 프로젝트에서 처음 사용)
+
+**3. CRA (create-react-app)**
+(auto installed by CRA)
+- webpack (bundler)
+- babel
+- others.. 
+
+**4. React Library**
+- **sass** : SCSS를 사용을 위한 라이브러리
+https://sass-lang.com/documentation/js-api
+- **axios** : youtube API 를 사용을 위한 HTTP 통신 라이브러리
+https://axios-http.com/kr/docs/intro
+- **react-youtube** : Youtube 동영상을 iframe 으로 반환하여 별도의 커스텀 없이 동영상 플레이어 컴포넌트를 사용.
+https://www.npmjs.com/package/react-youtube
+- **react-icons** : youtube에서 사용되는 아이콘을 대체할 수 있는 아이콘 제공
+https://react-icons.github.io/react-icons/ 
+https://www.npmjs.com/package/react-icons 
+- **react-router-dom v6** : Link, Router, queryString 지원.(페이지 이동 효과를 위해 사용), 이 문서에서는 version 6 를 사용함.
+https://reactrouter.com/docs/en/v6/getting-started/overview
+https://reactrouter.com/docs/en/v6/upgrading/v5 (v5와 달라진 점)
+- **gh-pages** github의 호스팅 서비스 이용하기
+https://www.npmjs.com/package/gh-pages
+---
+
+### Components Structure
+![bbb drawio](https://user-images.githubusercontent.com/34260967/143530854-28281361-5657-4324-8de8-052ba67ddfb5.png)
+
+![temp drawio](https://user-images.githubusercontent.com/34260967/143534852-296c94f5-3b6f-4561-b51d-ba20a0a0f26f.png)
+- Header, SideBar 은 fixed 요소임.
+
+---
+
+### Dependencies
+```javascript
+"dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.24.0",
+    "gh-pages": "^3.2.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "4.0.3",
+    "react-youtube": "^7.13.1",
+    "sass": "^1.43.4",
+    "web-vitals": "^1.0.1"
+  }
+```
+---
+
+### 동작 원리 및 구현 내용
+
+**버튼 부가 설명 컴포넌트**
+<!-- 버튼 부가설명 컴포넌트 GIF -->
+
+위와 같은 효과를 내기 위해 아래와 같은 과정을 거침.
+1. :after 선택자를 이용하여 컴포넌트를 생성하였다.
+ 1-1. hover 이벤트 발생 시 display속성을 none -> box 로 변경 하였다. 하지만 display:none 은 transition 효과가 적용되지 않는다.
+ 1-2. opacity 속성을 이용하여 투명도 변경하였다. 잘 작동하는 줄 알았지만, 투명해서 보이지 않지만 컴포넌트는 존재하여서 버튼 위치가 아닌 부가설명컴포넌트 위치에 커서가 hover 되어도 보여지게 되었다.
+2. 
+
+**테마 설정**
+
+
+**언어 설정**
+
+**비디오 시청(WatchVideo) 흐름**
+비디오 시청 페이지(WatchVideo.js)는 링크 공유할 수 있어야 하고, 그 링크를 주소창에 입력하여 접속 할 때에도, 올바르게 동작해야한다. 따라서 링크(url) 안에 존재하는 쿼리스트링으로 재생할 Youtube동영상 id를 받아서 동영상을 재생해야한다.
+ex) `https://www.youtube.com/watch?v=YmQD5P6fvlc`
+
+다음은 사용자가 비디오 시청을 하게되는 흐름과 이와 맞는 처리내용이다.
+1. main page를 통한 접속
+Main에서 이미 동일한 데이터를 호출 했기 때문에, Link를 통해 state를 WatchVideo 페이지에 넘겨준다. state를 넘겨받은 WatchVideo는 따로 API 호출을 할 필요 없이 랜더링 할 수 있다.
+
+2. 주소창에 직접 입력을 통한 접속
+이경우에는 react-router-dom 의 Link를 사용하지 않았기 때문에 어떠한 state도 존재하지 않는다. 따라서 queryString 으로 받은 Youtube Id를 기반으로 다시 API 호출을 해야한다.
+
+위의 두 경우를 대비하기 위해 useEffect로 Link로 받은 location.state의 존재를 확인하여 있으면 location.state를 쓰고, 없으면 api 호출을 하여 데이터를 받아오게 하였다. 
+이 때, state의 key값을 동일하게 하고 초기값으로 빈배열을 할당하여 state가 없더라도 초기에 랜더링 오류가 발생하지 않게 하였다. 
+
+```javascript
+useEffect(()=>{
+   if(location.state){
+      // main을 통한 접속 처리
+      // ...
+   } else {
+      // 주소창 입력을 통한 접속 처리
+      // ...
+   }
+},[location.state])
+```
+
+---
+
+### 겪었던 어려움
+
+#### 문제 1.
+**내용** : sample
+**해결** : sample
+
+**기타** :
+sample
+
+
+---
+
+## 향후 계획
+1.  sample
+
+2. sample
+
+---
+## 이번 프로젝트를 하면서..
+- SCSS를 사용하여 특성 파악
+- axios를 사용한 api call
+- react-router-dom version6 사용하고 바뀐 부분 파악
+- 테마, 언어설정 기능 구현 (최상위 컴포넌트의 state를 사용)
+
+
+
+////
+
 
 youtube api test하다가 호출 limit에 제한되버림..
 
