@@ -33,13 +33,13 @@ const Main = () => {
       const url_mostPopular = `https://www.googleapis.com/youtube/v3/videos?part=${option.part}&chart=${option.chart}&maxResults=${option.maxResults}&regionCode=${option.regionCode}&fields=${option.fields}&key=${option.apiKey}`;
 
       const result = await axios.get(url_mostPopular);
-      console.log(result);
+      console.log("reesult:", result);
       return result.data.items;
     };
 
     const option2 = {
       fields:
-        "items(snippet.title,snippet.description,snippet.thumbnails.default.url,statistics)",
+        "items(snippet.title,id,snippet.description,snippet.thumbnails.default.url,statistics)",
     };
 
     const getChannelData = async (items) => {
@@ -52,15 +52,15 @@ const Main = () => {
       console.log("len :", channelIDsString.split(",").length);
       const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&fields=${option2.fields}&key=${option.apiKey}`;
       const channelData = await axios.get(urlGetChannel);
-      console.log(channelData);
+      console.log("channel data :", channelData);
       return channelData.data.items;
     };
 
-    getData()
-      .then((result) => {
-        // setItems(result.items);
-        setItems(result);
-        getChannelData(result).then((channelData) => {
+    getData().then((result) => {
+      // setItems(result.items);
+      setItems(result);
+      getChannelData(result).then((channelData) => {
+        return new Promise((resolve) => {
           setChannelItems(() => {
             let table = {};
             channelData.forEach((i) => {
@@ -73,14 +73,15 @@ const Main = () => {
             });
             return table;
           });
+          resolve();
+        }).then(() => {
+          setIsLoading(false);
         });
-      })
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        alert(e + "\n 인기 동영상 불러오기 실패");
       });
+    });
+    // .catch((e) => {
+    //   alert(e + "\n 인기 동영상 불러오기 실패");
+    // });
   }, []);
 
   /* 스크롤바가 제일 하단에 도착했을때, api call 을 하기위한 useeffect*/
@@ -112,6 +113,8 @@ const Main = () => {
     >
       <div className="contents-wrapper">
         <FilterBar />
+        {console.log("itemstate:", itemsState)}
+        {console.log("channelstate:", channelItemsState)}
         {isLoading ? (
           <div className="loading">Loading ...</div>
         ) : (
@@ -122,9 +125,9 @@ const Main = () => {
                 state={{
                   title: item.snippet.title,
                   channelTitle: item.snippet.channelTitle,
-                  channelIconUrl:
-                    channelItemsState[item.snippet.channelId].thumbnails.default
-                      .url,
+                  // channelIconUrl:
+                  //   channelItemsState[item.snippet.channelId].thumbnails.default
+                  //     .url,
                   viewCount: item.statistics.viewCount,
                   likeCount: item.statistics.likeCount,
                   dislikeCount: item.statistics.dislikeCount,
@@ -132,8 +135,8 @@ const Main = () => {
                   publishedAt: item.snippet.publishedAt,
                   description: item.snippet.description,
                   tags: item.snippet.tags,
-                  subscriberCount:
-                    channelItemsState[item.snippet.channelId].subscriberCount,
+                  // subscriberCount:
+                  // channelItemsState[item.snippet.channelId].subscriberCount,
                 }}
               >
                 <div className="video-thumbnail">
