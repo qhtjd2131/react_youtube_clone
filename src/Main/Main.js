@@ -49,15 +49,14 @@ const Main = () => {
       });
       channelIDsString = channelIDsString.slice(0, -1);
 
-      console.log("len :", channelIDsString.split(",").length);
       const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&fields=${option2.fields}&key=${option.apiKey}`;
       const channelData = await axios.get(urlGetChannel);
-      console.log("channel data :", channelData);
       return channelData.data.items;
     };
 
     getData().then((result) => {
       // setItems(result.items);
+      console.log("helelelelelel");
       setItems(result);
       getChannelData(result).then((channelData) => {
         return new Promise((resolve) => {
@@ -113,8 +112,7 @@ const Main = () => {
     >
       <div className="contents-wrapper">
         <FilterBar />
-        {console.log("itemstate:", itemsState)}
-        {console.log("channelstate:", channelItemsState)}
+
         {isLoading ? (
           <div className="loading">Loading ...</div>
         ) : (
