@@ -18,6 +18,7 @@ import axios from "axios";
 
 const WatchVideo = () => {
   const location = useLocation();
+  console.log("location:", location);
   const navigate = useNavigate();
 
   const [isRelativeVideoLoading, setIsRelativeVideoLoading] = useState(true);
@@ -73,25 +74,31 @@ const WatchVideo = () => {
       const option = {
         part: "snippet",
         regionCode: "KR",
-        maxResults: 8,
+        maxResults: 10,
+        fields:
+          "items(snippet.title,id,snippet.description,snippet.channelTitle,snippet.thumbnails.medium.url)",
         apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
       };
       const getRelativeVideoUrl = `https://www.googleapis.com/youtube/v3/search?part=${
         option.part
       }&type=video&relatedToVideoId=${getQueryString()}&maxResults=${
         option.maxResults
-      }&key=${option.apiKey}`;
+      }&fields=${option.fields}&key=${option.apiKey}`;
 
       const result = await axios.get(getRelativeVideoUrl);
-      console.log(result.data.items);
+      console.log("relativeitem:", result.data.items);
       return result.data.items;
     };
 
     getRelativeVideo()
       .then((items) => {
+        return new Promise((resolve) => {
+          setRelativeVideoItems(items);
+          resolve();
+        });
+      })
+      .then(() => {
         setIsRelativeVideoLoading(() => false);
-        setRelativeVideoItems(items);
-        console.log("!!!! fdafs");
       })
       .catch((e) => {
         alert(e + "\n 관련된 비디오 목록을 가져오는데 실패했습니다.");
@@ -105,10 +112,10 @@ const WatchVideo = () => {
         part: "snippet,statistics",
         apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
         fields:
-        "items(snippet.title,snippet.channelTitle,snippet.channelId,snippet.publishedAt,snippet.description,snippet.tags,snippet.thumbnails.medium.url,statistics)",
+          "items(snippet.title,snippet.channelTitle,snippet.channelId,snippet.publishedAt,snippet.description,snippet.tags,snippet.thumbnails.medium.url,statistics)",
         fields2:
-        "items(snippet.title,snippet.description,snippet.thumbnails.default.url,statistics)",
-    };
+          "items(snippet.title,snippet.description,snippet.thumbnails.default.url,statistics)",
+      };
 
       const getVideoInfo = async () => {
         const getVideoInfoUrl = `https://www.googleapis.com/youtube/v3/videos?part=${
@@ -200,12 +207,11 @@ const WatchVideo = () => {
             <YouTube videoId={getQueryString()}></YouTube>
           </div>
           <div className="watch-video-tags-wrapper">
-            {
-              location.state.tags.map((i, index) => (
-                <div className="watch-video-tag" key={index}>
-                  {i}
-                </div>
-              ))}
+            {location.state.tags.map((i, index) => (
+              <div className="watch-video-tag" key={index}>
+                {i}
+              </div>
+            ))}
           </div>
           <div className="watch-video-title">{watchVideoState.title}</div>
           <div className="watch-video-info">

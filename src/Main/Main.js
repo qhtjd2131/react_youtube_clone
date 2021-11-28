@@ -25,7 +25,7 @@ const Main = () => {
       chart: "mostPopular",
       maxResults: 20,
       fields:
-        "items(snippet.title,snippet.channelTitle,snippet.channelId,snippet.publishedAt,snippet.description,snippet.tags,snippet.thumbnails.medium.url,statistics)",
+        "items(id, snippet.title,snippet.channelTitle,snippet.channelId,snippet.publishedAt,snippet.description,snippet.tags,snippet.thumbnails.medium.url,statistics)",
       apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
     };
 
@@ -118,14 +118,15 @@ const Main = () => {
         ) : (
           itemsState.map((item, index) => (
             <div className="item-container" key={index}>
+              {console.log(itemsState)}
               <Link
                 to={`/watch?v=${item.id}`}
                 state={{
                   title: item.snippet.title,
                   channelTitle: item.snippet.channelTitle,
-                  // channelIconUrl:
-                  //   channelItemsState[item.snippet.channelId].thumbnails.default
-                  //     .url,
+                  channelIconUrl:
+                    channelItemsState[item.snippet.channelId].thumbnails.default
+                      .url,
                   viewCount: item.statistics.viewCount,
                   likeCount: item.statistics.likeCount,
                   dislikeCount: item.statistics.dislikeCount,
@@ -133,8 +134,8 @@ const Main = () => {
                   publishedAt: item.snippet.publishedAt,
                   description: item.snippet.description,
                   tags: item.snippet.tags,
-                  // subscriberCount:
-                  // channelItemsState[item.snippet.channelId].subscriberCount,
+                  subscriberCount:
+                  channelItemsState[item.snippet.channelId].subscriberCount,
                 }}
               >
                 <div className="video-thumbnail">

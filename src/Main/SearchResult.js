@@ -33,7 +33,6 @@ const SearchResult = () => {
     const getSearchData = async (value) => {
       const url = `https://www.googleapis.com/youtube/v3/search?&part=${option.part}&q=${value}&regionCode=${option.regionCode}&maxResults=${option.maxResults}&fields=${option.fields}&key=${option.apiKey}`;
       const result = await axios.get(url);
-      console.log("asdfasdfasdfasd",result);
       return result.data.items;
 
       //   const result = {
@@ -296,7 +295,6 @@ const SearchResult = () => {
         channelIDsString += i.snippet.channelId + ",";
       });
       channelIDsString = channelIDsString.slice(0, -1);
-      console.log("channelidstring:", channelIDsString);
 
       const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&fields=${option.fields2}&key=${option.apiKey}`;
       const channelData = await axios.get(urlGetChannel);
@@ -340,11 +338,11 @@ const SearchResult = () => {
           .then(() => {
             setIsLoading(false);
           });
+      })
+      .catch((e) => {
+        console.log(e);
+        navigate("/");
       });
-    //   .catch((e) => {
-    //     console.log(e);
-    //     navigate("/");
-    //   });
   }, [location, navigate, setIsOpenMiniSideBar]);
   return (
     <div
