@@ -19,6 +19,7 @@ const Main = () => {
   }, [setIsOpenMiniSideBar]);
 
   useEffect(() => {
+    console.log("main useeffect");
     const option = {
       part: "snippet,statistics",
       regionCode: "KR",
@@ -33,7 +34,6 @@ const Main = () => {
       const url_mostPopular = `https://www.googleapis.com/youtube/v3/videos?part=${option.part}&chart=${option.chart}&maxResults=${option.maxResults}&regionCode=${option.regionCode}&fields=${option.fields}&key=${option.apiKey}`;
 
       const result = await axios.get(url_mostPopular);
-      console.log("reesult:", result);
       return result.data.items;
     };
 
@@ -56,7 +56,6 @@ const Main = () => {
 
     getData().then((result) => {
       // setItems(result.items);
-      console.log("helelelelelel");
       setItems(result);
       getChannelData(result).then((channelData) => {
         return new Promise((resolve) => {
@@ -118,7 +117,6 @@ const Main = () => {
         ) : (
           itemsState.map((item, index) => (
             <div className="item-container" key={index}>
-              {console.log(itemsState)}
               <Link
                 to={`/watch?v=${item.id}`}
                 state={{

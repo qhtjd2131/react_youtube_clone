@@ -18,7 +18,6 @@ import axios from "axios";
 
 const WatchVideo = () => {
   const location = useLocation();
-  console.log("location:", location);
   const navigate = useNavigate();
 
   const [isRelativeVideoLoading, setIsRelativeVideoLoading] = useState(true);
@@ -31,22 +30,23 @@ const WatchVideo = () => {
         ...location.state,
       };
       return stateTemp;
-    } else {
-      stateTemp = {
-        title: "",
-        channelTitle: "",
-        channelIconUrl: "",
-        viewCount: "",
-        likeCount: "",
-        dislikeCount: "",
-        commentCount: "",
-        publishedAt: "",
-        description: "",
-        tags: [],
-        subscriberCount: "",
-      };
-      return stateTemp;
     }
+    // else {
+    //   stateTemp = {
+    //     title: "",
+    //     channelTitle: "",
+    //     channelIconUrl: "",
+    //     viewCount: "",
+    //     likeCount: "",
+    //     dislikeCount: "",
+    //     commentCount: "",
+    //     publishedAt: "",
+    //     description: "",
+    //     tags: [],
+    //     subscriberCount: "",
+    //   };
+    //   return stateTemp;
+    // }
   });
 
   const { setIsOpenMiniSideBar } = useContext(MiniSideBarContext);
@@ -69,7 +69,6 @@ const WatchVideo = () => {
   }, [setIsOpenMiniSideBar, setIsOpenSideBar]);
 
   useEffect(() => {
-    console.log("watvideo useeffect num 1");
     const getRelativeVideo = async () => {
       const option = {
         part: "snippet",
@@ -86,7 +85,6 @@ const WatchVideo = () => {
       }&fields=${option.fields}&key=${option.apiKey}`;
 
       const result = await axios.get(getRelativeVideoUrl);
-      console.log("relativeitem:", result.data.items);
       return result.data.items;
     };
 
@@ -128,43 +126,41 @@ const WatchVideo = () => {
       const getChannelInfo = async (channelId) => {
         const getChannelInfoUrl = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelId}&fields=${option.fields2}&key=${option.apiKey}`;
         const result = await axios.get(getChannelInfoUrl);
+
         return result.data.items[0];
       };
 
       let res = {};
       getVideoInfo()
         .then((item) => {
-          const itemTemp = {
-            ...item.snippet,
-            ...item.statistics,
-            channelIconUrl: "",
-          };
-          return itemTemp;
-        })
-        .then((itemTemp) => {
-          res = { ...itemTemp };
-          return getChannelInfo(itemTemp.channelId);
-        })
-        .then((channelInfo) => {
-          res = {
-            ...res,
-            channelIconUrl: channelInfo.snippet.thumbnails.default.url,
-            subscriberCount: channelInfo.statistics.subscriberCount,
-          };
-
-          setWatchVideoState(() => ({ ...res }));
-        })
-        .then(() => {
-          setIsWatchVideoLoading(false);
+          getChannelInfo(item.snippet.channelId).then((channelInfo) => {
+            setWatchVideoState({
+              ...item.snippet,
+              ...item.statistics,
+              channelIconUrl: channelInfo.snippet.thumbnails.default.url,
+              subscriberCount: channelInfo.statistics.subscriberCount,
+            });
+            console.log("aaa", {
+              ...item.snippet,
+              ...item.statistics,
+              channelIconUrl: channelInfo.snippet.thumbnails.default.url,
+              subscriberCount: channelInfo.statistics.subscriberCount,
+            });
+            setIsWatchVideoLoading(false);
+          });
         })
         .catch((e) => {
           alert(e);
           navigate("/");
         });
     } else {
-      setIsWatchVideoLoading(false);
+     setIsWatchVideoLoading(false);
     }
-  }, [getQueryString, location.search, location.state, navigate]);
+  }, []);
+
+  useEffect(() => {
+    console.log("change loading");
+  }, [watchVideoState]);
 
   const formattingNumber = (num) => {
     if (!num) return 0;
@@ -207,7 +203,8 @@ const WatchVideo = () => {
             <YouTube videoId={getQueryString()}></YouTube>
           </div>
           <div className="watch-video-tags-wrapper">
-            {location.state.tags.map((i, index) => (
+            {console.log("hi dsfafads:", watchVideoState)}
+            {watchVideoState.tags.map((i, index) => (
               <div className="watch-video-tag" key={index}>
                 {i}
               </div>
