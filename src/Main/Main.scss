@@ -1,18 +1,10 @@
 @import "../variable/_global_variables.scss";
 
-// #root {
-//   transform: translateX(0);
-// }
 .main {
-  //   grid-area: main;
   width: calc(100% - $side-width);
-  //   height: 100%;
-  //   overflow: scroll;
   position: absolute;
   top: $header-height;
   left: $side-width;
-  // margin-top: $header-height;
-  // margin-left:$mini-side-width;
   box-sizing: border-box;
   min-height: calc(100% - $header-height);
 }
@@ -24,12 +16,6 @@
   left: $mini-side-width;
   width: calc(100% - $mini-side-width);
 }
-// @media only screen and (max-width: 1300px) {
-//   .main {
-//     left: $mini-side-width;
-//     width: calc(100% - $mini-side-width);
-//   }
-// }
 
 .contents-wrapper {
   padding: 20px;

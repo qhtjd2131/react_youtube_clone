@@ -251,10 +251,32 @@ scrollbar 를 주의해서 봐주세요.
 이렇게 된다면, `<MenuButton>`과 `<DropDown>`의 hover 이벤트는 중복되지 않고, position의 위치 기준은 컴포넌트 왼쪽상단이기 때문에,  `<MenuButton>`의 위치를 기준으로 잡을 수 있게된다.
 
 
-####테마 설정
+####테마 설정 (모든 페이지에 적용)
+
+![ezgif com-gif-maker (14)](https://user-images.githubusercontent.com/34260967/144256781-d381daeb-9b5e-4bb0-a90b-9df52448107a.gif)
+
+- 최상위 노드인 `<App>` 내에 `themeState`를 선언하고 `useContext`를 이용하여 하위 노드에 `themeState`를 내려준다.
+- `themeState` 에 따라 className을 추가하고, 추가된 className에 해당하는 테마의 스타일을 지정해준다. (아래 예시 참고)
+   ```css
+   .main {
+      width: calc(100% - $side-width);
+      position: absolute;
+      top: $header-height;
+      left: $side-width;
+      box-sizing: border-box;
+      min-height: calc(100% - $header-height);
+   }
+   .main-darkTheme {
+      background-color: #181818;
+   }  
+   ```
 
 
-####언어 설정
+테마 설정에 따른 스타일변경에서 `styled-components`의 필요성을 절실히 느꼈다. `themeState`에 따라 style을 변경하기 위해 하나하나 className을 하나하나 추가하는 고생을 했다.
+
+####언어 설정 (모든 페이지에 적용)
+
+![ezgif com-gif-maker (15)](https://user-images.githubusercontent.com/34260967/144257724-576cfcf7-1f9d-4b14-beb1-1ee3fcadc98d.gif)
 
 
 ####비디오 시청(WatchVideo) 흐름
