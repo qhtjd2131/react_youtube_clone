@@ -85,6 +85,16 @@ const Search = () => {
         className={"search-button search-button-" + themeState}
         state={{ sample: "sample" }}
       >
+        <div
+            className={
+              stateHover === "search"
+                ? "hover-description on-hover"
+                : "hover-description"
+            }
+            ref={searchHoverRef}
+          >
+            {data.language_Search[languageState].search}
+          </div>
         <div //search button
           onMouseEnter={(e) => {
             handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
@@ -95,16 +105,7 @@ const Search = () => {
           onClick={() => {}}
         >
           {data.data_Search.search.image}
-          <div
-            className={
-              stateHover === "search"
-                ? "hover-description on-hover"
-                : "hover-description"
-            }
-            ref={searchHoverRef}
-          >
-            {data.language_Search[languageState].search}
-          </div>
+          
         </div>
       </Link>
 

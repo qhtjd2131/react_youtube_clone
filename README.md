@@ -1,9 +1,10 @@
 # React Youtube Clone
 ## 소개
 
+**현재 진행중인 프로젝트 입니다.**
 - Window 환경에서 create-react-app 을 사용하여 Youtube 메인, 검색결과, 동영상 시청 페이지를 클론코딩했습니다.
 - Chrome 을 기준으로 개발했기 때문에, 다른 브라우저와 호환이 되지 않을 수 도 있습니다.
-- 반응형을 고려하지 않고 X-Large 사이즈의 크기를 기준으로 작성되었습니다.
+- XL(1300px 이상), L(1300px 미만) 사이즈만을 고려하였습니다
 - 백엔드를 컨트롤 하지 못하여, apiKey가 노출되어있습니다. 그리고 apiKey의 하루 할당량을 초과 할 시, youtube data를 내려받지 못하여 Loading이 계속 될 수 있습니다. Youtube Api의 하루 할당량은 10,000 이며, 자세한 사항은 아래 링크를 참고해주세요.
 https://developers.google.com/youtube/v3/determine_quota_cost
 
@@ -29,7 +30,7 @@ npm run start
 **3. CRA (create-react-app)**
 (auto installed by CRA)
 - webpack (bundler)
-- babel
+- babel (trans-compiler)
 - others.. 
 
 **4. React Library**
@@ -79,33 +80,133 @@ https://www.npmjs.com/package/gh-pages
 
 ### 동작 원리 및 구현 내용
 
-**버튼 부가 설명 컴포넌트**
+####1. 버튼 부가 설명 컴포넌트
 <!-- 버튼 부가설명 컴포넌트 GIF -->
+![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/34260967/144215968-27f1f3b7-b38a-4009-8a43-60fa3495a97f.gif)
+
+
 
 위와 같은 효과를 내기 위해 아래와 같은 과정을 거침.
 1. :after 선택자를 이용하여 컴포넌트를 생성하였다.
- 1-1. hover 이벤트 발생 시 display속성을 none -> box 로 변경 하였다. 하지만 display:none 은 transition 효과가 적용되지 않는다.
- 1-2. opacity 속성을 이용하여 투명도 변경하였다. 잘 작동하는 줄 알았지만, 투명해서 보이지 않지만 컴포넌트는 존재하여서 버튼 위치가 아닌 부가설명컴포넌트 위치에 커서가 hover 되어도 보여지게 되었다.
-2. 
+**결론 : 문제를 해결 할 수 있는 방법이 아니었음.**
 
-**테마 설정**
+   - hover 이벤트 발생 시 display속성을 none -> box 로 변경 하였다. 하지만 display:none 은 transition 효과가 적용되지 않는다.
+   - opacity 속성을 이용하여 투명도 변경하였다. 잘 작동하는 줄 알았지만, 투명해서 보이지 않지만 컴포넌트는 존재하여서 버튼 위치가 아닌 부가설명 컴포넌트 위치에 커서가 hover 되어도 보여지게 되었다.
+<br>
+2. 컴포넌트 내 state에 따라 className을 추가로 부여.
+**결론 : 해결방법으로 채택**
+
+   - 부가 설명 컴포넌트는 항상 존재한다.(사라지는것이 아니고 투명도만 변경)
+   - state는 mouseEnter, mouseLeave Event에 따라 결정된다. 따라서 이벤트를 등록하기 위해서는 각각의 버튼의 Ref를 참조해야한다. 그리고 각각의 버튼태그에 핸들러를 등록해주어야 하는 불편함이 있다.
 
 
-**언어 설정**
+####2. 반응형 #1, SideBar 컴포넌트
+1. window size is XL ( size > 1300px )
+![ezgif com-gif-maker (11)](https://user-images.githubusercontent.com/34260967/144219234-36d5a403-db77-4499-80d1-3b87706f99b6.gif)
+2. window size is L ( size <= 1300px )
+![ezgif com-gif-maker (10)](https://user-images.githubusercontent.com/34260967/144218747-820ef507-3fe0-4fc1-83a5-dc47dc3ea283.gif)
 
-**비디오 시청(WatchVideo) 흐름**
+
+위와 같은 반응형 컴포넌트를 구성하기 위해서는 처음에 media-query 사용을 생각하였다. 하지만 이는 반응형으로 단순 스타일 변경이 아니고 state를 변경해야 하기에 적합하지 않은 방법이었다.
+따라서, 아래와 같이 구성하였다.
+- window resize event 를 등록
+- window size가 변경될 때 마다 window size(XL or L)를 판별
+- size에 따라 state가 변경.
+<br>
+
+####3. 반응형 #2, Overlay 시 스크롤제어
+이 프로젝트에서는 오버레이효과를 라이브러리 없이 다음과 같이 구성헸습니다.
+
+window가 L사이즈 이고, 이 때 SideBar가 Open 된다면,
+- Overlay Component가 화면을 덮는다.
+- SideBar Component가 Overlay 컴포넌트 위에 위치한다.
+<br>
+
+Overlay Component Style
+```css
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 996;
+  transition: 0.3s;
+}
+```
+
+![ezgif com-gif-maker (12)](https://user-images.githubusercontent.com/34260967/144220398-38421b44-76d2-4490-bf6d-c72d94731acf.gif)
+
+위와 같이 `<Overlay/>`로 어두운 효과를 주었지만 의도와 다르게 스크롤바는 작동하는 문제가 있었다. 이를 다음과 같이 해결하였다.
+- 이 스크롤바는 main이 늘어남에 따라 document에서 발생하는 것이기 때문에 `document.body.classList.add("scroll-in-overlay");` 를 사용하여 `<Overlay/>`가 나타날때 className을 부여하였다.
+- ```css
+   .scroll-in-overlay{
+      overflow : hiddne;
+   }
+   ```
+
+이러하여 문제를 잘 해결했다고 생각했다!
+**하지만.. `overflow:hidden`속성으로 인해 scrollbar의 영역 자체가 사라져 아래와 같이 메인컨텐츠 크기에 영향을 끼치게 되었다.**
+
+![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/34260967/141055549-b5385f4c-9a21-4098-86de-30aa0b4f63fb.gif)
+
+이를 해결하기 위해 다시 다음과 같은 방법을 적용해보았다.
+1. overflow : hidden 이 되면서 scrollbar가 사라지면 그 여백만큼 body 에 padding을 주는 방법
+   - body의 margin과 padding이 window를 넘겨서 적용되었다.
+   - body의 size를 calc(100% - $scrollbar-width) 로 설정하면 margin-right, padding-right가 적용은 되었지만, contents가 padding과 margin위에 overlay되었다.
+   - margin과 padding 이 적용되어도 contents의 크기에 영향을 주지 않으므로, 옳지않은 방법이라고 생각했다.
+   <br>
+
+2. scrollbar의 스타일을 변경하는 방법
+```css
+-webkit-scrollbar {
+   display:none;
+} 
+```
+```css
+-webkit-scrollbar {
+   width:0px;
+} 
+```
+  
+   - scrollbar가 사라는졌으나 기능은 동작하였다. 따라서 색을바꾸거나 thumb를 조작하는 방법은 옳지 않은거 같다..
+   <br>
+
+3. position 속성을 사용하는 방법
+```scss
+.body {
+   position:fixed;
+   overflow-y:scroll;
+}
+```
+   - 이 방법은 개발자도구를 통해 youtube main page를 참고하였다.
+   - overflow를 발생시키는 대상을 position:fixed로 설정하면 scrollbar가 랜더링되지 않는다.
+   - 이때 overflow-y:scroll; 속성이 있다면, scrollbar는 랜더링되지 않고 scroll의 영역은 남아있게 된다.
+   - 당연히 youtube main page를 참고하였기때문에 적합한 방법이다.
+
+
+####반응형 #3, 스크롤바 위치 기억
+
+####테마 설정
+
+
+####언어 설정
+
+
+####비디오 시청(WatchVideo) 흐름
 비디오 시청 페이지(WatchVideo.js)는 링크 공유할 수 있어야 하고, 그 링크를 주소창에 입력하여 접속 할 때에도, 올바르게 동작해야한다. 따라서 링크(url) 안에 존재하는 쿼리스트링으로 재생할 Youtube동영상 id를 받아서 동영상을 재생해야한다.
 ex) `https://www.youtube.com/watch?v=YmQD5P6fvlc`
 
 다음은 사용자가 비디오 시청을 하게되는 흐름과 이와 맞는 처리내용이다.
 1. main page를 통한 접속
 Main에서 이미 동일한 데이터를 호출 했기 때문에, Link를 통해 state를 WatchVideo 페이지에 넘겨준다. state를 넘겨받은 WatchVideo는 따로 API 호출을 할 필요 없이 랜더링 할 수 있다.
-
+<br>
 2. 주소창에 직접 입력을 통한 접속
 이경우에는 react-router-dom 의 Link를 사용하지 않았기 때문에 어떠한 state도 존재하지 않는다. 따라서 queryString 으로 받은 Youtube Id를 기반으로 다시 API 호출을 해야한다.
-
-위의 두 경우를 대비하기 위해 useEffect로 Link로 받은 location.state의 존재를 확인하여 있으면 location.state를 쓰고, 없으면 api 호출을 하여 데이터를 받아오게 하였다. 
-이 때, state의 key값을 동일하게 하고 초기값으로 빈배열을 할당하여 state가 없더라도 초기에 랜더링 오류가 발생하지 않게 하였다. 
+<br>
+위의 두 경우를 대비하기 위해 `useEffect()`를 통하여 `<Link>`로 받은 `location.state`의 존재를 확인하여 있으면 `location.state`를 쓰고, 없으면 api 호출을 하여 데이터를 받아오게 하였다. 
+이 때, `state`의 key값을 동일하게 하고 초기값으로 빈배열을 할당하여 `state`가 없더라도 초기에 랜더링 오류가 발생하지 않게 하였다. 
 
 ```javascript
 useEffect(()=>{
@@ -142,7 +243,7 @@ sample
 ## 이번 프로젝트를 하면서..
 - SCSS를 사용하여 특성 파악
 - axios를 사용한 api call
-- react-router-dom version6 사용하고 바뀐 부분 파악
+- react-router-dom version6 사용하고 변경된 부분 파악
 - 테마, 언어설정 기능 구현 (최상위 컴포넌트의 state를 사용)
 
 
@@ -361,21 +462,57 @@ youtube api 호출 할당량 관리
 -search : 100  (20개)
 -channel : 1  (20개)
 
-2020
+cost : 2
 
 searchResult
 -search : 100 (7)
 -channel:1 (7)
 
-707
+cost 101
 
-watchVideo
+watchVideo(from main)
+-search : 100
+
+cost : 100
+
+watchVideo(from search or link)
 -search : 100 (20)
 -video : 1 
 -channel : 1
 
-2002
+cost 102
 
-total : 4729  cost
+
+
+main->search->watchVideo
+expected cost : 203,  
+real cost:  206 (2 -> 208)
+
+main->watchVideo
+expected cost : 102, 
+real cost : 104 (208->312)
+
+watchVideo->main
+expoected cost : 2
+real cost : 4 (312->316)
+
+main -> main 
+expected cost : 2
+real cost : 2 (316->318)
+
+main->watchVideo
+expected cost : 100
+real cost : 100 (318->418)
+
+watchVideo->main (second try)
+expected cost : 2
+real cost : 4 (418->422)
+
+main 
+expected cost : 2
+real cost : 2 (424->426)
+
+=> 그냥 main으로 이동할때는 2, 다른페이지에서 main으로 이동할때에는 4가 듬 이유는?
 
   3-2. fields 매개변수로 필요한 데이터만 중첩없이 설정. (https://developers.google.com/youtube/v3/getting-started#fields))
+  test 결과 : 공식문서에서는 fields 매개변수로 필요한 데이터만 가져오는것이 할당량을 줄이는 방법이라고 기재되어있다. 하지만 이 프로젝트의 메인페이지를 기준으로 fields 설정 전 cost:1, fields 설정 후 cost:1, 로 할당량의 차이는 없었다. 1이 최솟값이라서 그런가 하여 추가적으로 할당량이 100을 차지하는 'search' api call 에서도 변화는 없었다.

@@ -31,7 +31,7 @@ const Main = () => {
     };
 
     const getData = async () => {
-      const url_mostPopular = `https://www.googleapis.com/youtube/v3/videos?part=${option.part}&chart=${option.chart}&maxResults=${option.maxResults}&regionCode=${option.regionCode}&key=${option.apiKey}`;
+      const url_mostPopular = `https://www.googleapis.com/youtube/v3/videos?part=${option.part}&chart=${option.chart}&maxResults=${option.maxResults}&regionCode=${option.regionCode}&fields=${option.fields}&key=${option.apiKey}`;
 
       const result = await axios.get(url_mostPopular);
       return result.data.items;
