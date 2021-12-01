@@ -92,7 +92,7 @@ const App = () => {
   }, [isWindowSizeXL, isOpenSideBar]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="react_youtube_clone/">
       <div className="app">
         <SideBarContext.Provider
           value={{
