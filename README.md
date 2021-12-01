@@ -6,10 +6,11 @@
 - Chrome 을 기준으로 개발했기 때문에, 다른 브라우저와 호환이 되지 않을 수 도 있습니다.
 - XL(1300px 이상), L(1300px 미만) 사이즈만을 고려하였습니다
 - 백엔드를 컨트롤 하지 못하여, apiKey가 노출되어있습니다. 그리고 apiKey의 하루 할당량을 초과 할 시, youtube data를 내려받지 못하여 Loading이 계속 될 수 있습니다. Youtube Api의 하루 할당량은 10,000 이며, 자세한 사항은 아래 링크를 참고해주세요.
-https://developers.google.com/youtube/v3/determine_quota_cost
 
+   https://developers.google.com/youtube/v3/determine_quota_cost
 
 Youtube : https://www.youtube.com/
+
 My Youtube Clone : https://qhtjd2131.github.io/react_youtube_clone
 
 
@@ -35,18 +36,24 @@ npm run start
 
 **4. React Library**
 - **sass** : SCSS를 사용을 위한 라이브러리
+
 https://sass-lang.com/documentation/js-api
 - **axios** : youtube API 를 사용을 위한 HTTP 통신 라이브러리
+
 https://axios-http.com/kr/docs/intro
 - **react-youtube** : Youtube 동영상을 iframe 으로 반환하여 별도의 커스텀 없이 동영상 플레이어 컴포넌트를 사용.
+
 https://www.npmjs.com/package/react-youtube
 - **react-icons** : youtube에서 사용되는 아이콘을 대체할 수 있는 아이콘 제공
+
 https://react-icons.github.io/react-icons/ 
 https://www.npmjs.com/package/react-icons 
 - **react-router-dom v6** : Link, Router, queryString 지원.(페이지 이동 효과를 위해 사용), 이 문서에서는 version 6 를 사용함.
+
 https://reactrouter.com/docs/en/v6/getting-started/overview
 https://reactrouter.com/docs/en/v6/upgrading/v5 (v5와 달라진 점)
 - **gh-pages** github의 호스팅 서비스 이용하기
+
 https://www.npmjs.com/package/gh-pages
 ---
 
@@ -146,8 +153,9 @@ Overlay Component Style
    }
    ```
 
-이러하여 문제를 잘 해결했다고 생각했다!
-**하지만.. `overflow:hidden`속성으로 인해 scrollbar의 영역 자체가 사라져 아래와 같이 메인컨텐츠 크기에 영향을 끼치게 되었다.**
+이러하여 문제를 잘 해결했다고 생각했다.
+
+**하지만 `overflow:hidden`속성으로 인해 scrollbar의 영역 자체가 사라져 아래와 같이 메인컨텐츠 크기에 영향을 끼치게 되었다.**
 
 ![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/34260967/141055549-b5385f4c-9a21-4098-86de-30aa0b4f63fb.gif)
 
@@ -187,6 +195,61 @@ Overlay Component Style
 
 
 ####반응형 #3, 스크롤바 위치 기억
+
+scrollbar 를 주의해서 봐주세요.
+![ezgif com-gif-maker (13)](https://user-images.githubusercontent.com/34260967/144235334-de73e7f1-06b3-41f6-8f98-179bb781c2ba.gif)
+
+
+#####문제발생 흐름과 원인
+- `<SideBar>`가 열리고 `<Overlay>`가 나타남.
+- 이 때, scroll 기능을 막기 위해 아래와 같은 스타일이 적용 됨.
+   ```css
+   .body {
+      position:fixed;
+      overflow-y:scroll;
+   }
+   ```
+- `position:fixed` 속성으로 인해 scroll의 존재가 사라짐.
+- `<SideBar>`가 닫히고 `<Overlay>`가 사라짐.
+- `position` 속성이 초기화되고, 스크롤의 위치도 초기화되어 새로 생성됨.
+
+위의 문제를 해결하기 위하여, 아래의 hook을 이용하였다.
+- `useState` : `isWindowXL, isOpenSideBar`
+- `useEffect` 
+- `useRef` 
+
+`isWindowXL, isOpenSideBar`가 변경될 때마다 `useEffect`로 현재 스크롤의 위치를 기억하고, `useRef`를 활용하여 리랜더링되어도 기억된 스크롤의 위치가 초기화 되지 않게 하였다.
+
+####부모-자식 간의 hover 문제
+![image](https://user-images.githubusercontent.com/34260967/144238324-97ce1d0c-a1a9-4b52-b567-994b120cd6ed.png)
+
+위 사진에서 `<MenuButton>`(9_dots_icon) 과 `<DropDown>` 은 부모 - 자식 관계이다.  
+
+그 이유는 `<DropDown>`이 `position:absolute` 속성을 가지고,  `<MenuButton>`을 기준으로 바로 아래에 위치 해야하기 때문이다.
+
+하지만 부모 - 자식 관계 이기 때문에 아래와 같은 문제가 발생했다.
+
+![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/34260967/141275888-700b2468-a222-45bd-a580-e005928fa0ff.gif)
+
+
+`<DropDown>`위에 커서가 위치하게 되면, 그의 부모인 `<MenuButton>` 의 hover 효과도 동시에 나타나게 된다. 이를 해결하기 위하여 다음과 같은 트릭을 생각하고 해결하였다.
+- 부모-자식 관계를 끊는다.
+- `<MenuButton>` 왼쪽에 새로운 컴포넌트를 생성하고 보이지 않게 `width:0px`속성을 부여한다.
+- 생성된 컴포넌트와 `<DropDown>`이 부모-자식관계를 가진다.
+   ```javascript
+   <AppMenuWrapper>
+      <NewComponent>
+         <DropDown /> 
+      </NewComponent>
+
+      <MenuButton /> 
+      
+      ...
+   </AppMenuWrapper>
+   ```
+
+이렇게 된다면, `<MenuButton>`과 `<DropDown>`의 hover 이벤트는 중복되지 않고, position의 위치 기준은 컴포넌트 왼쪽상단이기 때문에,  `<MenuButton>`의 위치를 기준으로 잡을 수 있게된다.
+
 
 ####테마 설정
 
@@ -340,7 +403,7 @@ const handlerResizeEvent = () => {
 ```
 
 내가 의도한것은 AppMenuIcon에게서만 MouseEnter event가 발생하면 description 컴포넌트가 나와야한다. 하지만 AppMenuIcon이 MenuModal을 자식으로 가지고 있기 때문에, 아래와 같이 MenuModal 위에 마우스를 올리면, AppMenuIcon(parent) MouseEnter event -> MenuModal(child) MouseEnter event 가 순서대로 발생하여, 의도치 않은 동작을 발생시킨다.
-![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/34260967/141275888-700b2468-a222-45bd-a580-e005928fa0ff.gif)
+
 
 이를 해결하기 위해 아래와 같이 '부모자식관계 -> 형제관계' 로 구조변경을 하였다.
 

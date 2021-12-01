@@ -59,7 +59,7 @@ const App = () => {
         setIsWindowSizeXL(true);
       }
 
-      if (window.innerWidth <= 1330) {
+      if (window.innerWidth <= 1320) {
         setIsOpenSideBar(false);
       } else {
         setIsOpenSideBar(true);
@@ -75,6 +75,8 @@ const App = () => {
   useEffect(() => {
     //overlay가 랜더링되면 스크롤바가 사라지고, 위치가 초기화된다.
     //그래서 스크롤바 위치를 기억하는 코드이다
+    
+    
     scroll_y.current = window.scrollY * -1;
     if (!isWindowSizeXL && isOpenSideBar) {
       scroll_y_temp.current = scroll_y.current;
