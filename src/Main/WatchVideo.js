@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./WatchVideo.scss";
 import {
   MiniSideBarContext,
@@ -140,7 +140,7 @@ const WatchVideo = () => {
               channelIconUrl: channelInfo.snippet.thumbnails.default.url,
               subscriberCount: channelInfo.statistics.subscriberCount,
             });
-        
+
             setIsWatchVideoLoading(false);
           });
         })
@@ -149,10 +149,9 @@ const WatchVideo = () => {
           navigate("/");
         });
     } else {
-     setIsWatchVideoLoading(false);
+      setIsWatchVideoLoading(false);
     }
   }, []);
-
 
   const formattingNumber = (num) => {
     if (!num) return 0;
@@ -285,7 +284,11 @@ const WatchVideo = () => {
           : relativeVideoItems.map(
               (i, index) =>
                 i.snippet && (
-                  <div className="relative-item-wrapper" key={index}>
+                  <Link
+                    to={`/watch?v=${i.id.videoId}`}
+                    className="relative-item-wrapper"
+                    key={index}
+                  >
                     <div className="relative-item-thumbnails">
                       <img src={i.snippet.thumbnails.medium.url} alt="" />
                     </div>
@@ -297,7 +300,7 @@ const WatchVideo = () => {
                         {i.snippet.channelTitle}
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 )
             )}
       </div>
