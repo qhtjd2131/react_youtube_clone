@@ -1,9 +1,4 @@
-import React, {
-  createRef,
-  useState,
-  useContext,
-  createContext,
-} from "react";
+import React, { createRef, useState, useContext, createContext } from "react";
 import "./HeaderBar.scss";
 import {
   SideBarContext,
@@ -14,7 +9,7 @@ import MicSearchModal from "./MicSearchModal";
 import AppMenuDropdown from "./AppMenuDropdown";
 import SettingDropdown from "./SettingDropdown";
 import * as data from "./HeaderData/headerBarData.js";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export const LogIn = () => {
   const { languageState } = useContext(languageStateContext);
@@ -32,6 +27,7 @@ export const Logo = () => {
   const { themeState } = useContext(themeStateContext);
   const { isOpenSideBar, setIsOpenSideBar } = useContext(SideBarContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="logo-container">
@@ -47,7 +43,9 @@ export const Logo = () => {
         to="/"
         onClick={() => {
           navigate("/");
-          window.location.reload(); //같은 path에서도 page refresh 되도록.
+          if (location.pathname === "/") {
+            window.location.reload(); //같은 path에서도 page refresh 되도록.
+          }
         }}
       >
         {data.data_Logo.logo.image[themeState]}
@@ -86,15 +84,15 @@ const Search = () => {
         state={{ sample: "sample" }}
       >
         <div
-            className={
-              stateHover === "search"
-                ? "hover-description on-hover"
-                : "hover-description"
-            }
-            ref={searchHoverRef}
-          >
-            {data.language_Search[languageState].search}
-          </div>
+          className={
+            stateHover === "search"
+              ? "hover-description on-hover"
+              : "hover-description"
+          }
+          ref={searchHoverRef}
+        >
+          {data.language_Search[languageState].search}
+        </div>
         <div //search button
           onMouseEnter={(e) => {
             handlerMouseEnter(e, "search", searchHoverRef, setStateHover);
@@ -105,7 +103,6 @@ const Search = () => {
           onClick={() => {}}
         >
           {data.data_Search.search.image}
-          
         </div>
       </Link>
 

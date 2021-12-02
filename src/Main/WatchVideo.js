@@ -140,12 +140,7 @@ const WatchVideo = () => {
               channelIconUrl: channelInfo.snippet.thumbnails.default.url,
               subscriberCount: channelInfo.statistics.subscriberCount,
             });
-            console.log("aaa", {
-              ...item.snippet,
-              ...item.statistics,
-              channelIconUrl: channelInfo.snippet.thumbnails.default.url,
-              subscriberCount: channelInfo.statistics.subscriberCount,
-            });
+        
             setIsWatchVideoLoading(false);
           });
         })
@@ -158,9 +153,6 @@ const WatchVideo = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("change loading");
-  }, [watchVideoState]);
 
   const formattingNumber = (num) => {
     if (!num) return 0;
@@ -203,7 +195,6 @@ const WatchVideo = () => {
             <YouTube videoId={getQueryString()}></YouTube>
           </div>
           <div className="watch-video-tags-wrapper">
-            {console.log("hi dsfafads:", watchVideoState)}
             {watchVideoState.tags.map((i, index) => (
               <div className="watch-video-tag" key={index}>
                 {i}

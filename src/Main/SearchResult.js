@@ -340,7 +340,6 @@ const SearchResult = () => {
           });
       })
       .catch((e) => {
-        console.log(e);
         navigate("/");
       });
   }, [location, navigate, setIsOpenMiniSideBar]);

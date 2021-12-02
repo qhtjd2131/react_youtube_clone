@@ -9,7 +9,6 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [itemsState, setItems] = useState([]);
   const [channelItemsState, setChannelItems] = useState([]);
-  // const [isScrollBottom, setIsScrollBottom] = useState(false);
   const { setIsOpenMiniSideBar } = useContext(MiniSideBarContext);
   const { isOpenSideBar, isWindowSizeXL } = useContext(SideBarContext);
   const { themeState } = useContext(themeStateContext);
@@ -19,7 +18,6 @@ const Main = () => {
   }, [setIsOpenMiniSideBar]);
 
   useEffect(() => {
-    console.log("main useeffect");
     const option = {
       part: "snippet,statistics",
       regionCode: "KR",
@@ -55,10 +53,10 @@ const Main = () => {
     };
 
     getData().then((result) => {
-      // setItems(result.items);
       setItems(result);
-      getChannelData(result).then((channelData) => {
-        return new Promise((resolve) => {
+      getChannelData(result)
+      .then(async channelData => {
+        await new Promise((resolve) => {
           setChannelItems(() => {
             let table = {};
             channelData.forEach((i) => {
@@ -72,14 +70,13 @@ const Main = () => {
             return table;
           });
           resolve();
-        }).then(() => {
-          setIsLoading(false);
         });
+        setIsLoading(false);
       });
+    })
+    .catch((e) => {
+      alert(e + "\n 인기 동영상 불러오기 실패");
     });
-    // .catch((e) => {
-    //   alert(e + "\n 인기 동영상 불러오기 실패");
-    // });
   }, []);
 
   /* 스크롤바가 제일 하단에 도착했을때, api call 을 하기위한 useeffect*/
@@ -133,7 +130,7 @@ const Main = () => {
                   description: item.snippet.description,
                   tags: item.snippet.tags,
                   subscriberCount:
-                  channelItemsState[item.snippet.channelId].subscriberCount,
+                    channelItemsState[item.snippet.channelId].subscriberCount,
                 }}
               >
                 <div className="video-thumbnail">

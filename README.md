@@ -326,6 +326,7 @@ object로 만들어 국가별 언어를 지정해준다면, 관리하기 쉽고,
    ]
    ```
    처음엔 위와 같은 방식으로 나라별로 언어를 설정하기만 하면 되는줄 알았다. 단순 반복으로 랜더링하는 데이터에서는 문제없이 작동했지만, 특정 아이템 데이터를 가져오는 것에서 문제가 생겼다. key값이 index인 배열이기 때문에 생긴 문제엿다. 그래서 key값을 가지는 object로 변경해야할 필요성을 느꼈다. 
+   <br>
 
 3. 언어설정을 위한 데이터셋 2
    ```javascript
@@ -349,6 +350,7 @@ object로 만들어 국가별 언어를 지정해준다면, 관리하기 쉽고,
    };
    ```
    데이터셋을 `object`로 변경했다. 그리고  `text` 데이터가 아닌 `image`나 다른 부가적인 데이터를 분리하였다. 이렇게 한 이유는 `text`데이터가 아닌 다른 데이터들은 공통된 부분이고, 한 종류의 언어가 추가될 때, 쉽게 데이터에 추가하기위해서이다. 하지만 이 데이터셋을 적용하면서 잘못된 판단이었다고 생각했다. 하나의 데이터를 두개의 데이터로 나누었기 때문에, 유지보수가 어려워졌고, 가독성도 많이 떨어졌기 때문이다.
+   <br>
 
 4. 언어설정을 위한 데이터셋 3 (채택)
    ```javascript
@@ -400,99 +402,98 @@ useEffect(()=>{
 
 ####Youtube API Call 할당량 줄이기
 
+이 프로젝트를 테스트하면서 가장 큰 어려움은 API 호출 제한에 걸리는 것이었다. 따라서 API 호출시 사용되는 cost를 줄여야겠다고 생각했다.
+
+cost를 줄이는 것에 있어서 두가지 방법이 있다.
+1. 리랜더링으로 인한 중복호출 방지
+   `useEffect`에 의존성배열을 이용하여 `update`가 아닌 처음 랜더링 되었을때만 api call을 하는것으로 해결.
+   한번 호출된 데이터는 `state`로 저장하여, 다른 페이지에서 재호출하는것이 아닌 `state`를 넘겨받는 방법으로 해결.
+   <br>
+
+2. 한번의 api 호출에 필요한 cost 줄이기.
+   youtube api 공식문서를 참고하였으며, 자세한 내용은 아래에서 다룬다.
+
+Youtube API는 하루단위로 호출 할당량(10,000)이 있다.
+https://developers.google.com/youtube/v3/determine_quota_cost
+
+이 프로젝트에서는 사용하는 API Call method는 다음과 같다.
+- video.list (cost : 1)
+- search.list (cost : 100)
+- channel.list (cost : 1)
+
+처음에는 받아오는 데이터(아이템)의 갯수에 따라서 호출량이 달라 진다고 생각하였으나, youtube 공식문서에 따르면 method 종류에 따라 호출량이 달라진다고 한다. 직접 실험해 보았을 때도 동일한 결과를 보여주었다. 이를 기반으로 계산한 페이지별 cost는 아래와 같다.
+
+- main
+-search : 100  
+-channel : 1 
+total cost : 2
+
+- searchResult
+-search : 100
+-channel: 1
+total cost : 101
+
+- watchVideo(from main)
+-search : 100
+total cost : 100
+
+- watchVideo(from search or link)
+-search : 100 
+-video : 1 
+-channel : 1
+total cost : 102
+
+그리고 다음으로 고객이 비디오를 시청하게되는 흐름에 대한 예상 cost와 실제로 소요된 cost이다. 실제로 소요된 cost는 google cloud flatform 에서 관찰할 수 있다. **단, 사용량이 적용되기 까지 10~20분 정도 걸린다.**
+
+- main > search > watchVideo
+  expected cost : 205
+  real cost : 206
+
+- (주소창 입력) watchVideo
+  expected cost : 102
+  real cost : 102
+
+- main > watchVideo
+  expected cost : 100
+  real cost : 100
+
+
+youtube api 공식문서에는 소요되는 cost를 줄이기 위해서는 `fields` 매개변수로 필요한 데이터만 중첩없이 받아오라고 한다. (https://developers.google.com/youtube/v3/getting-started#fields))
+그래서 `fields`매개변수를 적용하고 test를 해보았다.
+
+- main > search > watchVideo
+  expected cost : 205
+  real cost : 205
+
+- (주소창 입력) watchVideo
+  expected cost : 102
+  real cost : 102
+
+- main > watchVideo
+  expected cost : 100
+  real cost : 100
+
+test 결과는 위와 같이 동일했다.(처음 main > search > watchVideo 의 `cost: 206`은 정확하지 않은 결과라고 판단.) 결과적으로 `cost`의 차이는 없었지만, 더 다양하고 방대한 데이터를 사용할 때 효과적일것이라고 예상되어진다.
+
+test함에 있어서 호출 제한이 있고, 소요되는 cost가 바로 반영되지 않아서 굉장히 많은 시간이 걸린 작업이었다. 하지만 api call cost 최적화에 대해 공부하고 실험해볼 수 있는 좋은 경험이었다고 생각한다.
 
 ---
 
-### 겪었던 어려움
-
-#### 문제 1.
-**내용** : sample
-**해결** : sample
-
-**기타** :
-sample
-
+## 이번 프로젝트를 하면서..
+- SCSS를 사용하여 특성 파악(styled-components의 필요성)
+- axios를 사용한 api call
+- async/await, promise, then 을 사용한 동기적인 처리
+- react-router-dom version6 사용하고 변경된 부분 파악
+- 테마, 언어설정 기능 구현으로 상태관리의 필요성 느낌(useContext의 단점 파악)
+- 다양한 언어를 지원하는 데이터 구조 고안
+- api call cost 최적화 경험
 
 ---
 
 ## 향후 계획
-1.  sample
+1. typeScript 를 활용하기
 
-2. sample
+2. styled-components가 가장 유용하다고 판단하여, 앞으로의 프로젝트에 우선적용
 
----
-## 이번 프로젝트를 하면서..
-- SCSS를 사용하여 특성 파악(styled-components의 필요성)
-- axios를 사용한 동기적인 api call
-- react-router-dom version6 사용하고 변경된 부분 파악
-- 테마, 언어설정 기능 구현 (localstorage 사용)
+3. 나만의 생각에 갇혀있지 않기. 잘 짜여진 코드, 효율적인 구조를 검색하고 분석하여 프로젝트에 적용해보기.
 
-
-
-////
-
-youtube api 호출 할당량 관리
-1. 큰 데이터셋을 가져와 필요한것만 사용하는 현재의 프로젝트
-2. 이는  불필요한 데이터를 검색하고 가져오므로, 사용가능한 할당량을 감소시키고, 더 많은 시간과 대역폭이 필요함.
-3. 결론적으로 본 프로젝트 테스트 중 할당량 제한으로 테스트를 못하게 되는 상황 발생
-3. 따라서 할당량 관리가 필요함.
-
-  3-1. 할당량 계산 (https://developers.google.com/youtube/v3/determine_quota_cost) 참고
-  main
--search : 100  (20개)
--channel : 1  (20개)
-
-cost : 2
-
-searchResult
--search : 100 (7)
--channel:1 (7)
-
-cost 101
-
-watchVideo(from main)
--search : 100
-
-cost : 100
-
-watchVideo(from search or link)
--search : 100 (20)
--video : 1 
--channel : 1
-
-cost 102
-
-
-
-main->search->watchVideo
-expected cost : 203,  
-real cost:  206 (2 -> 208)
-
-main->watchVideo
-expected cost : 102, 
-real cost : 104 (208->312)
-
-watchVideo->main
-expoected cost : 2
-real cost : 4 (312->316)
-
-main -> main 
-expected cost : 2
-real cost : 2 (316->318)
-
-main->watchVideo
-expected cost : 100
-real cost : 100 (318->418)
-
-watchVideo->main (second try)
-expected cost : 2
-real cost : 4 (418->422)
-
-main 
-expected cost : 2
-real cost : 2 (424->426)
-
-=> 그냥 main으로 이동할때는 2, 다른페이지에서 main으로 이동할때에는 4가 듬 이유는?
-
-  3-2. fields 매개변수로 필요한 데이터만 중첩없이 설정. (https://developers.google.com/youtube/v3/getting-started#fields))
-  test 결과 : 공식문서에서는 fields 매개변수로 필요한 데이터만 가져오는것이 할당량을 줄이는 방법이라고 기재되어있다. 하지만 이 프로젝트의 메인페이지를 기준으로 fields 설정 전 cost:1, fields 설정 후 cost:1, 로 할당량의 차이는 없었다. 1이 최솟값이라서 그런가 하여 추가적으로 할당량이 100을 차지하는 'search' api call 에서도 변화는 없었다.
