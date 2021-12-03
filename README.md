@@ -470,77 +470,55 @@ https://developers.google.com/youtube/v3/determine_quota_cost
 
 처음에는 받아오는 데이터(아이템)의 갯수에 따라서 호출량이 달라 진다고 생각하였으나, youtube 공식문서에 따르면 method 종류에 따라 호출량이 달라진다고 한다. 직접 실험해 보았을 때도 동일한 결과를 보여주었다. 이를 기반으로 계산한 페이지별 cost는 아래와 같다.
 
-- main
-
+- main  
    search : 100  
    channel : 1  
    total cost : 2
 
-- searchResult
+- searchResult  
+   search : 100  
+   channel: 1  
+   total cost : 101  
 
-search : 100
+- watchVideo(from main)  
+   search : 100  
+   total cost : 100  
 
-channel: 1
-
-total cost : 101
-
-- watchVideo(from main)
-
-search : 100
-
-total cost : 100
-
-- watchVideo(from search or link)
-
-search : 100 
-
-video : 1 
-
-channel : 1
-
-total cost : 102
+- watchVideo(from search or link)  
+   search : 100   
+   video : 1  
+   channel : 1  
+   total cost : 102  
 
 그리고 다음으로 고객이 비디오를 시청하게되는 흐름에 대한 예상 cost와 실제로 소요된 cost이다. 실제로 소요된 cost는 google cloud flatform 에서 관찰할 수 있다. **단, 사용량이 적용되기 까지 10~20분 정도 걸린다.**
 
-- main > search > watchVideo
+- main > search > watchVideo  
+  expected cost : 205  
+  real cost : 206  
 
-  expected cost : 205
+- (주소창 입력) watchVideo  
+  expected cost : 102  
+  real cost : 102  
 
-  real cost : 206
-
-- (주소창 입력) watchVideo
-
-  expected cost : 102
-
-  real cost : 102
-
-- main > watchVideo
-
-  expected cost : 100
-
-  real cost : 100
+- main > watchVideo  
+  expected cost : 100  
+  real cost : 100  
 
 
 youtube api 공식문서에는 소요되는 cost를 줄이기 위해서는 `fields` 매개변수로 필요한 데이터만 중첩없이 받아오라고 한다. (https://developers.google.com/youtube/v3/getting-started#fields)
 그래서 `fields`매개변수를 적용하고 test를 해보았다.
 
-- main > search > watchVideo
+- main > search > watchVideo  
+  expected cost : 205  
+  real cost : 205  
 
-  expected cost : 205
+- (주소창 입력) watchVideo  
+  expected cost : 102  
+  real cost : 102  
 
-  real cost : 205
-
-- (주소창 입력) watchVideo
-
-  expected cost : 102
-
-  real cost : 102
-
-- main > watchVideo
-
-  expected cost : 100
-
-  real cost : 100
+- main > watchVideo  
+  expected cost : 100  
+  real cost : 100  
 
 test 결과는 위와 같이 동일했다.(처음 main > search > watchVideo 의 `cost: 206`은 정확하지 않은 결과라고 판단.) 결과적으로 `cost`의 차이는 없었지만, 더 다양하고 방대한 데이터를 사용할 때 효과적일것이라고 예상되어진다.
 
