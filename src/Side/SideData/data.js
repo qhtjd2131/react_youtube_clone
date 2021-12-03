@@ -162,7 +162,7 @@ export const language_side_item4 = {
 };
 
 export const data_side_item5 = {
-  outubePremium: {
+  youtubePremium: {
     image: <AiOutlineYoutube />,
   },
   settings: {

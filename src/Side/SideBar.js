@@ -113,6 +113,7 @@ const SideBar = () => {
                 languageItem={data.language_side_item4}
               />
               <Line />
+              {console.log(data.language_side_item5)}
               <Items
                 item={data.data_side_item5}
                 languageItem={data.language_side_item5}
