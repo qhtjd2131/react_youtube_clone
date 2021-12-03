@@ -98,9 +98,9 @@ npm run start
 ```
 ---
 
-### 동작 원리 및 구현 내용
+## 동작 원리 및 구현 내용
 
-#### 1. 버튼 부가 설명 컴포넌트
+### 1. 버튼 부가 설명 컴포넌트
 <!-- 버튼 부가설명 컴포넌트 GIF -->
 ![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/34260967/144215968-27f1f3b7-b38a-4009-8a43-60fa3495a97f.gif)
 
@@ -109,22 +109,28 @@ npm run start
 위와 같은 효과를 내기 위해 아래와 같은 과정을 거침.
 1. `:after` 선택자를 이용하여 컴포넌트를 생성하였다.
 **결론 : 문제를 해결 할 수 있는 방법이 아니었음.**
-   - hover 이벤트 발생 시 `display`속성을 `none -> box` 로 변경 하였다. 하지만 `display:none` 은 `transition` 효과가 적용되지 않는다.
-   <br>
-   - `opacity` 속성을 이용하여 투명도 변경하였다. 잘 작동하는 줄 알았지만, 투명해서 보이지 않지만 컴포넌트는 존재하여서 버튼 위치가 아닌 부가설명 컴포넌트 위치에 커서가 hover 되어도 보여지게 되었다.
-   <br>
+- hover 이벤트 발생 시 `display`속성을 `none -> box` 로 변경 하였다. 하지만 `display:none` 은 `transition` 효과가 적용되지 않는다.
+<br>
+
+- `opacity` 속성을 이용하여 투명도 변경하였다. 잘 작동하는 줄 알았지만, 투명해서 보이지 않지만 컴포넌트는 존재하여서 버튼 위치가 아닌 부가설명 컴포넌트 위치에 커서가 hover 되어도 보여지게 되었다.
+<br>
+
 2. 컴포넌트 내 `state`에 따라 className을 추가로 부여.
 **결론 : 해결방법으로 채택**
-   - 부가 설명 컴포넌트는 항상 존재한다.(사라지는것이 아니고 투명도만 변경)
-   - `state`는 `mouseEnter, mouseLeave` Event에 따라 결정된다. 따라서 이벤트를 등록하기 위해서는 각각의 버튼의 `Ref`를 참조해야한다. 그리고 각각의 버튼태그에 핸들러를 등록해주어야 하는 불편함이 있다.
+- 부가 설명 컴포넌트는 항상 존재한다.(사라지는것이 아니고 투명도만 변경)
 
+- `state`는 `mouseEnter, mouseLeave` Event에 따라 결정된다. 따라서 이벤트를 등록하기 위해서는 각각의 버튼의 `Ref`를 참조해야한다. 그리고 각각의 버튼태그에 핸들러를 등록해주어야 하는 불편함이 있다.
+<br>
+<br><br>
 
-#### 2. 반응형 #1, SideBar 컴포넌트
+### 2. 반응형 #1, SideBar 컴포넌트
 1. window size is XL ( size > 1300px )
 ![ezgif com-gif-maker (11)](https://user-images.githubusercontent.com/34260967/144219234-36d5a403-db77-4499-80d1-3b87706f99b6.gif)
+<br>
+
 2. window size is L ( size <= 1300px )
 ![ezgif com-gif-maker (10)](https://user-images.githubusercontent.com/34260967/144218747-820ef507-3fe0-4fc1-83a5-dc47dc3ea283.gif)
-
+<br>
 
 위와 같은 반응형 컴포넌트를 구성하기 위해서는 처음에 media-query 사용을 생각하였다. 하지만 이는 반응형으로 단순 스타일 변경이 아니고 state를 변경해야 하기에 적합하지 않은 방법이었다.
 따라서, 아래와 같이 구성하였다.
@@ -132,8 +138,10 @@ npm run start
 - window size가 변경될 때 마다 window size(XL or L)를 판별
 - size에 따라 state가 변경.
 <br>
+<br>
+<br>
 
-#### 3. 반응형 #2, Overlay 시 스크롤제어
+### 3. 반응형 #2, Overlay 시 스크롤제어
 
 이 프로젝트에서는 오버레이효과를 라이브러리 없이 다음과 같이 구성헸습니다.
 
@@ -155,6 +163,7 @@ Overlay Component Style
   transition: 0.3s;
 }
 ```
+<br>
 
 ![ezgif com-gif-maker (12)](https://user-images.githubusercontent.com/34260967/144220398-38421b44-76d2-4490-bf6d-c72d94731acf.gif)
 
@@ -174,10 +183,10 @@ Overlay Component Style
 
 이를 해결하기 위해 다시 다음과 같은 방법을 적용해보았다.
 1. overflow : hidden 이 되면서 scrollbar가 사라지면 그 여백만큼 body 에 padding을 주는 방법
-   - body의 margin과 padding이 window를 넘겨서 적용되었다.
-   - body의 size를 calc(100% - $scrollbar-width) 로 설정하면 margin-right, padding-right가 적용은 되었지만, contents가 padding과 margin위에 overlay되었다.
-   - margin과 padding 이 적용되어도 contents의 크기에 영향을 주지 않으므로, 옳지않은 방법이라고 생각했다.
-   <br>
+- body의 margin과 padding이 window를 넘겨서 적용되었다.
+- body의 size를 calc(100% - $scrollbar-width) 로 설정하면 margin-right, padding-right가 적용은 되었지만, contents가 padding과 margin위에 overlay되었다.
+- margin과 padding 이 적용되어도 contents의 크기에 영향을 주지 않으므로, 옳지않은 방법이라고 생각했다.
+<br>
 
 2. scrollbar의 스타일을 변경하는 방법
 ```css
@@ -190,9 +199,8 @@ Overlay Component Style
    width:0px;
 } 
 ```
-  
-   - scrollbar가 사라는졌으나 기능은 동작하였다. 따라서 색을바꾸거나 thumb를 조작하는 방법은 옳지 않은거 같다..
-   <br>
+- scrollbar가 사라는졌으나 기능은 동작하였다. 따라서 색을바꾸거나 thumb를 조작하는 방법은 옳지 않은거 같다..
+<br>
 
 3. position 속성을 사용하는 방법
 ```scss
@@ -201,15 +209,18 @@ Overlay Component Style
    overflow-y:scroll;
 }
 ```
-   - 이 방법은 개발자도구를 통해 youtube main page를 참고하였다.
-   - overflow를 발생시키는 대상을 position:fixed로 설정하면 scrollbar가 랜더링되지 않는다.
-   - 이때 overflow-y:scroll; 속성이 있다면, scrollbar는 랜더링되지 않고 scroll의 영역은 남아있게 된다.
-   - 당연히 youtube main page를 참고하였기때문에 적합한 방법이다.
+- 이 방법은 개발자도구를 통해 youtube main page를 참고하였다.
+- overflow를 발생시키는 대상을 position:fixed로 설정하면 scrollbar가 랜더링되지 않는다.
+- 이때 overflow-y:scroll; 속성이 있다면, scrollbar는 랜더링되지 않고 scroll의 영역은 남아있게 된다.
+- 당연히 youtube main page를 참고하였기때문에 적합한 방법이다.
+<br>
+<br>
 
 
-#### 반응형 #3, 스크롤바 위치 기억
+### 반응형 #3, 스크롤바 위치 기억
 
 scrollbar 를 주의해서 봐주세요.
+<br>
 
 ![ezgif com-gif-maker (13)](https://user-images.githubusercontent.com/34260967/144235334-de73e7f1-06b3-41f6-8f98-179bb781c2ba.gif)
 
@@ -224,18 +235,24 @@ scrollbar 를 주의해서 봐주세요.
       overflow-y:scroll;
    }
    ```
+   <br>
+
 - `position:fixed` 속성으로 인해 scroll의 존재가 사라짐.
 - `<SideBar>`가 닫히고 `<Overlay>`가 사라짐.
 - `position` 속성이 초기화되고, 스크롤의 위치도 초기화되어 새로 생성됨.
+<br>
 
 위의 문제를 해결하기 위하여, 아래의 hook을 이용하였다.
 - `useState` : `isWindowXL, isOpenSideBar`
 - `useEffect` 
 - `useRef` 
+<br>
 
 `isWindowXL, isOpenSideBar`가 변경될 때마다 `useEffect`로 현재 스크롤의 위치를 기억하고, `useRef`를 활용하여 리랜더링되어도 기억된 스크롤의 위치가 초기화 되지 않게 하였다.
+<br>
+<br>
 
-#### 부모-자식 간의 hover 문제
+### 부모-자식 간의 hover 문제
 
 ![image](https://user-images.githubusercontent.com/34260967/144238324-97ce1d0c-a1a9-4b52-b567-994b120cd6ed.png)
 
@@ -265,9 +282,11 @@ scrollbar 를 주의해서 봐주세요.
    ```
 
 이렇게 된다면, `<MenuButton>`과 `<DropDown>`의 hover 이벤트는 중복되지 않고, position의 위치 기준은 컴포넌트 왼쪽상단이기 때문에,  `<MenuButton>`의 위치를 기준으로 잡을 수 있게된다.
+<br>
+<br>
 
 
-#### 테마 설정 (모든 페이지에 적용)
+### 테마 설정 (모든 페이지에 적용)
 
 ![ezgif com-gif-maker (14)](https://user-images.githubusercontent.com/34260967/144256781-d381daeb-9b5e-4bb0-a90b-9df52448107a.gif)
 
@@ -290,8 +309,11 @@ scrollbar 를 주의해서 봐주세요.
 
 
 테마 설정에 따른 스타일변경에서 `styled-components`의 필요성을 절실히 느꼈다. `themeState`에 따라 style을 변경하기 위해 하나하나 className을 하나하나 추가하는 고생을 했다.
+<br>
+<br>
 
-#### 언어 설정 (모든 페이지에 적용)
+
+### 언어 설정 (모든 페이지에 적용)
 
 
 ![ezgif com-gif-maker (15)](https://user-images.githubusercontent.com/34260967/144257724-576cfcf7-1f9d-4b14-beb1-1ee3fcadc98d.gif)
@@ -389,9 +411,11 @@ object로 만들어 국가별 언어를 지정해준다면, 관리하기 쉽고,
    }
    ```
    최종 결정된 데이터 셋이다. key값으로 데이터 순회하지 않아도 찾을 수 있고, 가독성도 좋아졌다. 오직 나의 생각과 시행착오의 결과로 나온 데이터셋이었기 때문에 더욱 뿌듯함을 느꼈다.
+<br>
+<br>
 
 
-#### 비디오 시청(WatchVideo) 흐름
+### 비디오 시청(WatchVideo) 흐름
 
 비디오 시청 페이지(WatchVideo.js)는 링크 공유할 수 있어야 하고, 그 링크를 주소창에 입력하여 접속 할 때에도, 올바르게 동작해야한다. 따라서 링크(url) 안에 존재하는 쿼리스트링으로 재생할 Youtube동영상 id를 받아서 동영상을 재생해야한다.
 ex) `https://www.youtube.com/watch?v=YmQD5P6fvlc`
@@ -419,8 +443,11 @@ useEffect(()=>{
    }
 },[location.state])
 ```
+<br>
+<br>
 
-#### Youtube API Call 할당량 줄이기
+
+### Youtube API Call 할당량 줄이기
 
 이 프로젝트를 테스트하면서 가장 큰 어려움은 API 호출 제한에 걸리는 것이었다. 따라서 API 호출시 사용되는 cost를 줄여야겠다고 생각했다.
 
@@ -478,7 +505,7 @@ total cost : 102
   real cost : 100
 
 
-youtube api 공식문서에는 소요되는 cost를 줄이기 위해서는 `fields` 매개변수로 필요한 데이터만 중첩없이 받아오라고 한다. (https://developers.google.com/youtube/v3/getting-started#fields))
+youtube api 공식문서에는 소요되는 cost를 줄이기 위해서는 `fields` 매개변수로 필요한 데이터만 중첩없이 받아오라고 한다. (https://developers.google.com/youtube/v3/getting-started#fields)
 그래서 `fields`매개변수를 적용하고 test를 해보았다.
 
 - main > search > watchVideo
