@@ -93,7 +93,7 @@ const App = () => {
 
   return (
     <BrowserRouter basename="react_youtube_clone/">
-      <div className="app">
+      <div className={"app app-"+themeState}>
         <SideBarContext.Provider
           value={{
             isOpenSideBar,
