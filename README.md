@@ -473,7 +473,7 @@ https://developers.google.com/youtube/v3/determine_quota_cost
 - main
 
    search : 100  
-   channel : 1 
+   channel : 1  
    total cost : 2
 
 - searchResult
