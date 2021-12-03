@@ -472,11 +472,9 @@ https://developers.google.com/youtube/v3/determine_quota_cost
 
 - main
 
-search : 100  
-
-channel : 1 
-
-total cost : 2
+   search : 100  
+   channel : 1 
+   total cost : 2
 
 - searchResult
 
@@ -541,7 +539,7 @@ youtube api 공식문서에는 소요되는 cost를 줄이기 위해서는 `fiel
 - main > watchVideo
 
   expected cost : 100
-  
+
   real cost : 100
 
 test 결과는 위와 같이 동일했다.(처음 main > search > watchVideo 의 `cost: 206`은 정확하지 않은 결과라고 판단.) 결과적으로 `cost`의 차이는 없었지만, 더 다양하고 방대한 데이터를 사용할 때 효과적일것이라고 예상되어진다.
