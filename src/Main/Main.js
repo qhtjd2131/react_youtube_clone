@@ -49,6 +49,8 @@ const Main = () => {
 
       const urlGetChannel = `https://www.googleapis.com/youtube/v3/channels?part=${option.part}&id=${channelIDsString}&fields=${option2.fields}&key=${option.apiKey}`;
       const channelData = await axios.get(urlGetChannel);
+      console.log(urlGetChannel);
+      console.log(channelData);
       return channelData.data.items;
     };
 
